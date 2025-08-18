@@ -7,7 +7,7 @@
 {
   imports = [
     ./sh.nix
-    ./hyprland.nix
+    ./hyprland/hyprland.nix
     ./ghostty.nix
     ./obsidian.nix
     ./fastfetch.nix
@@ -129,6 +129,22 @@
     enable = true;
     userEmail = "admonty1@protonmail.com";
   };
+
+programs.keepassxc = {
+  enable = true;
+#  settings = {
+#    Browser = {
+#    	Enabled = true;
+#	UseCustomBrowser = true;
+#	CustomBrowserType = 1;
+#
+#};
+#    GUI = {
+#      ShowTrayIcon = true;
+#      ApplicationTheme = "dark";
+#    };
+#  };
+};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
