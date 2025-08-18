@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 {
-	
-imports = [ 
-	./binds.nix
-];
+
+  imports = [
+    ./binds.nix
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -31,6 +31,8 @@ imports = [
         "8, monitor:DP-2"
         "9, monitor:DP-2"
         "0, monitor:DP-2"
+	"w[tv1], gapsout:0, gapsin:0"
+	"f[1], gapsout:0, gapsin:0"
       ];
       exec-once = [
         "xrandr --output DP-3 --primary"
@@ -44,7 +46,13 @@ imports = [
       windowrule = [
         "workspace 7 silent, class:(discord)"
         "workspace 8 silent, class:(steam)"
+	"bordersize 0, floating:0, onworkspace:w[tv1]"
+	"rounding 0, floating:0, onworkspace:w[tv1]"
+	"bordersize 0, floating:0, onworkspace:f[1]"
+	"rounding 0, floating:0, onworkspace:f[1]"
       ];
+
+
     };
   };
 

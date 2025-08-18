@@ -1,35 +1,7 @@
-{ config, pkgs, ... }:
-
-{
-	
-imports = [ 
-	./binds.nix
-];
-  wayland.windowManager.hyprland = {
-      "$mod" = "SUPER";
-
-      bind = [
-        "$mod, f, exec, ghostty"
-        "$mod, d, exec, brave"
-        "$mod, space, exec, pkill rofi || rofi -show drun"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
-	", XF86AudioNext, exec, playerctl next && notify-send 'Next Song'"
-	", XF86AudioPrev, exec, playerctl previous && notify-send 'Previous Song'"
-	", XF86AudioPlay, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
-	", XF86AudioStop, exec, playerctl stop && notify-send 'Music Stopped'"
-        ", F10, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
-        ", F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
-        ", F9, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
-	", F6, exec, playerctl next && notify-send 'Next Song'"
-	", F5, exec, playerctl previous && notify-send 'Previous Song'"
-	", F7, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
-	", F8, exec, playerctl stop && notify-send 'Music Stopped'"
-      ]
-      ++ (
+{lib, config, pkgs, ... }:
+let 
         # workspaces
-        builtins.concatLists (
+        workspaces =builtins.concatLists (
           builtins.genList (
             i:
             let
@@ -40,9 +12,71 @@ imports = [
               "$mod SHIFT, code:1${toString i}, movetoWorkspace, ${toString ws}"
             ]
           ) 9
-        )
-      );
-    };
-  };
+        );
+in
+{
+  wayland.windowManager.hyprland.settings = {
 
-}
+    "$mod" = "SUPER";
+
+    bindm = [
+	"$mod, mouse:272, movewindow"
+	"$mod, mouse:273, resizewindow"
+    ];
+    bind = [
+	# compositor commands
+	"$mod SHIFT, E, exec, pkill Hyprland"
+        "$mod, W, killactive,"
+        "$mod, Q, killactive,"
+        "$mod, F, fullscreen,"
+        #"$mod, G, togglegroup,"
+        "$mod SHIFT, N, changegroupactive, f"
+        "$mod SHIFT, P, changegroupactive, b"
+        "$mod, R, togglesplit,"
+        "$mod, T, togglefloating,"
+        "$mod, P, pseudo,"
+        "$mod ALT, ,resizeactive,"
+
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod, h, movefocus, l"
+        "$mod, l, movefocus, r"
+        "$mod, k, movefocus, u"
+        "$mod, j, movefocus, d"
+
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
+        "$mod SHIFT, h, movewindow, l"
+        "$mod SHIFT, l, movewindow, r"
+        "$mod SHIFT, k, movewindow, u"
+        "$mod SHIFT, j, movewindow, d"
+
+      "$mod, g, exec, ghostty"
+      "$mod, b, exec, brave"
+      "$mod, space, exec, pkill rofi || rofi -show drun"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
+      ", XF86AudioNext, exec, playerctl next && notify-send 'Next Song'"
+      ", XF86AudioPrev, exec, playerctl previous && notify-send 'Previous Song'"
+      ", XF86AudioPlay, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
+      ", XF86AudioStop, exec, playerctl stop && notify-send 'Music Stopped'"
+      ", F10, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
+      ", F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
+      ", F9, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
+      ", F6, exec, playerctl next && notify-send 'Next Song'"
+      ", F5, exec, playerctl previous && notify-send 'Previous Song'"
+      ", F7, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
+      ", F8, exec, playerctl stop && notify-send 'Music Stopped'"
+    ] 
+++ workspaces;
+
+
+    };
+  }
+
+

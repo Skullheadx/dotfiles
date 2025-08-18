@@ -44,9 +44,8 @@
     inter
     prismlauncher
     nixfmt-rfc-style
-    zip
-    unzip
     p7zip
+    github-desktop
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -130,21 +129,21 @@
     userEmail = "admonty1@protonmail.com";
   };
 
-programs.keepassxc = {
-  enable = true;
-#  settings = {
-#    Browser = {
-#    	Enabled = true;
-#	UseCustomBrowser = true;
-#	CustomBrowserType = 1;
-#
-#};
-#    GUI = {
-#      ShowTrayIcon = true;
-#      ApplicationTheme = "dark";
-#    };
-#  };
-};
+  programs.keepassxc = {
+    enable = true;
+    #  settings = {
+    #    Browser = {
+    #    	Enabled = true;
+    #	UseCustomBrowser = true;
+    #	CustomBrowserType = 1;
+    #
+    #};
+    #    GUI = {
+    #      ShowTrayIcon = true;
+    #      ApplicationTheme = "dark";
+    #    };
+    #  };
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
