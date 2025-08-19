@@ -1,4 +1,6 @@
+{ config, pkgs, ... }:
 {
+ home.file = {
   ".config/rmpc/themes/theme.ron".text = ''
     		#![enable(implicit_some)]
     		#![enable(unwrap_newtypes)]
@@ -91,5 +93,6 @@
     		    ),
     		)	
     	'';
+};
 
 }

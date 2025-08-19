@@ -36,6 +36,7 @@
       ];
       exec-once = [
         "xrandr --output DP-3 --primary"
+	"waybar"
         "[workspace 1 silent] ghostty"
         "[workspace 2 silent] ghostty -e rmpc"
         "[workspace 3 silent] obsidian"

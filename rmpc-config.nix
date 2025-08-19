@@ -1,4 +1,6 @@
+{ config, pkgs, ... }:
 {
+home.file = {
   ".config/rmpc/config.ron".text = ''
     		#![enable(implicit_some)]
     		#![enable(unwrap_newtypes)]
@@ -159,5 +161,5 @@
     			],
     		)
     	'';
-
+};
 }
