@@ -72,7 +72,6 @@
     hyprland
     kitty
     libnotify
-	gnome-keyring
 
   ];
   programs.steam = {
