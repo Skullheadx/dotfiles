@@ -6,7 +6,7 @@
     settings = [
       {
         output = [ "DP-3" ];
-        height = 37; # Waybar height
+        height = 24; # Waybar height
         spacing = 4; # Gaps between modules
 
         modules-left = [
@@ -18,12 +18,11 @@
           "mpris"
         ];
         modules-right = [
-          "idle_inhibitor"
-          "load"
-          "wireplumber"
-          "clock"
-          "battery"
           "tray"
+          "idle_inhibitor"
+          "wireplumber"
+          "battery"
+          "clock"
         ];
 
         "hyprland/workspaces" = {
@@ -34,12 +33,14 @@
           format = "{icon}";
           format-icons = {
             "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "9" = "";
-            "10" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "4";
+            "5" = "5";
+	    "6" = "";
+	    "7" = "";
+	    "8" = "";
+            "9" = "9";
           };
         };
 
@@ -65,21 +66,9 @@
           };
         };
 
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-        };
-
         tray = {
           icon-size = 14;
           spacing = 10;
-        };
-
-        load = {
-          format = " {}";
         };
 
         clock = {
@@ -150,12 +139,14 @@
           format = "{icon}";
           format-icons = {
             "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "9" = "";
-            "10" = "";
+            "2" = "";
+            "3" = "";
+            "4" = "4";
+            "5" = "5";
+	    "6" = "";
+	    "7" = "";
+	    "8" = "";
+            "9" = "9";
           };
         };
 
