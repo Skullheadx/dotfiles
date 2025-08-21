@@ -11,6 +11,8 @@
     ./sh.nix
     ./hyprland/hyprland.nix
     ./hyprpaper.nix
+    ./hypridle.nix
+    ./hyprlock.nix
     ./ghostty.nix
     ./obsidian.nix
     ./fastfetch.nix
@@ -142,6 +144,7 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
+	
 	
 
   # Let Home Manager install and manage itself.
