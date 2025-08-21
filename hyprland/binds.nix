@@ -55,9 +55,12 @@ in
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
 
-      "$mod, g, exec, ghostty"
+
+
+      "$mod, d, exec, ghostty"
       "$mod, b, exec, brave"
       "$mod, space, exec, pkill rofi || rofi -show drun"
+      "$mod, s, exec, pkill hyprpicker || hyprpicker -ar"
       ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
       ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
