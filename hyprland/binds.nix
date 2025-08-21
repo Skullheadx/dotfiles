@@ -61,6 +61,8 @@ in
       "$mod, b, exec, brave"
       "$mod, space, exec, pkill rofi || rofi -show drun"
       "$mod, s, exec, pkill hyprpicker || hyprpicker -ar"
+      ", XF86Explorer, exec, hyprlock"
+      ", F1, exec, hyprlock"
       ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
       ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
       ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
@@ -75,6 +77,11 @@ in
       ", F5, exec, playerctl previous && notify-send 'Previous Song'"
       ", F7, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
       ", F8, exec, playerctl stop && notify-send 'Music Stopped'"
+
+
+      ", F4, workspace, 3"
+      ", XF86Tools, workspace, 3"
+
     ] 
 ++ workspaces;
 
