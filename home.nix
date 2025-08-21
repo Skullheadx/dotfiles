@@ -19,6 +19,7 @@
     ./rmpc-theme.nix
     ./rmpc-config.nix
     ./waybar.nix
+    ./freetube.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -130,6 +131,7 @@
     #    };
     #  };
   };
+
 
   xdg.portal = {
     enable = true;
