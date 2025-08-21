@@ -19,7 +19,6 @@
         ];
         modules-right = [
           "tray"
-          "idle_inhibitor"
           "wireplumber"
           "battery"
           "clock"
