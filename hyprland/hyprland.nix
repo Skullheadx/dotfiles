@@ -9,6 +9,10 @@
     enable = true;
     systemd.enable = false;
     settings = {
+env = [
+  "HYPRCURSOR_THEME,Bibata-Original-Classic"
+  "HYPRCURSOR_SIZE,24"
+];
       monitor = [
         "DP-3,2560x1440@180.00,0x0,1"
         "DP-2,1920x1080@165.00,2560x360,1"

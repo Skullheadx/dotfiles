@@ -60,6 +60,7 @@
     wev
     obs-studio
     # hyprsysteminfo  # application to display info about hyprland
+	hyprland-qt-support
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -151,7 +152,12 @@
 	
 	
 services.hyprpolkitagent.enable = true;
-
+	home.pointerCursor = {
+		hyprcursor.enable = true;
+		name = "Bibata-Original-Classic";
+		size = 25;
+		package = pkgs.bibata-cursors;
+	};
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

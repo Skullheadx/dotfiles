@@ -72,7 +72,7 @@
     hyprland
     kitty
     libnotify
-
+	bibata-cursors
   ];
   programs.steam = {
     enable = true;
