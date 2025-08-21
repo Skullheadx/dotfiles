@@ -11,7 +11,7 @@ let
               "$mod, code:1${toString i}, workspace, ${toString ws}"
               "$mod SHIFT, code:1${toString i}, movetoWorkspace, ${toString ws}"
             ]
-          ) 9
+          ) 10
         );
 in
 {
