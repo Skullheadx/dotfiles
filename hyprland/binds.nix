@@ -55,7 +55,7 @@ in
         "$mod SHIFT, k, movewindow, u"
         "$mod SHIFT, j, movewindow, d"
 
-
+	
 
       "$mod, d, exec, ghostty"
       "$mod, b, exec, brave"
