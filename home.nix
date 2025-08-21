@@ -4,10 +4,13 @@
   pkgs,
   ...
 }:
+
+
 {
   imports = [
     ./sh.nix
     ./hyprland/hyprland.nix
+    ./hyprpaper.nix
     ./ghostty.nix
     ./obsidian.nix
     ./fastfetch.nix
@@ -137,6 +140,7 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
+	
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

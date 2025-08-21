@@ -7,6 +7,7 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
     settings = {
       monitor = [
         "DP-3,2560x1440@180.00,0x0,1"
@@ -36,13 +37,14 @@
       ];
       exec-once = [
         "xrandr --output DP-3 --primary"
-	"waybar"
-        "[workspace 1 silent] ghostty"
-        "[workspace 2 silent] ghostty -e rmpc"
-        "[workspace 3 silent] obsidian"
-        "[workspace 6 silent] brave"
-        "[workspace 7 silent] discord"
-        "[workspace 8 silent] steam"
+	"uwsm app -- waybar"
+#	"systemctl --user enable --now ./../hyprpaper.service"
+        "[workspace 1 silent] uwsm app -- ghostty"
+        "[workspace 2 silent] uwsm app -- ghostty -e rmpc"
+        "[workspace 3 silent] uwsm app -- obsidian"
+        "[workspace 6 silent] uwsm app -- brave"
+        "[workspace 7 silent] uwsm app -- discord"
+        "[workspace 8 silent] uwsm app -- steam"
       ];
       windowrule = [
         "workspace 7 silent, class:(discord)"

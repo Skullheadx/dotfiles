@@ -58,7 +58,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+  enable = true;
+    withUWSM = true;
+    };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -68,6 +72,8 @@
     hyprland
     kitty
     libnotify
+	gnome-keyring
+
   ];
   programs.steam = {
     enable = true;
