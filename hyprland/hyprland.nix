@@ -53,6 +53,10 @@ env = [
       windowrule = [
         "workspace 4 silent, class:(discord)"
         "workspace 8 silent, class:(steam)"
+        "workspace 8 silent, class:(steam)"
+
+
+
 	"bordersize 0, floating:0, onworkspace:w[tv1]"
 	"rounding 0, floating:0, onworkspace:w[tv1]"
 	"bordersize 0, floating:0, onworkspace:f[1]"
