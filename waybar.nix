@@ -5,8 +5,8 @@
 
     settings = [
       {
-        output = [ "DP-3" "DP-2"];
-       # height = 20; # Waybar height
+        output = [ "DP-3"];
+       #height = 24; # Waybar height
         spacing = 4; # Gaps between modules
 	fixed-center = true;
 
@@ -52,14 +52,14 @@
         };
 
         mpris = {
-          format = " {status_icon} {dynamic}";
+          format = "  {status_icon} {dynamic}";
           interval = 1;
           dynamic-len = 40;
           dynamic-order = [
             "title"
             "artist"
           ];
-          ignored-players = [ "firefox" ];
+          ignored-players = [ "brave" ];
           status-icons = {
             playing = "▶";
             paused = "⏸";
@@ -115,13 +115,14 @@
               ""
             ];
           };
-          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          #on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click = "pavucontrol";
         };
       }
 
       # Bar for DP-2 only
       {
-        output = [];
+        output = [ "DP-2" ];
         #height = 24;
         spacing = 4;
 
@@ -172,7 +173,7 @@
 
 window#waybar {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, monospace;
+    font-family: jetbrains-mono, monospace;
     background-color: transparent;
     border-bottom: 0px;
     color: #ebdbb2;

@@ -65,6 +65,15 @@
 	hyprgraphics
 	hyprland-qtutils
 
+	helvum
+	pavucontrol
+
+	grim
+	slurp
+	swappy
+
+
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -92,6 +101,21 @@
   #   org.gradle.daemon.idletimeout=3600000
   # '';
   home.file = {
+  	".config/swappy/config".text = ''
+		[Default]
+		save_dir=$HOME/Screenshots
+		save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
+		show_panel=true
+		line_size=5
+		text_size=20
+		text_font=monospace
+		paint_mode=brush
+		early_exit=true
+		fill_shape=false
+		auto_save=true
+		transparent=true
+		transparency=50
+	'';
 
   };
 
@@ -113,6 +137,7 @@
   #
   home.sessionVariables = {
     EDITOR = "neovim";
+    NIXOS_OZONE_WL = "1";
   };
 
   programs.brave.enable = true;
@@ -153,7 +178,10 @@
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 	
-	
+	services.gnome-keyring = {
+		enable = true;
+		};
+
 services.hyprpolkitagent.enable = true;
 	home.pointerCursor = {
 		hyprcursor.enable = true;

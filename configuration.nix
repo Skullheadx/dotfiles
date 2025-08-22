@@ -103,7 +103,23 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
+	noto-fonts-color-emoji
   ];
+
+
+	security.rtkit.enable = true;
+	services.pipewire = {
+		enable = true;
+		audio.enable = true;
+		pulse.enable = true;
+		alsa.enable = true;
+	};
+	services.pipewire.wireplumber.enable = true;
+
+	hardware = {
+		opengl.enable = true;
+	};
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

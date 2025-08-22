@@ -60,7 +60,9 @@ in
       "$mod, d, exec, ghostty"
       "$mod, b, exec, brave"
       "$mod, space, exec, pkill rofi || rofi -show drun"
-      "$mod, s, exec, pkill hyprpicker || hyprpicker -ar"
+      "$mod, p, exec, pkill hyprpicker || hyprpicker -ar"
+      "$mod SHIFT, s, exec, pkill slurp || grim -g \"$(slurp)\" - | wl-copy"
+      ", PRINT, exec, pkill slurp swappy || grim -g \"$(slurp)\" - | swappy -f -"
       ", XF86Explorer, exec, hyprlock"
       ", F1, exec, hyprlock"
       ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
@@ -81,6 +83,8 @@ in
 
       ", F4, workspace, 3"
       ", XF86Tools, workspace, 3"
+
+	
 
     ] 
 ++ workspaces;
