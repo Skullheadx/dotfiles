@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-	programs.tmux = {
+  programs.tmux = {
     enable = true;
     terminal = "xterm-256color";
     historyLimit = 5000;

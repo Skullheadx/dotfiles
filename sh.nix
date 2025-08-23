@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-let
   myAliases = {
     ll = "ls -l";
     ".." = "cd ..";
@@ -30,22 +29,26 @@ in
       theme = "";
     };
     initContent = ''
-      # Powerlevel10k configuration
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-	source ${./.p10k.zsh}
-      # Initialize zoxide
-      eval "$(zoxide init zsh)"
+            # Powerlevel10k configuration
+            source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      	source ${./.p10k.zsh}
+            # Initialize zoxide
+            eval "$(zoxide init zsh)"
 
-      # Initialize fzf
-      source <(fzf --zsh)
+            # Initialize fzf
+            source <(fzf --zsh)
 
-      # Source fzf-tab (needs to be after fzf)
-      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+            # Source fzf-tab (needs to be after fzf)
+            source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
-      # Custom aliases
-      alias ll="ls -la"
-      alias gs="git status"
+            # Custom aliases
+            alias ll="ls -la"
+            alias gs="git status"
 
-	bindkey '^ ' autosuggest-execute
-    '';  };
+      	bindkey '^ ' autosuggest-execute
+    '';
+  };
+  programs.fish = {
+		enable = true;
+  };
 }
