@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   programs.ghostty = {
     enable = true;
@@ -7,6 +11,7 @@
       link-url = true;
       background-opacity = 0.8;
       background-blur = true;
+
     };
   };
 }

@@ -1,5 +1,5 @@
 {
-  description = "Skullhead's Flake";
+  description = "Skullheadx's Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -34,6 +34,9 @@
         home = lib.nixosSystem {
           inherit system;
           modules = [ ./configuration.nix ];
+          specialArgs = {
+            inherit inputs;
+          };
         };
       };
       homeConfigurations = {

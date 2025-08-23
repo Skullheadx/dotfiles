@@ -2,19 +2,19 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
-
 
 {
   imports = [
     ./sh.nix
+    ./ghostty.nix
     ./hyprland/hyprland.nix
     ./hyprpaper.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprsunset.nix
-    ./ghostty.nix
     ./obsidian.nix
     ./fastfetch.nix
     ./udiskie.nix
@@ -47,6 +47,7 @@
   home.packages = with pkgs; [
     # # Adds the 'hello':wq command to your environment. It prints a friendly
     # # "Hello, world!" when run.
+
     discord
     neovim
     catppuccin-gtk
@@ -60,19 +61,17 @@
     wev
     obs-studio
     # hyprsysteminfo  # application to display info about hyprland
-	hyprland-qt-support
-	hyprutils
-	hyprgraphics
-	hyprland-qtutils
+    hyprland-qt-support
+    hyprutils
+    hyprgraphics
+    hyprland-qtutils
 
-	helvum
-	pavucontrol
+    helvum
+    pavucontrol
 
-	grim
-	slurp
-	swappy
-
-
+    grim
+    slurp
+    swappy
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -101,21 +100,21 @@
   #   org.gradle.daemon.idletimeout=3600000
   # '';
   home.file = {
-  	".config/swappy/config".text = ''
-		[Default]
-		save_dir=$HOME/Screenshots
-		save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
-		show_panel=true
-		line_size=5
-		text_size=20
-		text_font=monospace
-		paint_mode=brush
-		early_exit=true
-		fill_shape=false
-		auto_save=true
-		transparent=true
-		transparency=50
-	'';
+    ".config/swappy/config".text = ''
+      		[Default]
+      		save_dir=$HOME/Screenshots
+      		save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
+      		show_panel=true
+      		line_size=5
+      		text_size=20
+      		text_font=monospace
+      		paint_mode=brush
+      		early_exit=true
+      		fill_shape=false
+      		auto_save=true
+      		transparent=true
+      		transparency=50
+      	'';
 
   };
 
@@ -177,18 +176,18 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
-	
-	services.gnome-keyring = {
-		enable = true;
-		};
 
-services.hyprpolkitagent.enable = true;
-	home.pointerCursor = {
-		hyprcursor.enable = true;
-		name = "Bibata-Original-Classic";
-		size = 25;
-		package = pkgs.bibata-cursors;
-	};
+  services.gnome-keyring = {
+    enable = true;
+  };
+
+  services.hyprpolkitagent.enable = true;
+  home.pointerCursor = {
+    hyprcursor.enable = true;
+    name = "Bibata-Original-Classic";
+    size = 25;
+    package = pkgs.bibata-cursors;
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

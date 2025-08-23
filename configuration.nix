@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -59,9 +64,9 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.hyprland = {
-  enable = true;
+    enable = true;
     withUWSM = true;
-    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -72,7 +77,7 @@
     hyprland
     kitty
     libnotify
-	bibata-cursors
+    bibata-cursors
   ];
   programs.steam = {
     enable = true;
@@ -103,22 +108,22 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
-	noto-fonts-color-emoji
+    noto-fonts-color-emoji
   ];
 
-
-	security.rtkit.enable = true;
-	services.pipewire = {
-		enable = true;
-		audio.enable = true;
-		pulse.enable = true;
-		alsa.enable = true;
-	};
-	services.pipewire.wireplumber.enable = true;
-
-	hardware = {
-		opengl.enable = true;
-	};
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
+  services.pipewire.wireplumber.enable = true;
+  hardware = {
+    opengl = {
+      enable = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

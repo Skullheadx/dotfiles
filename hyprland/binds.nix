@@ -57,7 +57,7 @@ in
 
 	
 
-      "$mod, d, exec, ghostty"
+      "$mod, D, exec, uwsm app -- ghostty"
       "$mod, b, exec, brave"
       "$mod, space, exec, pkill rofi || rofi -show drun"
       "$mod, p, exec, pkill hyprpicker || hyprpicker -ar"
