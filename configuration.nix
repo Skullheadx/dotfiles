@@ -20,9 +20,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # zsh
-  environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
+  environment.shells = with pkgs; [ fish ];
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
