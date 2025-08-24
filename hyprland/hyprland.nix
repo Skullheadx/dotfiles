@@ -44,7 +44,7 @@ env = [
 	"uwsm app -- waybar"
         "[workspace 1 silent] uwsm app -- ghostty"
         "[workspace 2 silent] uwsm app -- brave"
-        "[workspace 3 silent] uwsm app -- ghostty -e rmpc"
+	"[workspace 3 silent] uwsm app -- ghostty -e fish -c rmpc"
         "[workspace 4 silent] uwsm app -- discord"
         "[workspace 6 silent] uwsm app -- keepassxc"
         "[workspace 8 silent] uwsm app -- steam"

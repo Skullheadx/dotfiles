@@ -49,6 +49,7 @@
     # # Adds the 'hello':wq command to your environment. It prints a friendly
     # # "Hello, world!" when run.
 	audacity
+	mpc
     discord
     neovim
     catppuccin-gtk
