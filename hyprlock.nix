@@ -66,7 +66,8 @@ in
           font_color = "rgb(143, 143, 143)";
           fade_on_empty = false;
           rounding = 15;
-
+	
+	  font_size = 30;
           font_family = "${font}";
           placeholder_text = "Input password...";
           fail_text = "$PAMFAIL";
