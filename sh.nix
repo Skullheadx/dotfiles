@@ -112,7 +112,7 @@ in
     show_always = true
     style_user = "bg:#a3aed2 fg:#090c0c"
     style_root = "bg:#a3aed2 fg:#090c0c"
-    format = '[ $user]($style)'
+    format = '[ $user ]($style)'
 
     [directory]
     style = "fg:#e3e5e5 bg:#769ff0"
