@@ -74,10 +74,6 @@
     slurp
     swappy
 
-    zoxide
-    fzf
-    zsh-fzf-tab
-    zsh-powerlevel10k
     tmux
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

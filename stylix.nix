@@ -3,6 +3,7 @@
 
   stylix = {
     enable = true;
+    autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     polarity = "dark";
     #image = ./backgrounds/hollowknightbackground_2560x1440.png;
@@ -24,6 +25,28 @@
         name = "Noto Color Emoji";
       };
     };
+
+      targets = {
+    fish.enable = true;         
+
+    gtk.enable = true;             
+    qt.enable = true;             
+
+    vim.enable = true;             
+    neovim.enable = true;             
+
+    kitty.enable = true;           # Kitty terminal
+    ghostty.enable = true;
+    waybar.enable = true;
+    rofi.enable = true;
+    tmux.enable = true;
+    hyprlock.enable = true;
+    hyprland.enable = true;
+    hyprpaper.enable = true;
+    fzf.enable = true;
+    dunst.enable = true;
+    
+  };
 
   };
 }
