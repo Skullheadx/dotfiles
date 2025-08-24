@@ -48,7 +48,7 @@
   home.packages = with pkgs; [
     # # Adds the 'hello':wq command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-
+	audacity
     discord
     neovim
     catppuccin-gtk
@@ -69,6 +69,7 @@
 
     helvum
     pavucontrol
+    alsa-utils
 
     grim
     slurp
