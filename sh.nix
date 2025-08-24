@@ -73,8 +73,8 @@ in
       		    fish_vi_key_bindings
       		    set -U fish_greeting
       		    zoxide init fish | source
-      		    starship init fish | source
       		    fzf --fish | source
+      		    starship init fish | source
       		  '';
   };
 
@@ -106,6 +106,7 @@ in
 
 
     palette = 'colours'
+    add_newline = false
 
     [username]
     show_always = true
