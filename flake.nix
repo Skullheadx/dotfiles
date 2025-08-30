@@ -35,6 +35,7 @@
       modules = [
         ./neovim.nix
       ];
+      extraSpecialArgs = {inherit inputs;};
     };
   in {
     nixosConfigurations = {
