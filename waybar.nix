@@ -1,11 +1,27 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: let
+  icons = {
+    "1" = "";
+    "2" = "";
+    "3" = "";
+    "4" = "";
+    "5" = "󰊴";
+    "6" = "";
+    "7" = "7";
+    "8" = "8";
+    "9" = "9";
+    "0" = "0";
+  };
+in {
   programs.waybar = {
     enable = true;
 
     settings = [
       {
-        output = [ "DP-3" ];
+        output = ["DP-3"];
         #height = 24; # Waybar height
         spacing = 4; # Gaps between modules
         fixed-center = true;
@@ -31,18 +47,7 @@
           enable-bar-scroll = true;
           disable-scroll-wraparound = true;
           format = "{icon}";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "󰊴";
-            "6" = "";
-            "7" = "7";
-            "8" = "";
-            "9" = "󰠮";
-            "10" = "10";
-          };
+          format-icons = icons;
         };
 
         "hyprland/window" = {
@@ -59,7 +64,7 @@
             "title"
             "artist"
           ];
-          ignored-players = [ "brave" ];
+          ignored-players = ["brave"];
           status-icons = {
             playing = "▶";
             paused = "⏸";
@@ -122,7 +127,7 @@
 
       # Bar for DP-2 only
       {
-        output = [ "DP-2" ];
+        output = ["DP-2"];
         #height = 24;
         spacing = 4;
 
@@ -131,26 +136,15 @@
           "hyprland/window"
         ];
 
-        modules-center = [ ];
-        modules-right = [ "clock" ];
+        modules-center = [];
+        modules-right = ["clock"];
 
         "hyprland/workspaces" = {
           all-outputs = true;
           warp-on-scroll = true;
           enable-bar-scroll = true;
           format = "{icon}";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "󰊴";
-            "6" = "";
-            "7" = "7";
-            "8" = "";
-            "9" = "󰠮";
-            "10" = "10";
-          };
+          format-icons = icons;
         };
 
         "hyprland/window" = {

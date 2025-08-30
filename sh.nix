@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   myAliases = {
     ll = "ls -l";
     ".." = "cd ..";
@@ -15,8 +14,7 @@ let
     rev = "0ce27b518e8ead555dec34dd8be3df5bd75cff8e";
     hash = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg=";
   };
-in
-{
+in {
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
@@ -36,23 +34,23 @@ in
       theme = "";
     };
     initContent = ''
-            # Powerlevel10k configuration
-            source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      	source ${./.p10k.zsh}
-            # Initialize zoxide
-            eval "$(zoxide init zsh)"
+           # Powerlevel10k configuration
+           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      source ${./.p10k.zsh}
+           # Initialize zoxide
+           eval "$(zoxide init zsh)"
 
-            # Initialize fzf
-            source <(fzf --zsh)
+           # Initialize fzf
+           source <(fzf --zsh)
 
-            # Source fzf-tab (needs to be after fzf)
-            source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+           # Source fzf-tab (needs to be after fzf)
+           source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
-            # Custom aliases
-            alias ll="ls -la"
-            alias gs="git status"
+           # Custom aliases
+           alias ll="ls -la"
+           alias gs="git status"
 
-      	bindkey '^ ' autosuggest-execute
+      bindkey '^ ' autosuggest-execute
     '';
   };
 
@@ -70,7 +68,7 @@ in
       gs = "git status";
     };
     shellAliases = {
-      tms = "bash ~/.config/tmux/setup-sessions.sh";
+      #tms = "bash ~/.config/tmux/setup-sessions.sh";
     };
     interactiveShellInit = ''
       		    fish_vi_key_bindings
@@ -78,9 +76,9 @@ in
       		    zoxide init fish | source
       		    fzf --fish | source
       		    starship init fish | source
-		    set -gx EDITOR nvim
-		    set -gx VISUAL nvim
-      		  '';
+      set -gx EDITOR nvim
+      set -gx VISUAL nvim
+    '';
   };
 
   # hodgepodge of these two themes:https://starship.rs/presets/catppuccin-powerline, https://starship.rs/presets/tokyo-night
@@ -88,7 +86,7 @@ in
   home.file.".config/starship.toml".text = ''
     format = """
     [](fg:#a3aed2)\
-    $username\ 
+    $username\
     [](bg:#769ff0 fg:#a3aed2)\
     $directory\
     [](fg:#769ff0 bg:#394260)\
@@ -228,5 +226,5 @@ in
     base = "#1e1e2e"
     mantle = "#181825"
     crust = "#11111b"
-    	'';
+  '';
 }

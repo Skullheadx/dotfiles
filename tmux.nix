@@ -29,34 +29,25 @@
       }
     ];
     extraConfig = ''
-      # Basic settings for usability
-      set -g mouse on
-      set -g base-index 1
-      set -g pane-base-index 1
-      set -g status-style bg=black,fg=cyan
-      set -g prefix C-a
-      unbind C-b
-      bind C-a send-prefix
+            # Basic settings for usability
+            set -g mouse on
+            set -g base-index 1
+            set -g pane-base-index 1
+            set -g status-style bg=black,fg=cyan
+            set -g prefix C-a
+            unbind C-b
+            bind C-a send-prefix
 
-        set -g default-terminal "screen-256color"
-        set -ga terminal-overrides ",xterm-256color:Tc"
+      #      bind-key -r d new-session -s dev
+      #      bind-key -r m new-session -s music
+      #      bind-key -r n new-session -s nixos
 
-      # Keybindings for easier navigation
-      bind -n C-h select-pane -L
-      bind -n C-j select-pane -D
-      bind -n C-k select-pane -U
-      bind -n C-l select-pane -R
+            # Fish-friendly clipboard integration
+            set -g set-clipboard on
+            bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
 
-      bind-key -r d new-session -s dev
-      bind-key -r m new-session -s music
-      bind-key -r n new-session -s nixos
-
-      # Fish-friendly clipboard integration
-      set -g set-clipboard on
-      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
-
-      # Session initialization script
-      set -g @tmux-resurrect-restore-script '${config.home.homeDirectory}/.config/tmux/setup-sessions.sh'
+            # Session initialization script
+            set -g @tmux-resurrect-restore-script '${config.home.homeDirectory}/.config/tmux/setup-sessions.sh'
     '';
   };
 
@@ -66,28 +57,9 @@
   ];
 
   # Create session setup script
-  home.file.".config/tmux/setup-sessions.sh" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-
-      # Ensure tmux is running
-      if ! tmux has-session 2>/dev/null; then
-        # Dev session: terminal with Fish
-        tmux new-session -d -s dev -c $HOME
-        tmux send-keys -t dev:1 "fish" C-m
-
-        # Music session: rmpc
-        tmux new-session -d -s music -c $HOME
-        tmux send-keys -t music:1 "rmpc" C-m
-
-        # NixOS config session: open ~/.dotfiles/nixos with Neovim
-        tmux new-session -d -s nixos -c $HOME/.dotfiles/nixos
-        tmux send-keys -t nixos:1 "nvim ." C-m
-      fi
-
-      # Attach to dev session by default
-      tmux attach-session -t dev
-    '';
-  };
+  #  home.file = {
+  #    ".config/tmux/setup-sessions.sh" = {
+  #      executable = true;
+  #    };
+  #};
 }
