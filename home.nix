@@ -147,7 +147,6 @@
   programs.rmpc = {
     enable = true;
   };
-
   #notifcations
   services.dunst.enable = true;
   services.mpd-mpris.enable = true;

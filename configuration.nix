@@ -1,15 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -20,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # zsh
-  environment.shells = with pkgs; [ fish ];
+  environment.shells = with pkgs; [fish];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
@@ -57,7 +54,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   # Allow unfree packages
@@ -66,6 +63,10 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
+  };
+
+  programs.kdeconnect = {
+    enable = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -101,7 +102,6 @@
     settings.default_session = {
       user = "greeter";
     };
-
   };
   programs.regreet.enable = true;
   fonts.packages = with pkgs; [

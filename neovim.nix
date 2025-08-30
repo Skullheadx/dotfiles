@@ -589,12 +589,12 @@
             };
             win_options = {
               conceallevel = {
-                default = "vim.o.conceallevel";
+                #  default = "vim.o.conceallevel";
                 rendered = 3;
               };
               concealcursor = {
-                default = "vim.o.concealcursor";
-                rendered = "";
+                #default = "vim.o.concealcursor";
+                #rendered = "";
               };
             };
             overrides = {

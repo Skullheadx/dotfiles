@@ -10,3 +10,7 @@ wordlist for programmers containing common programming terms. Enabling this
 option will unconditionally set vim.spellcheck.enable to true as vim-dirtytalk
 depends on spellchecking having been set up. Run :DirtytalkUpdate on first use
 to download the spellfile.
+
+# Pair Phone
+
+kdeconnect-app and pair with phone
