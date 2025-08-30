@@ -11,44 +11,51 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:notashelf/nvf";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      stylix,
-      ...
-    }@inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-    in
-    {
-      nixosConfigurations = {
-        home = lib.nixosSystem {
-          inherit system;
-          modules = [ ./configuration.nix ];
-          specialArgs = {
-            inherit inputs;
-          };
-        };
-      };
-      homeConfigurations = {
-        andrew = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            stylix.homeModules.stylix
-            ./home.nix
-          ];
-          extraSpecialArgs = { inherit inputs; };
-        };
-      };
-
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    stylix,
+    nvf,
+    ...
+  } @ inputs: let
+    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
     };
+    skullNeovim = nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [
+        ./neovim.nix
+      ];
+    };
+  in {
+    nixosConfigurations = {
+      home = lib.nixosSystem {
+        inherit system;
+        modules = [./configuration.nix];
+        specialArgs = {
+          inherit inputs;
+        };
+      };
+    };
+    homeConfigurations = {
+      andrew = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          stylix.homeModules.stylix
+          ./home.nix
+        ];
+        extraSpecialArgs = {inherit inputs skullNeovim;};
+      };
+    };
+    packages.${system}.skull-neovim = skullNeovim.neovim;
+  };
 }

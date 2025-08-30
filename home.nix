@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  skullNeovim,
   ...
 }:
 
@@ -51,7 +52,6 @@
 	audacity
 	mpc
     discord
-    neovim
     catppuccin-gtk
     inter
     prismlauncher
@@ -76,7 +76,8 @@
     slurp
     swappy
 
-    tmux
+    skullNeovim.neovim
+
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -140,7 +141,8 @@
   #  /etc/profiles/per-user/andrew/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     NIXOS_OZONE_WL = "1";
   };
 

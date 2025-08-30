@@ -10,6 +10,8 @@
     systemd.enable = false;
     settings = {
 env = [
+  "EDITOR,nvim"
+  "VISUAL,nvim"
   "HYPRCURSOR_THEME,Bibata-Original-Classic"
   "HYPRCURSOR_SIZE,24"
 ];
