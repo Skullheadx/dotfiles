@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   config.vim = {
     viAlias = true;
     vimAlias = true;
@@ -150,6 +154,19 @@
       whichKey.enable = true;
       cheatsheet.enable = true;
     };
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>?";
+        action = ":Cheatsheet<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = ":Neotree toggle<CR>";
+      }
+    ];
 
     telescope.enable = true;
 

@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.obsidian = {
     enable = true;
     defaultSettings = {
@@ -7,10 +10,9 @@
         showLineNumber = true;
         vimMode = true;
       };
-      cssSnippets = [
-        ./zoom.css
-      ];
-
+      #      cssSnippets = [
+      #        ./zoom.css
+      #      ];
     };
     vaults."Vault" = {
       enable = true;
@@ -18,5 +20,4 @@
       };
     };
   };
-
 }

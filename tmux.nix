@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.tmux = {
     enable = true;
     shell = "${pkgs.fish}/bin/fish";
@@ -36,11 +38,18 @@
       unbind C-b
       bind C-a send-prefix
 
+        set -g default-terminal "screen-256color"
+        set -ga terminal-overrides ",xterm-256color:Tc"
+
       # Keybindings for easier navigation
       bind -n C-h select-pane -L
       bind -n C-j select-pane -D
       bind -n C-k select-pane -U
       bind -n C-l select-pane -R
+
+      bind-key -r d new-session -s dev
+      bind-key -r m new-session -s music
+      bind-key -r n new-session -s nixos
 
       # Fish-friendly clipboard integration
       set -g set-clipboard on
@@ -52,10 +61,9 @@
   };
 
   home.packages = with pkgs; [
-	tmux
-	xclip
+    tmux
+    xclip
   ];
-
 
   # Create session setup script
   home.file.".config/tmux/setup-sessions.sh" = {
@@ -81,5 +89,5 @@
       # Attach to dev session by default
       tmux attach-session -t dev
     '';
-};
+  };
 }

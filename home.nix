@@ -5,9 +5,7 @@
   inputs,
   skullNeovim,
   ...
-}:
-
-{
+}: {
   imports = [
     ./sh.nix
     ./ghostty.nix
@@ -49,8 +47,8 @@
   home.packages = with pkgs; [
     # # Adds the 'hello':wq command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-	audacity
-	mpc
+    audacity
+    mpc
     discord
     catppuccin-gtk
     inter
@@ -77,7 +75,6 @@
     swappy
 
     skullNeovim.neovim
-
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -107,21 +104,20 @@
   # '';
   home.file = {
     ".config/swappy/config".text = ''
-      		[Default]
-      		save_dir=$HOME/Screenshots
-      		save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
-      		show_panel=true
-      		line_size=5
-      		text_size=20
-      		text_font=monospace
-      		paint_mode=brush
-      		early_exit=true
-      		fill_shape=false
-      		auto_save=true
-      		transparent=true
-      		transparency=50
-      	'';
-
+      [Default]
+      save_dir=$HOME/Screenshots
+      save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
+      show_panel=true
+      line_size=5
+      text_size=20
+      text_font=monospace
+      paint_mode=brush
+      early_exit=true
+      fill_shape=false
+      auto_save=true
+      transparent=true
+      transparency=50
+    '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -181,7 +177,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   services.gnome-keyring = {
