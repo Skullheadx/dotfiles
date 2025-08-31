@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.file = {
     ".config/BraveSoftware/Brave-Browser/Local State" = {
       source = ./brave-config/Local-State;
