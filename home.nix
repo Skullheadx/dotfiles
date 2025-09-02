@@ -27,6 +27,8 @@
     ./waybar.nix
     ./freetube.nix
     ./qutebrowser.nix
+    ./librewolf.nix
+    #./schizofox.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -77,6 +79,8 @@
 
     skullNeovim.neovim
 
+    protonvpn-cli
+    protonvpn-gui
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -191,6 +195,7 @@
     size = 25;
     package = pkgs.bibata-cursors;
   };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

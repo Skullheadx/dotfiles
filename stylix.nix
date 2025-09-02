@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   stylix = {
     enable = true;
     autoEnable = true;
@@ -45,8 +47,10 @@
       hyprpaper.enable = true;
       fzf.enable = true;
       dunst.enable = true;
-
+      librewolf = {
+        enable = true;
+        profileNames = ["skull"];
+      };
     };
-
   };
 }
