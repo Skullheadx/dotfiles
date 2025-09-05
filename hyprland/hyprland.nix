@@ -45,7 +45,7 @@
         "xrandr --output DP-3 --primary"
         "uwsm app -- waybar"
         "[workspace 1 silent] uwsm app -- ghostty"
-        "[workspace 2 silent] uwsm app -- brave"
+        "[workspace 2 silent] uwsm app -- librewolf"
         #"[workspace 3 silent] uwsm app -- ghostty -e fish -c rmpc"
         "[workspace 3 silent] uwsm app -- discord"
         "[workspace 4 silent] uwsm app -- keepassxc"

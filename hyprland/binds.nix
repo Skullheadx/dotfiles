@@ -58,7 +58,7 @@ in {
         "$mod SHIFT, j, movewindow, d"
 
         "$mod, D, exec, uwsm app -- ghostty"
-        "$mod, b, exec, brave"
+        "$mod, b, exec, librewolf"
         "$mod, space, exec, pkill rofi || rofi -show drun"
         "$mod, p, exec, pkill hyprpicker || hyprpicker -ar"
         "$mod SHIFT, s, exec, pkill slurp || grim -g \"$(slurp)\" - | wl-copy"
