@@ -14,3 +14,18 @@ to download the spellfile.
 # Pair Phone
 
 kdeconnect-app and pair with phone
+
+# Librewolf
+
+## Extensions:
+
+### Vimium C needs for config
+
+```
+map J nextTab
+map K previousTab
+```
+
+### Keepassxc browser
+
+connect to database
