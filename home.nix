@@ -164,7 +164,7 @@
 
   programs.git = {
     enable = true;
-    userEmail = "admonty1@protonmail.com";
+    settings.user.email = "admonty1@protonmail.com";
   };
 
   programs.keepassxc = {
