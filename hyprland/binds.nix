@@ -66,7 +66,7 @@ in {
         "$mod CTRL, k, resizeactive, 0 -25"
         "$mod CTRL, l, resizeactive, 25 0"
 
-        "$mod, D, exec, uwsm app -- ghostty"
+        "$mod, D, exec, app -- ghostty"
         "$mod, b, exec, librewolf"
         "$mod, space, exec, pkill rofi || rofi -show drun"
         "$mod, p, exec, pkill hyprpicker || hyprpicker -ar"
