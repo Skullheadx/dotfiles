@@ -21,6 +21,7 @@ in {
 
     settings = [
       {
+        gtk-layer-shell = false;
         output = ["DP-3"];
         #height = 24; # Waybar height
         spacing = 4; # Gaps between modules

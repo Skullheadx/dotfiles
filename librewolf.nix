@@ -27,6 +27,7 @@
           ublock-origin
           vimium-c
           keepassxc-browser
+          containerise
         ];
         settings = {
           "uBlock0@raymondhill.net".settings = {
@@ -41,6 +42,33 @@
           "vimium-c@gdh1995.cn".settings = {
             enabled = true;
           };
+        };
+      };
+      containers = {
+        Personal = {
+          color = "blue";
+          icon = "fingerprint";
+          id = 1;
+        };
+        Shopping = {
+          color = "turquoise";
+          icon = "cart";
+          id = 2;
+        };
+        Banking = {
+          color = "green";
+          icon = "dollar";
+          id = 3;
+        };
+        Youtube = {
+          color = "red";
+          icon = "fruit";
+          id = 4;
+        };
+        School = {
+          color = "pink";
+          icon = "briefcase";
+          id = 5;
         };
       };
     };

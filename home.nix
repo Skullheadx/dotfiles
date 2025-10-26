@@ -56,6 +56,7 @@
     catppuccin-gtk
     inter
     prismlauncher
+    btop
     nixfmt-rfc-style
     p7zip
     github-desktop
@@ -77,10 +78,13 @@
     slurp
     swappy
 
+    vlc
+
     skullNeovim.neovim
 
     protonvpn-cli
     protonvpn-gui
+    qbittorrent
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -181,13 +185,14 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
+    config.common.default = ["hyprland" "gtk"];
+    xdgOpenUsePortal = true;
   };
-
   services.gnome-keyring = {
     enable = true;
   };
-
+  services.network-manager-applet.enable = true;
   services.hyprpolkitagent.enable = true;
   home.pointerCursor = {
     hyprcursor.enable = true;

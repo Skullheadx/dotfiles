@@ -45,7 +45,9 @@
     layout = "us";
     variant = "";
   };
-
+  services.gnome.gnome-keyring.enable = true;
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
+  security.polkit.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.andrew = {
     isNormalUser = true;
@@ -79,6 +81,7 @@
     kitty
     libnotify
     bibata-cursors
+    libsecret
   ];
   programs.steam = {
     enable = true;
@@ -103,6 +106,7 @@
       user = "greeter";
     };
   };
+  security.pam.services.greetd.enableGnomeKeyring = true;
   programs.regreet.enable = true;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
