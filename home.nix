@@ -61,7 +61,6 @@
     p7zip
     github-desktop
     hyprpicker
-    wl-clipboard
     wev
     obs-studio
     # hyprsysteminfo  # application to display info about hyprland
