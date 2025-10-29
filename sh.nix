@@ -3,21 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  myAliases = {
-    ll = "ls -l";
-    ".." = "cd ..";
-  };
-  catppuccin-fish = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "fish";
-    rev = "0ce27b518e8ead555dec34dd8be3df5bd75cff8e";
-    hash = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg=";
-  };
-in {
+}: {
   programs.bash = {
     enable = true;
-    shellAliases = myAliases;
   };
   programs.zsh = {
     enable = true;
@@ -63,19 +51,12 @@ in {
   programs.fish = {
     enable = true;
     generateCompletions = true;
-    shellAbbrs = {
-      gco = "git checkout";
-      gs = "git status";
-    };
-    shellAliases = {
-      #tms = "bash ~/.config/tmux/setup-sessions.sh";
-    };
     interactiveShellInit = ''
-      		    fish_vi_key_bindings
-      		    set -U fish_greeting
-      		    zoxide init fish | source
-      		    fzf --fish | source
-      		    starship init fish | source
+      fish_vi_key_bindings
+      set -U fish_greeting
+      zoxide init fish | source
+      fzf --fish | source
+      starship init fish | source
       set -gx EDITOR nvim
       set -gx VISUAL nvim
     '';
