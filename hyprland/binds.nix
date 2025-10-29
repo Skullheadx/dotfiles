@@ -66,15 +66,24 @@ in {
         "$mod CTRL, k, resizeactive, 0 -25"
         "$mod CTRL, l, resizeactive, 25 0"
 
-        "$mod, D, exec, app -- ghostty"
+        "$mod, a, togglespecialworkspace, term"
+        "$mod, m, togglespecialworkspace, music"
+        "$mod, p, togglespecialworkspace, password"
+        "$mod SHIFT, a, movetoworkspace, special:term"
+        "$mod SHIFT, m, movetoworkspace, special:music"
+        "$mod SHIFT, p, movetoworkspace, special:password"
+
+        "$mod, g, layoutmsg, swapwithmaster"
+
+        "$mod, return, exec, ghostty"
         "$mod, b, exec, librewolf"
         "$mod, space, exec, pkill rofi || rofi -show drun"
-        "$mod, p, exec, pkill hyprpicker || hyprpicker -ar"
+        "$mod, o, exec, pkill hyprpicker || hyprpicker -ar"
+
         "$mod SHIFT, s, exec, pkill slurp || grim -g \"$(slurp)\" - | wl-copy"
         ", PRINT, exec, grim - | wl-copy"
         "SHIFT, PRINT, exec, pkill slurp swappy || grim -g \"$(slurp)\" - | swappy -f -"
         ", XF86Explorer, exec, hyprlock"
-        ", F1, exec, hyprlock"
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
@@ -82,16 +91,14 @@ in {
         ", XF86AudioPrev, exec, playerctl previous && notify-send 'Previous Song'"
         ", XF86AudioPlay, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
         ", XF86AudioStop, exec, playerctl stop && notify-send 'Music Stopped'"
-        ", F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
-        ", F10, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
-        ", F9, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
-        ", F6, exec, playerctl next && notify-send 'Next Song'"
-        ", F5, exec, playerctl previous && notify-send 'Previous Song'"
-        ", F7, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
-        ", F8, exec, playerctl stop && notify-send 'Music Stopped'"
-
-        ", F4, workspace, 3"
-        ", XF86Tools, workspace, 3"
+        "$mod, F1, exec, hyprlock"
+        "$mod, F11, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify-send 'Volume Up'"
+        "$mod, F10, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify-send 'Volume Down'"
+        "$mod, F9, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send 'Mute Toggled'"
+        "$mod, F6, exec, playerctl next && notify-send 'Next Song'"
+        "$mod, F5, exec, playerctl previous && notify-send 'Previous Song'"
+        "$mod, F7, exec, playerctl play-pause && notify-send 'Pause/Play Toggled'"
+        "$mod, F8, exec, playerctl stop && notify-send 'Music Stopped'"
       ]
       ++ workspaces;
   };
