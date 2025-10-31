@@ -92,7 +92,7 @@
         "waybar"
         "nm-applet --indicator"
         "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
-        "[workspace 1 silent]  ghostty -e tmux attach -t dev || tmux new -s dev -c ~/dev"
+        "[workspace 1 silent]  ghostty -e tmux attach"
         "[workspace 2 silent] librewolf"
         #"[workspace 3 silent] ghostty -e fish -c rmpc"
         "[workspace 3 silent] discord"
