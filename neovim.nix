@@ -4,17 +4,24 @@
   pkgs,
   inputs,
   ...
-}: let
-dotfiles.mutable = true;
-dotfiles.path = "${config.home.homeDirectory}/.dotfiles";
-  filePath = "${config.dotfiles.path}/astronvim-config";
-  configSrc =
-    config.lib.file.mkOutOfStoreSymlink filePath;
-in {
-  xdg.configFile."nvim".source = ./astronvim-config;
+}: {
+	home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/andrew/.dotfiles/astronvim-config";
+  programs.ripgrep.enable = true;
+  programs.lazygit.enable = true;
+  programs.bottom.enable = true;
+
+  # home.persistence."/persist${config.home.homeDirectory}" = {
+  #   directories = [
+  #     ".local/share/nvim"
+  #     ".local/state/nvim"
+  #     ".cache/nvim"
+  #   ];
+  # };
 
 	programs.neovim = {
 		enable = true;
+		withPython3 = true;
+		withNodeJs = true;
 		defaultEditor = true;
 	};
 }

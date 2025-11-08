@@ -81,6 +81,8 @@
     libnotify
     bibata-cursors
     libsecret
+    gdu
+    unzip
   ];
   programs.steam = {
     enable = true;

@@ -35,7 +35,7 @@
       qt.enable = true;
 
       vim.enable = true;
-      neovim.enable = true;
+      neovim.enable = false;
 
       kitty.enable = true; # Kitty terminal
       ghostty.enable = true;
