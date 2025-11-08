@@ -11,10 +11,6 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:notashelf/nvf";
-    };
-    schizofox.url = "github:schizofox/schizofox";
     nur = {
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -26,8 +22,6 @@
     nixpkgs,
     home-manager,
     stylix,
-    nvf,
-    schizofox,
     nur,
     ...
   } @ inputs: let
@@ -37,13 +31,6 @@
       inherit system;
       config.allowUnfree = true;
       overlays = [nur.overlay];
-    };
-    skullNeovim = nvf.lib.neovimConfiguration {
-      inherit pkgs;
-      modules = [
-        ./neovim.nix
-      ];
-      extraSpecialArgs = {inherit inputs;};
     };
   in {
     nixosConfigurations = {
@@ -63,11 +50,12 @@
         modules = [
           stylix.homeModules.stylix
           #nur.modules.nixos.default
+          ./dotfiles.nix
           ./home.nix
+          {dotfiles.mutable = true;}
         ];
-        extraSpecialArgs = {inherit inputs skullNeovim;};
+        extraSpecialArgs = {inherit inputs;};
       };
     };
-    packages.${system}.skull-neovim = skullNeovim.neovim;
   };
 }

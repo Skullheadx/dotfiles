@@ -64,7 +64,7 @@
       ];
       input = {
         kb_layout = "us";
-        kb_options = "caps:escape,altwin:swap_lalt_lwin";
+        kb_options = "caps:escape_shifted_capslock,altwin:swap_lalt_lwin";
 
         numlock_by_default = true;
       };

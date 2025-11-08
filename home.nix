@@ -3,13 +3,13 @@
   lib,
   pkgs,
   inputs,
-  skullNeovim,
   ...
 }: {
   imports = [
     ./sh.nix
     ./ghostty.nix
     ./tmux.nix
+    ./neovim.nix
     ./hyprland/hyprland.nix
     ./hyprpaper.nix
     ./hypridle.nix
@@ -28,7 +28,6 @@
     ./freetube.nix
     ./qutebrowser.nix
     ./librewolf.nix
-    #./schizofox.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -48,8 +47,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello':wq command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
     audacity
     mpc
     discord
@@ -78,8 +75,6 @@
     swappy
 
     vlc
-
-    skullNeovim.neovim
 
     protonvpn-cli
     protonvpn-gui
@@ -145,8 +140,6 @@
   #  /etc/profiles/per-user/andrew/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
     NIXOS_OZONE_WL = "1";
   };
 

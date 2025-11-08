@@ -21,7 +21,6 @@
       window-save-state = "always";
       copy-on-select = "clipboard";
       clipboard-read = "allow";
-
       clipboard-write = "allow";
       confirm-close-surface = false;
       auto-update = "off";
