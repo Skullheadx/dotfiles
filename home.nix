@@ -5,6 +5,7 @@
   inputs,
   ...
 }: {
+
   imports = [
     ./sh.nix
     ./ghostty.nix

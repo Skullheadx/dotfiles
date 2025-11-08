@@ -5,12 +5,16 @@
   inputs,
   ...
 }: let
-  filePath = "${config.dotfiles.path}/astronvim-config/init.lua";
+dotfiles.mutable = true;
+dotfiles.path = "${config.home.homeDirectory}/.dotfiles";
+  filePath = "${config.dotfiles.path}/astronvim-config";
   configSrc =
-    if !config.dotfiles.mutable
-    then ./init.lua
-    else config.lib.file.mkOutOfStoreSymlink filePath;
+    config.lib.file.mkOutOfStoreSymlink filePath;
 in {
-  home.packages = [pkgs.neovim];
-  xdg.configFile."neovim/config.conf".source = configSrc;
+  xdg.configFile."nvim".source = ./astronvim-config;
+
+	programs.neovim = {
+		enable = true;
+		defaultEditor = true;
+	};
 }
