@@ -7,6 +7,7 @@
 ## Hyprland
 
 - [ ] fix startup tmux session
+- [x] make librewolf my default browser
 
 ### waybar
 

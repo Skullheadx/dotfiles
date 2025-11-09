@@ -142,7 +142,16 @@
   #  /etc/profiles/per-user/andrew/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    BROWSER = "librewolf";
+    DEFAULT_BROWSER = "{$pkgs.librewolf}/bin/librewolf";
     NIXOS_OZONE_WL = "1";
+  };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+    };
   };
 
   programs.brave.enable = true;
