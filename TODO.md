@@ -2,15 +2,15 @@
 
 ## Git
 
-- [ ] fix git username password
+- [x] fix git username password
 
 ## Hyprland
 
-- [ ] fix workspace 4 icon
 - [ ] fix startup tmux session
 
 ### waybar
 
+- [ ] fix workspace 4 icon
 - [ ] fix the bar to run properly and display time accurately
 
 ### rofi wayland
