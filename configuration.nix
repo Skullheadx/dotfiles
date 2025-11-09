@@ -98,6 +98,7 @@
         name = "Skullheadx";
         email = "admonty1@protonmail.com";
       };
+      pull.rebase = true;
     };
   };
 
