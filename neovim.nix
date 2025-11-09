@@ -4,11 +4,15 @@
   pkgs,
   inputs,
   ...
-}: {
-	home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/andrew/.dotfiles/astronvim-config";
+}:
+{
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/andrew/.dotfiles/astronvim-config";
   programs.ripgrep.enable = true;
   programs.lazygit.enable = true;
   programs.bottom.enable = true;
+  programs.go.enable = true;
+  programs.gcc.enable = true;
 
   # home.persistence."/persist${config.home.homeDirectory}" = {
   #   directories = [
@@ -18,10 +22,10 @@
   #   ];
   # };
 
-	programs.neovim = {
-		enable = true;
-		withPython3 = true;
-		withNodeJs = true;
-		defaultEditor = true;
-	};
+  programs.neovim = {
+    enable = true;
+    withPython3 = true;
+    withNodeJs = true;
+    defaultEditor = true;
+  };
 }

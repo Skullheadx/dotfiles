@@ -83,6 +83,11 @@
     libsecret
     gdu
     unzip
+    nixd
+    deadnix
+    statix
+    python314
+    zig
   ];
   programs.steam = {
     enable = true;
