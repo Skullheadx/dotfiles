@@ -6,7 +6,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -17,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # zsh
-  environment.shells = with pkgs; [fish];
+  environment.shells = with pkgs; [ fish ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
@@ -56,7 +57,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -89,6 +90,17 @@
     python314
     zig
   ];
+
+  programs.git = {
+    enable = true;
+    config = {
+      user = {
+        name = "Skullheadx";
+        email = "admonty1@protonmail.com";
+      };
+    };
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

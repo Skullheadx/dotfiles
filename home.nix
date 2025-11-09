@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
 
   imports = [
     ./sh.nix
@@ -155,11 +156,6 @@
 
   services.playerctld.enable = true;
 
-  programs.git = {
-    enable = true;
-    settings.user.email = "admonty1@protonmail.com";
-  };
-
   programs.keepassxc = {
     enable = true;
     #  settings = {
@@ -178,8 +174,14 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
-    config.common.default = ["hyprland" "gtk"];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
     xdgOpenUsePortal = true;
   };
   services.gnome-keyring = {
