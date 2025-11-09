@@ -74,9 +74,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
-    git
     hyprland
     kitty
     libnotify
@@ -89,6 +88,7 @@
     statix
     python314
     zig
+    git-credential-oauth
   ];
 
   programs.git = {
@@ -99,6 +99,10 @@
         email = "admonty1@protonmail.com";
       };
       pull.rebase = true;
+      credential = {
+        helper = "oauth";
+      };
+
     };
   };
 
