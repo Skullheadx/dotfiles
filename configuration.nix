@@ -85,10 +85,60 @@
     unzip
     nixd
     deadnix
-    statix
-    python314
+    python313
     zig
     git-credential-oauth
+    marksman
+    icu
+    # language server
+    bash-language-server
+    clang-tools
+    docker-language-server
+    gopls
+    golangci-lint-langserver
+    vscode-langservers-extracted
+    emmet-language-server
+    lua-language-server
+    marksman
+    nixd
+    basedpyright
+    ruff
+    sqls
+    deno
+    vtsls
+    yaml-language-server
+    zls
+
+    # formatter
+    shfmt
+    gofumpt
+    prettier
+    jq
+    stylua
+    nixpkgs-fmt
+    sqlfluff
+
+    # linter
+    shellcheck
+    cppcheck
+    hadolint
+    fish
+    golangci-lint
+    nodePackages_latest.jsonlint
+    selene
+    markdownlint-cli2
+    statix
+    eslint
+    yamllint
+
+    # debugger
+    lldb
+    delve
+    python313Packages.debugpy
+
+    # tree sitter
+    tree-sitter
+
   ];
 
   programs.git = {

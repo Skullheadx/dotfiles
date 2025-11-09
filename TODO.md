@@ -8,6 +8,7 @@
 
 - [ ] fix startup tmux session
 - [x] make librewolf my default browser
+- [ ] add clipboard that doesn't break ghostty clipboard
 
 ### waybar
 
