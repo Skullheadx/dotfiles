@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.tmux = {
     enable = true;
     shell = "${pkgs.fish}/bin/fish";
@@ -13,7 +14,10 @@
     disableConfirmationPrompt = true;
     mouse = true;
     newSession = true;
-    plugins = with pkgs.tmuxPlugins; [sensible];
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      vim-tmux-navigator
+    ];
 
     extraConfig = ''
       unbind %
