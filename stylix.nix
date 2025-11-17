@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   stylix = {
     enable = true;
     autoEnable = true;
@@ -49,7 +50,7 @@
       dunst.enable = true;
       librewolf = {
         enable = true;
-        profileNames = ["skull"];
+        profileNames = [ "skull" ];
       };
     };
   };
