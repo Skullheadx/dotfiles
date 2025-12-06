@@ -81,6 +81,9 @@
     protonvpn-cli
     protonvpn-gui
     qbittorrent
+
+    ffmpeg
+    gimp
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -179,6 +182,11 @@
     #      ApplicationTheme = "dark";
     #    };
     #  };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   xdg.portal = {
