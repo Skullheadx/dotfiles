@@ -112,6 +112,7 @@
     # formatter
     shfmt
     gofumpt
+    prettierd
     prettier
     jq
     stylua
@@ -162,6 +163,11 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+
+  # services.mysql = {
+  #   enable = true;
+  #   package = pkgs.mysql84;
+  # };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
