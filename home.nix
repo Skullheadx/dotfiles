@@ -190,6 +190,8 @@
     silent = true;
   };
 
+  # programs.ssh.startAgent = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [
