@@ -1,221 +1,90 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
-{
+{ config, pkgs, nur,inputs,  ... }:
 
+{
   imports = [
     ./sh.nix
-    ./ghostty.nix
-    ./tmux.nix
-    ./neovim.nix
-    ./hyprland/hyprland.nix
-    ./hyprpaper.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprsunset.nix
-    ./obsidian.nix
-    ./fastfetch.nix
-    ./udiskie.nix
-    ./mpd.nix
-    ./rofi.nix
-    ./stylix.nix
-    ./brave-config.nix
-    ./rmpc-theme.nix
-    ./rmpc-config.nix
-    ./waybar.nix
-    ./freetube.nix
-    ./qutebrowser.nix
-    ./librewolf.nix
+    # ./librewolf.nix
   ];
+  # Home Manager needs a bit of information about you and the
+  # paths it should manage.
+  home.username = "andrewmontgomery";
+  home.homeDirectory = "/Users/andrewmontgomery/";
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "andrew";
-  home.homeDirectory = "/home/andrew";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
   #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "25.11";
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+
   home.packages = with pkgs; [
-    audacity
-    mpc
-    discord
-    catppuccin-gtk
-    inter
-    prismlauncher
-    btop
-    nixfmt-rfc-style
-    p7zip
-    github-desktop
-    hyprpicker
-    wev
-    obs-studio
-    # hyprsysteminfo  # application to display info about hyprland
-    hyprland-qt-support
-    hyprutils
-    hyprgraphics
-    hyprland-qtutils
-
-    helvum
-    pavucontrol
-    alsa-utils
-
-    grim
-    slurp
-    swappy
-
-    vlc
-
-    protonvpn-cli
-    protonvpn-gui
-    qbittorrent
-
-    ffmpeg
-    gimp
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    htop
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-  # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-  # # symlink to the Nix store copy.
-  # ".screenrc".source = dotfiles/screenrc;
+      programs.git = {
+      enable = true;
+      settings = {
+            user = {
+            name = "Skullheadx";
+            email = "admonty1@protonmail.com";
+            };
+            pull.rebase = true;
+            url = {
+            "git@github.com:".insteadOf = "https://github.com/";
+            };
 
-  # # You can also set the file content immediately.
-  # ".gradle/gradle.properties".text = ''
-  #   org.gradle.console=verbose
-  #   org.gradle.daemon.idletimeout=3600000
-  # '';
-  home.file = {
-    ".config/swappy/config".text = ''
-      [Default]
-      save_dir=$HOME/Screenshots
-      save_filename_format=Screenshot-%Y%m%d-%H%M%S.png
-      show_panel=true
-      line_size=5
-      text_size=20
-      text_font=monospace
-      paint_mode=brush
-      early_exit=true
-      fill_shape=false
-      auto_save=true
-      transparent=true
-      transparency=50
-    '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/andrew/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    BROWSER = "librewolf";
-    DEFAULT_BROWSER = "{$pkgs.librewolf}/bin/librewolf";
-    NIXOS_OZONE_WL = "1";
-  };
-  xdg.mimeApps = {
+      };
+      };
+  programs.tmux = {
     enable = true;
-    defaultApplications = {
-      "x-scheme-handler/http" = "librewolf.desktop";
-      "x-scheme-handler/https" = "librewolf.desktop";
+    escapeTime=10;
+    extraConfig = "
+      set -g mouse on
+      ";
+  };
+  programs.ghostty = {
+    settings = {
+  theme = "catppuccin-mocha";
+  font-size = 14;
+  background-blur=true;
+      link-url=true;
+      link-previews=true;
+      shell-integration="fish";
+      shell-integration-features=true;
+      auto-update="off";
+    };
+    themes = {
+      catppuccin-mocha = {
+    background = "1e1e2e";
+    cursor-color = "f5e0dc";
+    foreground = "cdd6f4";
+    palette = [
+      "0=#45475a"
+      "1=#f38ba8"
+      "2=#a6e3a1"
+      "3=#f9e2af"
+      "4=#89b4fa"
+      "5=#f5c2e7"
+      "6=#94e2d5"
+      "7=#bac2de"
+      "8=#585b70"
+      "9=#f38ba8"
+      "10=#a6e3a1"
+      "11=#f9e2af"
+      "12=#89b4fa"
+      "13=#f5c2e7"
+      "14=#94e2d5"
+      "15=#a6adc8"
+    ];
+    selection-background = "353749";
+    selection-foreground = "cdd6f4";
+  };
     };
   };
-
-  programs.brave.enable = true;
-
-  programs.rmpc = {
-    enable = true;
-  };
-  #notifcations
-  services.dunst.enable = true;
-  services.mpd-mpris.enable = true;
-
-  services.playerctld.enable = true;
-
-  programs.keepassxc = {
-    enable = true;
-    #  settings = {
-    #    Browser = {
-    #    	Enabled = true;
-    #	UseCustomBrowser = true;
-    #	CustomBrowserType = 1;
-    #
-    #};
-    #    GUI = {
-    #      ShowTrayIcon = true;
-    #      ApplicationTheme = "dark";
-    #    };
-    #  };
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    silent = true;
-  };
-
-  # programs.ssh.startAgent = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = [
-      "hyprland"
-      "gtk"
-    ];
-    xdgOpenUsePortal = true;
-  };
-  services.gnome-keyring = {
-    enable = true;
-  };
-  services.network-manager-applet.enable = true;
-  services.hyprpolkitagent.enable = true;
-  home.pointerCursor = {
-    hyprcursor.enable = true;
-    name = "Bibata-Original-Classic";
-    size = 25;
-    package = pkgs.bibata-cursors;
-  };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

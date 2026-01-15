@@ -1,61 +1,47 @@
 {
-  description = "Skullheadx's Flake";
+  description = "Andrew Darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/25.11";
+    darwin.url = "github:nix-darwin/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur = {
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    stylix,
-    nur,
-    ...
-  } @ inputs: let
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [nur.overlay];
-    };
-  in {
-    nixosConfigurations = {
-      home = lib.nixosSystem {
-        inherit system;
+  outputs = inputs@{  nixpkgs, home-manager, darwin, nur, ... }: 
+    # let 
+    #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
+    # in 
+      {
+    darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         modules = [
           ./configuration.nix
+          home-manager.darwinModules.home-manager
+          {
+
+      users.users."andrewmontgomery" = {
+            home = "/Users/andrewmontgomery/";
+
+    shell = "/run/current-system/sw/bin/fish";
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.andrewmontgomery = ./home.nix;
+            home-manager.backupFileExtension = "bak";
+            home-manager.overwriteBackup = true;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+            # home-manager.extraSpecialArgs = [ inputs ];
+          }
         ];
-        specialArgs = {
-          inherit inputs;
-        };
       };
-    };
-    homeConfigurations = {
-      andrew = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          stylix.homeModules.stylix
-          #nur.modules.nixos.default
-          ./dotfiles.nix
-          ./home.nix
-          {dotfiles.mutable = true;}
-        ];
-        extraSpecialArgs = {inherit inputs;};
-      };
-    };
   };
 }
