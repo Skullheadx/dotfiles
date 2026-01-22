@@ -3,6 +3,7 @@
 {
   imports = [
     ./sh.nix
+    ./neovim.nix
     # ./librewolf.nix
   ];
   # Home Manager needs a bit of information about you and the
@@ -25,27 +26,38 @@
     htop
   ];
 
-      programs.git = {
-      enable = true;
-      settings = {
-            user = {
-            name = "Skullheadx";
-            email = "admonty1@protonmail.com";
-            };
-            pull.rebase = true;
-            url = {
-            "git@github.com:".insteadOf = "https://github.com/";
-            };
+  programs.git = {
+  enable = true;
+  settings = {
+        user = {
+        name = "Skullheadx";
+        email = "admonty1@protonmail.com";
+        };
+        pull.rebase = true;
+        url = {
+        "git@github.com:".insteadOf = "https://github.com/";
+        };
 
-      };
-      };
-  programs.tmux = {
-    enable = true;
-    escapeTime=10;
-    extraConfig = "
-      set -g mouse on
-      ";
+    };
   };
+
+  programs.fish = {
+    enable = true;
+    # useBabelfish = true;
+  };
+
+  programs.info.enable = true;
+  programs.man.enable = true;
+
+  programs.tmux = {
+    # enable = true;
+    escapeTime=10;
+    # extraConfig = "
+    #   set -g mouse on
+    #   ";
+  };
+
+
   programs.ghostty = {
     settings = {
   theme = "catppuccin-mocha";

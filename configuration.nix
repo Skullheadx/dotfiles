@@ -6,12 +6,17 @@
                   neovim
                   babelfish
                   brave
-                  firefox
+                  # firefox
                   discord
-            zig
-            zls
-            utm
-
+                  zig
+                  zls
+                  utm
+            sqlite
+            dbeaver-bin
+            uv
+            lazygit
+            ngrok
+            audacity
         ] ;
 
       environment.systemPath = [
@@ -23,7 +28,67 @@
       # Enable alternative shell support in nix-darwin.
 
   programs.fish.enable = true;
+      programs.tmux = {
+            enable = true;
+            enableFzf = true;
+            enableMouse = true;
+            enableSensible = true;
+            # enableVim = true;
+      };
+      security.pam.services.sudo_local = {
+            enable = true;
+            reattach = true;
+            touchIdAuth = true;
 
+      };
+
+      # services.aerospace = {
+      #       enable = true;
+      # };
+
+      # services.jankyborders = {
+      #       enable = true;
+      #       hidpi = true;
+      #  active_color="0xffe2e2e3";
+      #  inactive_color="0xff414550";
+      #  style  = "round";
+      # };
+system.defaults.NSGlobalDomain.AppleICUForce24HourTime = true;
+system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
+system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
+system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+      system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+      system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
+system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
+system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
+
+
+system.defaults.controlcenter.NowPlaying = true;
+      system.defaults.dock.autohide = false;
+
+      system.defaults.dock.minimize-to-application = true;
+system.defaults.dock.mru-spaces = false;
+      system.defaults.dock.show-recents = false;
+system.defaults.finder = {
+            AppleShowAllExtensions = true;
+AppleShowAllFiles = true; 
+FXEnableExtensionChangeWarning = false;
+FXPreferredViewStyle = "Nlsv";
+            QuitMenuItem = true;
+ShowMountedServersOnDesktop = true;
+ShowPathbar = true;
+            ShowStatusBar = true;
+            _FXEnableColumnAutoSizing = true;
+_FXSortFoldersFirst = true;
+
+      };
+
+system.defaults.screencapture.location = "/Users/andrewmontgomery/Documents/Screenshots";
+      system.defaults.screencapture.type = "jpg";
+      system.keyboard.remapCapsLockToEscape = true;
+system.keyboard.swapLeftCtrlAndFn = true;
   environment.shells = [
     "/run/current-system/sw/bin/fish"
   ];
@@ -47,9 +112,9 @@
                   "keepassxc"
                   "ghostty"
                   "steam"
-                  "feishu"
                   "discord"
-                  
+"corretto@11" # java runtime for matlab
+                  # "feishu"
             ];
       };
 
@@ -62,6 +127,13 @@
       nixpkgs.config.allowUnfree = true;
 
       # nixpkgs.config.allowUnsupportedSystem = true;
+      power.sleep.display = "never";
+      system.primaryUser = "andrewmontgomery";
 
+  programs.direnv = {
+    enable = true;
+    # enableFishIntegration = true;
+  };
+system.keyboard.enableKeyMapping = true;
     }
  
