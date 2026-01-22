@@ -1,8 +1,7 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
+{ inputs
+, config
+, pkgs
+, ...
 }: {
   programs.librewolf = {
     enable = true;

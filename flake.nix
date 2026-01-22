@@ -13,22 +13,27 @@
     };
   };
 
-  outputs = inputs@{  nixpkgs, home-manager, darwin, nur, ... }: 
+  outputs = inputs@{ nixpkgs, home-manager, darwin, nur, ... }:
     # let 
     #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
-    # in 
-      {
-    darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
+    # in   
+    let
+      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+    in
+    {
+
+      formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
+      darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           ./configuration.nix
           home-manager.darwinModules.home-manager
           {
 
-      users.users."andrewmontgomery" = {
-            home = "/Users/andrewmontgomery/";
+            users.users."andrewmontgomery" = {
+              home = "/Users/andrewmontgomery/";
 
-    shell = "/run/current-system/sw/bin/fish";
+              shell = "/run/current-system/sw/bin/fish";
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -42,5 +47,5 @@
           }
         ];
       };
-  };
+    };
 }
