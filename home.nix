@@ -1,9 +1,11 @@
-{ config, pkgs, nur, inputs, ... }:
+{ config, pkgs, inputs, mac-app-util, ... }:
 
 {
   imports = [
+
     ./sh.nix
     ./neovim.nix
+    ./fastfetch.nix
     # ./librewolf.nix
   ];
   # Home Manager needs a bit of information about you and the
@@ -49,13 +51,13 @@
   programs.info.enable = true;
   programs.man.enable = true;
 
-  programs.tmux = {
-    # enable = true;
-    escapeTime = 10;
-    # extraConfig = "
-    #   set -g mouse on
-    #   ";
-  };
+  # programs.tmux = {
+  #   # enable = true;
+  #   escapeTime = 10;
+  #   # extraConfig = "
+  #   #   set -g mouse on
+  #   #   ";
+  # };
 
 
   programs.ghostty = {
