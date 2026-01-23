@@ -7,7 +7,6 @@
   programs.bash = {
     enable = true;
   };
-
   programs.zsh = {
     enable = true;
     enableCompletion = true; # Enables zsh-completions
@@ -34,7 +33,6 @@
 
        # Source fzf-tab (needs to be after fzf)
        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-
       bindkey '^ ' autosuggest-execute
     '';
   };
