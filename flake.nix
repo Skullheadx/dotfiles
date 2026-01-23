@@ -7,13 +7,16 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util"; 
+    inputs.nixpkgs.follows = "nixpkgs";};
     nur = {
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, nur, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, darwin, mac-app-util, ... }:
     # let 
     #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
     # in   
@@ -26,9 +29,15 @@
       darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
+
           ./configuration.nix
-          home-manager.darwinModules.home-manager
+          mac-app-util.darwinModules.default
+          home-manager.darwinModules.home-manager(
+          {pkgs, config, inputs, ...}:
           {
+ home-manager.sharedModules = [
+                mac-app-util.homeManagerModules.default
+              ];
 
             users.users."andrewmontgomery" = {
               home = "/Users/andrewmontgomery/";
@@ -43,8 +52,8 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            # home-manager.extraSpecialArgs = [ inputs ];
-          }
+            # home-manager.extraSpec ialArgs = [ inputs ];
+          })
         ];
       };
     };
