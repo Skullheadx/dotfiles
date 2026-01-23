@@ -32,89 +32,84 @@
     enableMouse = true;
     enableSensible = true;
     enableVim = true;
-    extraConfig = "
-        # remap prefix from 'C-b' to 'C-j'
-        unbind C-b
-        set-option -g prefix C-j
-        bind-key C-j send-prefix
+    extraConfig = ''
+      # remap prefix from 'C-b' to 'C-j'
+      unbind C-b
+      set-option -g prefix C-j
+      bind-key C-j send-prefix
 
-        # split panes using | and -
-        bind | split-window -h
-        bind - split-window -v
-        unbind '\"'
-        unbind %
+      # split panes using | and -
+      bind | split-window -h
+      bind - split-window -v
+      unbind '"'
+      unbind %
 
-        # reload config file (change file location to your the tmux.conf you want to use)
-        bind r source-file ~/.tmux.conf
+      # reload config file
+      bind r source-file /etc/tmux.conf \; display-message "Config reloaded"
 
-        # switch panes using Ctrl + h/j/k/l (Vim-style)
-        bind -n C-h select-pane -L
-        bind -n C-j select-pane -D
-        bind -n C-k select-pane -U
-        bind -n C-l select-pane -R
+      # explicitly unbind and rebind s to choose-tree (sessions)
+      # (enableVim sets s to split-window, we need to override it)
+      unbind s
+      bind s choose-tree -s
 
-        # Enable mouse control (clickable windows, panes, resizable panes)
-        set -g mouse on
+      # switch panes using Opt + hjkl (Vim-style)
+      bind -n M-h select-pane -L
+      bind -n M-j select-pane -D
+      bind -n M-k select-pane -U
+      bind -n M-l select-pane -R
 
-        # don't rename windows automatically
-        set-option -g allow-rename off
-        
-        # set the escape time delay to 10 
-        set -sg escape-time 10
+      # Enable mouse control (clickable windows, panes, resizable panes)
+      set -g mouse on
 
-        # Select windows with Cmd(=Meta)+number
-        bind -n M-1 select-window -t 1
-        bind -n M-2 select-window -t 2
-        bind -n M-3 select-window -t 3
-        bind -n M-4 select-window -t 4
-        bind -n M-5 select-window -t 5
-        bind -n M-6 select-window -t 6
-        bind -n M-7 select-window -t 7
-        bind -n M-8 select-window -t 8
-        bind -n M-9 select-window -t 9
+      # don't rename windows automatically
+      set-option -g allow-rename off
 
-        # DESIGN TWEAKS
+      # set the escape time delay to 10
+      set -sg escape-time 10
 
-        # don't do anything when a 'bell' rings
-        set -g visual-activity off
-        set -g visual-bell off
-        set -g visual-silence off
-        setw -g monitor-activity off
-        set -g bell-action none
 
-        # clock mode
-        setw -g clock-mode-colour yellow
+      # DESIGN TWEAKS
 
-        # copy mode
-        setw -g mode-style 'fg=black bg=red bold'
+      # don't do anything when a 'bell' rings
+      set -g visual-activity off
+      set -g visual-bell off
+      set -g visual-silence off
+      setw -g monitor-activity off
+      set -g bell-action none
 
-        # panes
-        set -g pane-border-style 'fg=red'
-        set -g pane-active-border-style 'fg=yellow'
+      # clock mode
+      setw -g clock-mode-colour yellow
 
-        # statusbar
-        set -g status-position bottom
-        set -g status-justify left
-        set -g status-style 'fg=red'
+      # copy mode
+      setw -g mode-style 'fg=black bg=red bold'
 
-        set -g status-left ''
-        set -g status-left-length 10
+      # panes
+      set -g pane-border-style 'fg=red'
+      set -g pane-active-border-style 'fg=yellow'
 
-        set -g status-right-style 'fg=black bg=yellow'
-        set -g status-right '%Y-%m-%d %H:%M '
-        set -g status-right-length 50
+      # statusbar
+      set -g status-position bottom
+      set -g status-justify left
+      set -g status-style 'fg=red'
 
-        setw -g window-status-current-style 'fg=black bg=red'
-        setw -g window-status-current-format ' #I #W #F '
+      set -g status-left ""
+      set -g status-left-length 10
 
-        setw -g window-status-style 'fg=red bg=black'
-        setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+      set -g status-right-style 'fg=black bg=yellow'
+      set -g status-right '%Y-%m-%d %H:%M '
+      set -g status-right-length 50
 
-        setw -g window-status-bell-style 'fg=yellow bg=red bold'
+      setw -g window-status-current-style 'fg=black bg=red'
+      setw -g window-status-current-format ' #I #W #F '
 
-        # messages
-        set -g message-style 'fg=yellow bg=red bold'
-      ";
+      setw -g window-status-style 'fg=red bg=black'
+      setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+
+      setw -g window-status-bell-style 'fg=yellow bg=red bold'
+
+      # messages
+      set -g message-style 'fg=yellow bg=red bold'
+    '';
   };
 
   security.pam.services.sudo_local = {
@@ -157,20 +152,6 @@
         minimize-to-application = true;
         mru-spaces = false;
         show-recents = false;
-        persistent-apps = [
-          "/System/Applications/Reminders.app"
-          "/System/Applications/Calendar.app"
-          "/System/Applications/Music.app"
-          "/System/Applications/Messages.app"
-
-          "/Applications/KeePassXC.app"
-          "/Applications/Ghostty.app"
-          # "/Applications/Nix Apps/Brave Browser.app"
-          "/Applications/LibreWolf.app"
-          "/Applications/Nix Apps/UTM.app"
-
-          "/System/Applications/System Settings.app"
-        ];
       };
 
       finder = {
@@ -225,6 +206,23 @@
     ];
   };
 
+  # Primary user for user-specific settings (dock, etc.)
+  system.primaryUser = "andrewmontgomery";
+
+  # Dock configuration
+  system.defaults.dock = {
+    persistent-apps = [
+      "/Applications/Safari.app"
+      "/Applications/Zen.app"
+      "/Applications/Feishu.app"
+      "/Applications/Ghostty.app"
+      "/Applications/Cursor.app"
+      "/Applications/Nix Apps/DBeaver.app"
+      "/Applications/Surfshark.app"
+      "/System/Applications/Utilities/Activity Monitor.app"
+    ];
+  };
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
@@ -235,5 +233,4 @@
 
   # nixpkgs.config.allowUnsupportedSystem = true;
   power.sleep.display = "never";
-  system.primaryUser = "andrewmontgomery";
 }
