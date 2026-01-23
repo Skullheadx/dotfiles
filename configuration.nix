@@ -154,9 +154,6 @@
     casks = [
       "freetube"
       "protonvpn"
-      "minecraft"
-      "prismlauncher"
-      "keepingyouawake"
       "keepassxc"
       "ghostty"
       "steam"
