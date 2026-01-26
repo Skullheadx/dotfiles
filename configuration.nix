@@ -236,6 +236,7 @@ onActivation.cleanup = "uninstall";
       "openssh"
     ];
     casks = [
+      "selfcontrol"
       "keepingyouawake"
       "freetube"
       "protonvpn"
