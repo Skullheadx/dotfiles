@@ -1,8 +1,10 @@
-{ inputs
-, config
+{ 
+config
 , pkgs
 , ...
 }: {
+
+
   programs.librewolf = {
     enable = true;
     settings = {

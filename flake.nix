@@ -8,36 +8,56 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util = {
-      url = "github:hraban/mac-app-util"; 
-    inputs.nixpkgs.follows = "nixpkgs";};
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, mac-app-util, ... }:
-    # let 
-    #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
-    # in   
-    let
-      pkgs = import nixpkgs { system = "aarch64-darwin"; };
-    in
-    {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    darwin,
+    mac-app-util,
+    nur,
+    ...
+  }:
+  # let
+  #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
+  # in
+  #     let
+  # pkgs = import nixpkgs {
+  #   system = "aarch64-darwin";
+  #   overlays = [
+  #     nur.overlay
+  #   ];
+  # };
+  #     in
+  {
+    # formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
+    darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        {
+          nixpkgs.overlays = [nur.overlays.default];
+        }
 
-      formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
-      darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-
-          ./configuration.nix
-          mac-app-util.darwinModules.default
-          home-manager.darwinModules.home-manager(
-          {pkgs, config, inputs, ...}:
+        ./configuration.nix
+        mac-app-util.darwinModules.default
+        home-manager.darwinModules.home-manager
+        (
           {
- home-manager.sharedModules = [
-                mac-app-util.homeManagerModules.default
-              ];
+            pkgs,
+            config,
+            inputs,
+            ...
+          }: {
+            home-manager.sharedModules = [
+              mac-app-util.homeManagerModules.default
+            ];
 
             users.users."andrewmontgomery" = {
               home = "/Users/andrewmontgomery/";
@@ -46,15 +66,17 @@
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.andrewmontgomery = ./home.nix;
             home-manager.backupFileExtension = "bak";
             home-manager.overwriteBackup = true;
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            # home-manager.extraSpec ialArgs = [ inputs ];
-          })
-        ];
-      };
+            # home-manager.extraSpecialArgs = { nur=inputs.nur; };
+
+            home-manager.users.andrewmontgomery = ./home.nix;
+          }
+        )
+      ];
     };
+  };
 }

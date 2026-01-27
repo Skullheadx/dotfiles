@@ -1,10 +1,10 @@
-{ config
-, lib
-, pkgs
-, inputs
-, ...
-}:
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "/Users/andrewmontgomery/.dotfiles/astronvim-config";
   programs.ripgrep.enable = true;

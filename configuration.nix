@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -94,14 +99,18 @@
         unbind '\"'
         unbind %
 
-        # reload config file (change file location to your the tmux.conf you want to use)
-        bind r source-file ~/.tmux.conf
+        unbind s
+        bind s choose-tree -s
 
-        # switch panes using Ctrl + h/j/k/l (Vim-style)
-        bind -n C-h select-pane -L
-        bind -n C-j select-pane -D
-        bind -n C-k select-pane -U
-        bind -n C-l select-pane -R
+        # reload config file (change file location to your the tmux.conf you want to use)
+        bind r source-file /etc/tmux.conf
+
+
+      # switch panes using Opt + hjkl (Vim-style)
+      bind -n M-h select-pane -L
+      bind -n M-j select-pane -D
+      bind -n M-k select-pane -U
+      bind -n M-l select-pane -R
 
         # Enable mouse control (clickable windows, panes, resizable panes)
         set -g mouse on
@@ -111,17 +120,6 @@
         
         # set the escape time delay to 10 
         set -sg escape-time 10
-
-        # Select windows with Cmd(=Meta)+number
-        bind -n M-1 select-window -t 1
-        bind -n M-2 select-window -t 2
-        bind -n M-3 select-window -t 3
-        bind -n M-4 select-window -t 4
-        bind -n M-5 select-window -t 5
-        bind -n M-6 select-window -t 6
-        bind -n M-7 select-window -t 7
-        bind -n M-8 select-window -t 8
-        bind -n M-9 select-window -t 9
 
         # DESIGN TWEAKS
 
@@ -170,7 +168,6 @@
     enable = true;
     reattach = true;
     touchIdAuth = true;
-
   };
 
   # services.aerospace = {
@@ -195,13 +192,28 @@
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
 
-
   system.defaults.controlcenter.NowPlaying = true;
-  system.defaults.dock.autohide = false;
 
-  system.defaults.dock.minimize-to-application = true;
-  system.defaults.dock.mru-spaces = false;
-  system.defaults.dock.show-recents = false;
+  system.defaults.dock = {
+    autohide = false;
+    minimize-to-application = true;
+    mru-spaces = false;
+    show-recents = false;
+    persistent-apps = [
+      "/System/Applications/Reminders.app"
+      "/System/Applications/Calendar.app"
+      "/System/Applications/Music.app"
+      "/System/Applications/Messages.app"
+
+      "/Applications/KeePassXC.app"
+      "/Applications/Ghostty.app"
+      # "/Applications/Nix Apps/Brave Browser.app"
+      "/Applications/LibreWolf.app"
+      "/Applications/Nix Apps/UTM.app"
+
+      "/System/Applications/System Settings.app"
+    ];
+  };
   system.defaults.finder = {
     AppleShowAllExtensions = true;
     AppleShowAllFiles = true;
@@ -213,7 +225,6 @@
     ShowStatusBar = true;
     _FXEnableColumnAutoSizing = true;
     _FXSortFoldersFirst = true;
-
   };
 
   system.defaults.screencapture.location = "/Users/andrewmontgomery/Documents/Screenshots";
@@ -224,10 +235,9 @@
     "/run/current-system/sw/bin/fish"
   ];
 
-
   homebrew = {
     enable = true;
-onActivation.cleanup = "uninstall";
+    onActivation.cleanup = "uninstall";
     user = "andrewmontgomery";
 
     taps = [
@@ -246,6 +256,7 @@ onActivation.cleanup = "uninstall";
       "discord"
       "corretto@11" # java runtime for matlab
       "scroll-reverser"
+      "librewolf"
     ];
   };
 
@@ -267,4 +278,3 @@ onActivation.cleanup = "uninstall";
   };
   system.keyboard.enableKeyMapping = true;
 }
- 

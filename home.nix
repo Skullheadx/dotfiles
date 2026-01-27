@@ -1,12 +1,14 @@
-{ config, pkgs, inputs, mac-app-util, ... }:
-
 {
+  config,
+  pkgs,
+  mac-app-util,
+  ...
+}: {
   imports = [
-
     ./sh.nix
     ./neovim.nix
     ./fastfetch.nix
-    # ./librewolf.nix
+    ./librewolf.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -23,7 +25,6 @@
   # changes in each release.
   home.stateVersion = "25.11";
 
-
   home.packages = with pkgs; [
     htop
   ];
@@ -39,7 +40,6 @@
       url = {
         "git@github.com:".insteadOf = "https://github.com/";
       };
-
     };
   };
 
@@ -50,15 +50,6 @@
 
   programs.info.enable = true;
   programs.man.enable = true;
-
-  # programs.tmux = {
-  #   # enable = true;
-  #   escapeTime = 10;
-  #   # extraConfig = "
-  #   #   set -g mouse on
-  #   #   ";
-  # };
-
 
   programs.ghostty = {
     settings = {
