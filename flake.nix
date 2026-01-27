@@ -15,6 +15,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs = inputs @ {
@@ -23,6 +24,7 @@
     darwin,
     mac-app-util,
     nur,
+    nvf,
     ...
   }:
   # let
@@ -36,8 +38,17 @@
   #   ];
   # };
   #     in
-  {
+    let
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+
+    customNeovim = nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [./nvf.nix];
+    };
+  in {
     # formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
+    packages.${system}.my-neovim = customNeovim.neovim;
     darwinConfigurations."Andrews-Laptop" = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
@@ -71,7 +82,7 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            # home-manager.extraSpecialArgs = { nur=inputs.nur; };
+            home-manager.extraSpecialArgs = { customNeovim=customNeovim; };
 
             home-manager.users.andrewmontgomery = ./home.nix;
           }

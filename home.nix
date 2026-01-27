@@ -2,6 +2,7 @@
   config,
   pkgs,
   mac-app-util,
+customNeovim,
   ...
 }: {
   imports = [
@@ -26,7 +27,8 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
-    htop
+    htop          
+   customNeovim.neovim
   ];
 
   programs.git = {
