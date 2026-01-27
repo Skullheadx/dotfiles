@@ -54,13 +54,23 @@
 
     treesitter = {
       enable = true;
+      autotagHtml = true;
+      context.enable = true;
+      fold = true;
+      grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
 
     mini.icons.enable = true;
-    visuals.nvim-web-devicons.enable = true;
+    visuals = {
+      nvim-web-devicons.enable = true;
+      rainbow-delimiters.enable = true;
+      tiny-devicons-auto-colors.enable = true;
+      indent-blankline.enable = true;
+    };
 
     utility = {
       nix-develop.enable = true;
+      sleuth.enable = true;
       snacks-nvim = {
         enable = true;
 
@@ -76,7 +86,9 @@
             timeout = 3000;
           };
 
-          picker.enable = true;
+          picker = {
+            enable = true;
+          };
           quickfile.enable = true;
           scope.enable = true;
           scroll.enable = true;
@@ -382,7 +394,7 @@
         action = "<cmd>lua Snacks.picker.qflist()<CR>";
       }
       {
-        key = "<leader>/<CR>";
+        key = "<leader>f<CR>";
         mode = "n";
         silent = true;
         desc = "Resume";
@@ -521,6 +533,9 @@
       imagemagick
       alejandra
       nixd
+      ghostscript
+      tectonic
+      nodePackages.mermaid-cli
     ];
   };
 }
