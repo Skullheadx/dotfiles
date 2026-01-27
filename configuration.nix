@@ -162,6 +162,11 @@
 
         # messages
         set -g message-style 'fg=yellow bg=red bold'
+
+
+        # nvf
+        set-option -g focus-events on
+
       ";
   };
   security.pam.services.sudo_local = {

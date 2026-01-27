@@ -1,13 +1,12 @@
-{
-  config,
-  pkgs,
-  mac-app-util,
-customNeovim,
-  ...
+{ config
+, pkgs
+, mac-app-util
+, customNeovim
+, ...
 }: {
   imports = [
     ./sh.nix
-    ./neovim.nix
+    #   ./neovim.nix
     ./fastfetch.nix
     ./librewolf.nix
   ];
@@ -27,8 +26,8 @@ customNeovim,
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
-    htop          
-   customNeovim.neovim
+    htop
+    customNeovim.neovim
   ];
 
   programs.git = {
