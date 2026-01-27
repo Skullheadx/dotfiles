@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   config.vim = {
     startPlugins = [
     ];
@@ -103,14 +99,7 @@
         action = "<cmd>lua Snacks.picker.smart()<CR>";
       }
       {
-        key = "<leader>,";
-        mode = "n";
-        silent = true;
-        desc = "Buffers";
-        action = "<cmd>lua Snacks.picker.buffers()<CR>";
-      }
-      {
-        key = "<leader>/";
+        key = "<leader>f\/";
         mode = "n";
         silent = true;
         desc = "Grep";
@@ -122,13 +111,6 @@
         silent = true;
         desc = "Command History";
         action = "<cmd>lua Snacks.picker.command_history()<CR>";
-      }
-      {
-        key = "<leader>n";
-        mode = "n";
-        silent = true;
-        desc = "Notification History";
-        action = "<cmd>lua Snacks.picker.notifications()<CR>";
       }
       {
         key = "<leader>e";
@@ -302,13 +284,6 @@
         action = "<cmd>lua Snacks.picker.registers()<CR>";
       }
       {
-        key = "<leader>s/";
-        mode = "n";
-        silent = true;
-        desc = "Search History";
-        action = "<cmd>lua Snacks.picker.search_history()<CR>";
-      }
-      {
         key = "<leader>sa";
         mode = "n";
         silent = true;
@@ -400,13 +375,6 @@
         action = "<cmd>lua Snacks.picker.man()<CR>";
       }
       {
-        key = "<leader>sp";
-        mode = "n";
-        silent = true;
-        desc = "Search for Plugin Spec";
-        action = "<cmd>lua Snacks.picker.lazy()<CR>";
-      }
-      {
         key = "<leader>sq";
         mode = "n";
         silent = true;
@@ -414,7 +382,7 @@
         action = "<cmd>lua Snacks.picker.qflist()<CR>";
       }
       {
-        key = "<leader>sR";
+        key = "<leader>/<CR>";
         mode = "n";
         silent = true;
         desc = "Resume";
@@ -426,13 +394,6 @@
         silent = true;
         desc = "Undo History";
         action = "<cmd>lua Snacks.picker.undo()<CR>";
-      }
-      {
-        key = "<leader>uC";
-        mode = "n";
-        silent = true;
-        desc = "Colorschemes";
-        action = "<cmd>lua Snacks.picker.colorschemes()<CR>";
       }
 
       # LSP
@@ -473,28 +434,14 @@
         action = "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>";
       }
       {
-        key = "gai";
-        mode = "n";
-        silent = true;
-        desc = "Calls Incoming";
-        action = "<cmd>lua Snacks.picker.lsp_incoming_calls()<CR>";
-      }
-      {
-        key = "gao";
-        mode = "n";
-        silent = true;
-        desc = "Calls Outgoing";
-        action = "<cmd>lua Snacks.picker.lsp_outgoing_calls()<CR>";
-      }
-      {
-        key = "<leader>ss";
+        key = "<leader>ls";
         mode = "n";
         silent = true;
         desc = "LSP Symbols";
         action = "<cmd>lua Snacks.picker.lsp_symbols()<CR>";
       }
       {
-        key = "<leader>sS";
+        key = "<leader>lS";
         mode = "n";
         silent = true;
         desc = "LSP Workspace Symbols";
@@ -510,21 +457,14 @@
         action = "<cmd>lua Snacks.zen()<CR>";
       }
       {
-        key = "<leader>Z";
-        mode = "n";
-        silent = true;
-        desc = "Toggle Zoom";
-        action = "<cmd>lua Snacks.zen.zoom()<CR>";
-      }
-      {
-        key = "<leader>.";
+        key = "<leader>ss";
         mode = "n";
         silent = true;
         desc = "Toggle Scratch Buffer";
         action = "<cmd>lua Snacks.scratch()<CR>";
       }
       {
-        key = "<leader>S";
+        key = "<leader>sf";
         mode = "n";
         silent = true;
         desc = "Select Scratch Buffer";
@@ -538,7 +478,7 @@
         action = "<cmd>lua Snacks.bufdelete()<CR>";
       }
       {
-        key = "<leader>cR";
+        key = "<leader>br";
         mode = "n";
         silent = true;
         desc = "Rename File";
@@ -559,47 +499,18 @@
         action = "<cmd>lua Snacks.lazygit()<CR>";
       }
       {
-        key = "<leader>un";
-        mode = "n";
-        silent = true;
-        desc = "Dismiss All Notifications";
-        action = "<cmd>lua Snacks.notifier.hide()<CR>";
-      }
-      {
-        key = "<c-/>";
+        key = "<leader>t";
         mode = "n";
         silent = true;
         desc = "Toggle Terminal";
         action = "<cmd>lua Snacks.terminal()<CR>";
       }
       {
-        key = "<c-_>";
-        mode = "n";
+        key = "<leader>t";
+        mode = "t";
         silent = true;
         desc = "which_key_ignore";
         action = "<cmd>lua Snacks.terminal()<CR>";
-      }
-      {
-        key = "]]";
-        mode = ["n" "t"];
-        silent = true;
-        desc = "Next Reference";
-        action = "<cmd>lua Snacks.words.jump(vim.v.count1)<CR>";
-      }
-      {
-        key = "[[";
-        mode = ["n" "t"];
-        silent = true;
-        desc = "Prev Reference";
-        action = "<cmd>lua Snacks.words.jump(-vim.v.count1)<CR>";
-      }
-
-      {
-        key = "<leader>N";
-        mode = "n";
-        silent = true;
-        desc = "Neovim News";
-        action = "<cmd>lua Snacks.win({ file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1], width = 0.6, height = 0.6, wo = { spell = false, wrap = false, signcolumn = 'yes', statuscolumn = ' ', conceallevel = 3 } })<CR>";
       }
     ];
 
