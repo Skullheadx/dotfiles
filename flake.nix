@@ -17,16 +17,24 @@
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, mac-app-util, ... }:
-    # let 
-    #    pkgs-stable = nixpkgs-stable.legacyPackages."aarch64-darwin";
-    # in   
-    let
-      pkgs = import nixpkgs { system = "aarch64-darwin"; };
-    in
-    {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    darwin,
+    mac-app-util,
+    nvf,
+    ...
+  }: let
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
 
-      formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
+    customNeovim = nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [./nvf/nvf.nix];
+    };
+  in {
+    formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
+    packages.${system}.my-neovim = customNeovim.neovim;
     darwinConfigurations."andrewmontgomerys-Virtual-Machine" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [

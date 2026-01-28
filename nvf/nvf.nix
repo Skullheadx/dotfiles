@@ -259,7 +259,6 @@
       stylua
       nixpkgs-fmt
       sqlfluff
-      prettypst
 
       # linter
       shellcheck
