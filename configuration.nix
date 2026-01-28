@@ -22,54 +22,6 @@
     lazygit
     ngrok
     audacity
-    # language server
-    bash-language-server
-    clang-tools
-    docker-language-server
-    gopls
-    golangci-lint-langserver
-    vscode-langservers-extracted
-    emmet-language-server
-    lua-language-server
-    marksman
-    nixd
-    basedpyright
-    ruff
-    sqls
-    deno
-    vtsls
-    yaml-language-server
-    zls
-
-    # formatter
-    shfmt
-    gofumpt
-    prettierd
-    prettier
-    jq
-    stylua
-    nixpkgs-fmt
-    sqlfluff
-
-    # linter
-    shellcheck
-    cppcheck
-    hadolint
-    fish
-    golangci-lint
-    selene
-    markdownlint-cli2
-    statix
-    eslint
-    yamllint
-
-    # debugger
-    lldb
-    delve
-    python313Packages.debugpy
-
-    # tree sitter
-    tree-sitter
   ];
 
   environment.systemPath = [
