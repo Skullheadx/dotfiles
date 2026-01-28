@@ -11,7 +11,6 @@
     neovim
     babelfish
     brave
-    # firefox
     discord
     zig
     zls
