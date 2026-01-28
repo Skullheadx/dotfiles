@@ -119,7 +119,6 @@
       "feishu"
       "cursor"
       "surfshark"
-      "zen"
       "scroll-reverser"
     ];
   };
