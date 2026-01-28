@@ -32,6 +32,7 @@
     baseIndex = 1;
     shell = "${pkgs.fish}/bin/fish";
     keyMode = "vi";
+    terminal = "screen-256color";
 
     extraConfig = "
         # split panes using | and -
