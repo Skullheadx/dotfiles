@@ -19,7 +19,11 @@
     };
 
     statusline.lualine.enable = true;
-    ui.noice.enable = true;
+    ui = {
+      noice.enable = true;
+      illuminate.enable = true;
+      nvim-highlight-colors.enable = true;
+    };
     mini.icons.enable = true;
 
     visuals = {
@@ -27,6 +31,7 @@
       rainbow-delimiters.enable = true;
       tiny-devicons-auto-colors.enable = true;
       indent-blankline.enable = true;
+      highlight-undo.enable = true;
     };
 
     # navigation
@@ -53,15 +58,21 @@
       enable = true;
       formatOnSave = true;
       inlayHints.enable = true;
-      lspSignature.enable = true;
 
       lightbulb = {
         enable = true;
         autocmd.enable = true;
       };
       lspconfig.enable = true;
+      otter-nvim.enable = true;
     };
 
+    notes.todo-comments.enable = true;
+
+    spellcheck = {
+      enable = true;
+      programmingWordlist.enable = true;
+    };
     languages = {
       nix = {
         enable = true;
@@ -87,6 +98,7 @@
       bash.enable = true;
       clang.enable = true;
       css.enable = true;
+      typst.enable = true;
     };
 
     treesitter = {
@@ -97,9 +109,17 @@
       grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
 
+    diagnostics.nvim-lint = {
+      enable = true;
+      lint_after_save = true;
+    };
+
     # plugins
     utility = {
+      multicursors.enable = true;
+      surround.enable = true;
       nix-develop.enable = true;
+      preview = {glow.enable = true;};
       sleuth.enable = true;
       snacks-nvim = {
         enable = true;
@@ -133,6 +153,38 @@
         };
       };
     };
+
+    autocomplete.blink-cmp = {
+      enable = true;
+      friendly-snippets.enable = true;
+      # mappings = {
+      #   close = "<Esc>"; # abort / close the menu
+      #   complete = "<C-Space>"; # trigger completion manually
+      #   confirm = "<CR>"; # confirm selected item
+      #   next = "<C-n>"; # select next completion item
+      #   previous = "<C-p>"; # select previous completion item
+      #   scrollDocsDown = "<C-f>"; # scroll docs down
+      #   scrollDocsUp = "<C-d>"; # scroll docs up
+      # };
+      setupOpts = {
+        signature.enabled = true;
+        cmdline.keymap.preset = "default";
+        keymap.preset = "default";
+        completion.documentation.auto_show = true;
+      };
+      sourcePlugins = {
+        lsp = {package = "cmp-nvim-lsp";};
+        buffer = {package = "cmp-buffer";};
+        path = {package = "cmp-path";};
+        luasnip = {package = "cmp-luasnip";};
+        spell = {package = "blink-cmp-spell";};
+        emoji = {package = "blink-emoji-nvim";};
+        ripgrep.enable = true;
+        spell.enable = true;
+      };
+    };
+
+    autopairs.nvim-autopairs.enable = true;
 
     # keymaps
     keymaps = import ./keymaps.nix {};
