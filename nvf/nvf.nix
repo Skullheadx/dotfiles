@@ -1,5 +1,11 @@
 {pkgs, ...}: {
   config.vim = {
+    lazy.enable = true;
+    lazy.plugins = {
+      "lazy.nvim" = {
+        package = pkgs.vimPlugins.lazy-nvim;
+      };
+    };
     # core
     syntaxHighlighting = true;
     binds.whichKey.enable = true;
@@ -24,6 +30,7 @@
     };
 
     # lsp
+
     lsp = {
       enable = true;
       formatOnSave = true;
@@ -81,7 +88,9 @@
 
         setupOpts = {
           bigfile.enable = true;
-          dashboard.enable = true;
+          dashboard = {
+            enable = true;
+          };
           explorer.enable = true;
           indent.enable = true;
           input.enable = true;
