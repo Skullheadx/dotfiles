@@ -1,12 +1,13 @@
-{ config
-, pkgs
-, mac-app-util
-, customNeovim
-, ...
+{
+  config,
+  pkgs,
+  mac-app-util,
+  customNeovim,
+  ...
 }: {
   imports = [
     ./sh.nix
-    #   ./neovim.nix
+    ./tmux.nix
     ./fastfetch.nix
     ./librewolf.nix
   ];
