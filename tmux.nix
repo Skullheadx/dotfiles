@@ -9,7 +9,6 @@
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
-      tmuxPlugins.cpu
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
@@ -18,7 +17,7 @@
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
+          set -g @continuum-save-interval '15' # minutes
         '';
       }
     ];
@@ -41,8 +40,6 @@
         unbind s
         bind s choose-tree -s
 
-        # reload config file (change file location to your the tmux.conf you want to use)
-        bind r source-file /etc/tmux.conf
 
 
         # switch panes using Opt + hjkl (Vim-style)
