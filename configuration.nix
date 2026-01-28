@@ -7,14 +7,19 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    vim
-    brave
-    discord
-    utm
-    audacity
-
-    zig
-    typst
+    # work tools
+    go
+    go-migrate
+    jdk17
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+      google-cloud-sdk.components.pubsub-emulator
+      google-cloud-sdk.components.beta
+    ])
+    nodejs
+    yarn
+    kubectl
+    ffmpeg
   ];
 
   environment.systemPath = [
