@@ -8,18 +8,9 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     vim
-    neovim
-    babelfish
     brave
     discord
-    zig
-    zls
     utm
-    sqlite
-    dbeaver-bin
-    uv
-    lazygit
-    ngrok
     audacity
   ];
 
@@ -30,8 +21,13 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # Enable alternative shell support in nix-darwin.
-
   programs.fish.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    # enableFishIntegration = true;
+  };
+
   security.pam.services.sudo_local = {
     enable = true;
     reattach = true;
@@ -49,56 +45,71 @@
   #  inactive_color="0xff414550";
   #  style  = "round";
   # };
-  system.defaults.NSGlobalDomain.AppleICUForce24HourTime = true;
-  system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
-  system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
-  system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
-  system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
-  system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
-  system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
-  system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
-  system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
-  system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
 
-  system.defaults.controlcenter.NowPlaying = true;
+  system = {
+    defaults = {
+      NSGlobalDomain = {
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyle = "Dark";
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        NSAutomaticCapitalizationEnabled = false;
+        NSDocumentSaveNewDocumentsToCloud = false;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        NSWindowShouldDragOnGesture = true;
+        PMPrintingExpandedStateForPrint = true;
+        PMPrintingExpandedStateForPrint2 = true;
+      };
 
-  system.defaults.dock = {
-    autohide = false;
-    minimize-to-application = true;
-    mru-spaces = false;
-    show-recents = false;
-    persistent-apps = [
-      "/System/Applications/Reminders.app"
-      "/System/Applications/Calendar.app"
-      "/System/Applications/Music.app"
-      "/System/Applications/Messages.app"
+      controlcenter.NowPlaying = true;
 
-      "/Applications/KeePassXC.app"
-      "/Applications/Ghostty.app"
-      # "/Applications/Nix Apps/Brave Browser.app"
-      "/Applications/LibreWolf.app"
-      "/Applications/Nix Apps/UTM.app"
+      dock = {
+        autohide = false;
+        minimize-to-application = true;
+        mru-spaces = false;
+        show-recents = false;
+        persistent-apps = [
+          "/System/Applications/Reminders.app"
+          "/System/Applications/Calendar.app"
+          "/System/Applications/Music.app"
+          "/System/Applications/Messages.app"
 
-      "/System/Applications/System Settings.app"
-    ];
+          "/Applications/KeePassXC.app"
+          "/Applications/Ghostty.app"
+          # "/Applications/Nix Apps/Brave Browser.app"
+          "/Applications/LibreWolf.app"
+          "/Applications/Nix Apps/UTM.app"
+
+          "/System/Applications/System Settings.app"
+        ];
+      };
+
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        FXEnableExtensionChangeWarning = false;
+        FXPreferredViewStyle = "Nlsv";
+        QuitMenuItem = true;
+        ShowMountedServersOnDesktop = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        _FXEnableColumnAutoSizing = true;
+        _FXSortFoldersFirst = true;
+      };
+
+      screencapture = {
+        location = "/Users/andrewmontgomery/Documents/Screenshots";
+        type = "jpg";
+      };
+    };
+
+    keyboard = {
+      remapCapsLockToEscape = true;
+      swapLeftCtrlAndFn = true;
+      enableKeyMapping = true;
+    };
   };
-  system.defaults.finder = {
-    AppleShowAllExtensions = true;
-    AppleShowAllFiles = true;
-    FXEnableExtensionChangeWarning = false;
-    FXPreferredViewStyle = "Nlsv";
-    QuitMenuItem = true;
-    ShowMountedServersOnDesktop = true;
-    ShowPathbar = true;
-    ShowStatusBar = true;
-    _FXEnableColumnAutoSizing = true;
-    _FXSortFoldersFirst = true;
-  };
 
-  system.defaults.screencapture.location = "/Users/andrewmontgomery/Documents/Screenshots";
-  system.defaults.screencapture.type = "jpg";
-  system.keyboard.remapCapsLockToEscape = true;
-  system.keyboard.swapLeftCtrlAndFn = true;
   environment.shells = [
     "/run/current-system/sw/bin/fish"
   ];
@@ -139,10 +150,4 @@
   # nixpkgs.config.allowUnsupportedSystem = true;
   power.sleep.display = "never";
   system.primaryUser = "andrewmontgomery";
-
-  programs.direnv = {
-    enable = true;
-    # enableFishIntegration = true;
-  };
-  system.keyboard.enableKeyMapping = true;
 }
