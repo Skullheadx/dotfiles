@@ -225,21 +225,15 @@
       lazygit
       fd
       imagemagick
-      alejandra
       nixd
       ghostscript
-      tectonic
-      nodePackages.mermaid-cli
 
       # language server
-      bash-language-server
-      clang-tools
       docker-language-server
       gopls
       golangci-lint-langserver
       vscode-langservers-extracted
       emmet-language-server
-      lua-language-server
       marksman
       nixd
       basedpyright
@@ -248,7 +242,6 @@
       deno
       vtsls
       yaml-language-server
-      zls
 
       # formatter
       shfmt
@@ -256,13 +249,11 @@
       prettierd
       prettier
       jq
-      stylua
-      nixpkgs-fmt
+      alejandra
       sqlfluff
 
       # linter
       shellcheck
-      cppcheck
       hadolint
       fish
       golangci-lint
@@ -271,11 +262,6 @@
       statix
       eslint
       yamllint
-
-      # debugger
-      lldb
-      delve
-      python313Packages.debugpy
 
       # tree sitter
       tree-sitter

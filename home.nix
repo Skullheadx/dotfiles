@@ -1,3 +1,5 @@
+{ config, pkgs, nur, inputs, customNeovim, ... }:
+
 {
   config,
   pkgs,
@@ -30,6 +32,7 @@
   home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
+    customNeovim.neovim
     htop
     customNeovim.neovim
   ];
