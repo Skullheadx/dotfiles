@@ -29,8 +29,26 @@
       indent-blankline.enable = true;
     };
 
-    # lsp
+    # navigation
+    navigation = {
+      harpoon = {
+        enable = true;
+        mappings = {
+          file1 = "<leader>1";
+          file2 = "<leader>2";
+          file3 = "<leader>3";
+          file4 = "<leader>4";
+          listMarks = "<leader>'";
+          markFile = "<leader>.";
+        };
+        setupOpts.defaults = {
+          save_on_toggle = true;
+          sync_on_ui_close = true;
+        };
+      };
+    };
 
+    # lsp
     lsp = {
       enable = true;
       formatOnSave = true;
