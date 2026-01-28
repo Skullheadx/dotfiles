@@ -1,11 +1,5 @@
 {pkgs, ...}: {
   config.vim = {
-    lazy.enable = true;
-    lazy.plugins = {
-      "lazy.nvim" = {
-        package = pkgs.vimPlugins.lazy-nvim;
-      };
-    };
     # core
     syntaxHighlighting = true;
     binds.whichKey.enable = true;
@@ -23,6 +17,10 @@
       noice.enable = true;
       illuminate.enable = true;
       nvim-highlight-colors.enable = true;
+      borders = {
+        enable = true;
+        globalStyle = "rounded";
+      };
     };
     mini.icons.enable = true;
 
@@ -32,6 +30,10 @@
       tiny-devicons-auto-colors.enable = true;
       indent-blankline.enable = true;
       highlight-undo.enable = true;
+    };
+    dashboard.alpha = {
+      enable = true;
+      theme = "theta";
     };
 
     # navigation
@@ -127,7 +129,7 @@
         setupOpts = {
           bigfile.enable = true;
           dashboard = {
-            enable = true;
+            enable = false;
           };
           explorer.enable = true;
           indent.enable = true;

@@ -380,7 +380,7 @@
     action = "<cmd>lua Snacks.scratch.select()<CR>";
   }
   {
-    key = "<leader>bd";
+    key = "<leader>bc";
     mode = "n";
     silent = true;
     desc = "Delete Buffer";
