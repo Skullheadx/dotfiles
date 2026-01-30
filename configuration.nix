@@ -20,6 +20,10 @@
     yarn
     kubectl
     ffmpeg
+    dbeaver-bin
+    ngrok
+
+    claude-code
   ];
 
   environment.systemPath = [
