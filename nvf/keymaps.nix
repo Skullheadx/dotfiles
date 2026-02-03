@@ -421,4 +421,25 @@
     desc = "which_key_ignore";
     action = "<cmd>lua Snacks.terminal()<CR>";
   }
+
+  {
+    key = "w";
+    mode = ["n" "o" "x"];
+    action = "<cmd>lua require('spider').motion('w')<CR>";
+  }
+  {
+    key = "e";
+    mode = ["n" "o" "x"];
+    action = "<cmd>lua require('spider').motion('e')<CR>";
+  }
+  {
+    key = "b";
+    mode = ["n" "o" "x"];
+    action = "<cmd>lua require('spider').motion('b')<CR>";
+  }
+  {
+    key = "ge";
+    mode = ["n" "o" "x"];
+    action = "<cmd>lua require('spider').motion('ge')<CR>";
+  }
 ]

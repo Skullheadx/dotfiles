@@ -12,6 +12,8 @@
     discord
     utm
     audacity
+
+    zig
   ];
 
   environment.systemPath = [

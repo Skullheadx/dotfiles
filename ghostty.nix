@@ -14,6 +14,8 @@
       shell-integration = "fish";
       shell-integration-features = true;
       auto-update = "off";
+      command = "tmux attach";
+      initial-command = "tmux attach";
     };
     themes = {
       catppuccin-mocha = {

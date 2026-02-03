@@ -79,11 +79,19 @@
       enable = true;
 
       mappings.toggleCurrentLine = "<leader>/";
+      /*
       mappings.toggleOpLeaderLine = "<leader>/";
+      */
+      /*
       mappings.toggleOpLeaderBlock = "<leader>/";
+      */
+      /*
       mappings.toggleCurrentBlock = "<leader>/";
+      */
       mappings.toggleSelectedLine = "<leader>/";
+      /*
       mappings.toggleSelectedBlock = "<leader>/";
+      */
 
       setupOpts.mappings.basic = true;
       setupOpts.mappings.extra = true;
@@ -131,6 +139,12 @@
     };
 
     # plugins
+    extraPlugins = {
+      spider = {
+        package = pkgs.vimPlugins.nvim-spider;
+      };
+    };
+
     utility = {
       multicursors.enable = true;
       surround.enable = true;
