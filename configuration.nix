@@ -14,6 +14,7 @@
     audacity
 
     zig
+    typst
   ];
 
   environment.systemPath = [
