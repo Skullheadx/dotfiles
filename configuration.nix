@@ -126,7 +126,6 @@ in {
       "keepingyouawake"
       "ghostty"
       "feishu"
-      "cursor"
       "surfshark"
       "scroll-reverser"
     ];
@@ -139,10 +138,8 @@ in {
   system.defaults.dock = {
     persistent-apps = [
       "/Applications/Safari.app"
-      "/Applications/Zen.app"
       "/Applications/Feishu.app"
       "/Applications/Ghostty.app"
-      "/Applications/Cursor.app"
       "/Applications/Nix Apps/DBeaver.app"
       "/Applications/Surfshark.app"
       "/System/Applications/Utilities/Activity Monitor.app"

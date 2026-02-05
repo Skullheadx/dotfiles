@@ -34,6 +34,8 @@
        # Source fzf-tab (needs to be after fzf)
        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
       bindkey '^ ' autosuggest-execute
+
+      source /Users/andrewmontgomery/.dotfiles/dotfiles/zshrc.env
     '';
   };
   home.packages = with pkgs; [
@@ -43,7 +45,7 @@
   ];
 
   programs.fish = {
-    enable = true;
+    enable = false;
     generateCompletions = true;
     interactiveShellInit = ''
       fish_vi_key_bindings

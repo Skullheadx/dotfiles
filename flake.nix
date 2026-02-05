@@ -8,8 +8,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     mac-app-util = {
-      url = "github:hraban/mac-app-util"; 
-    inputs.nixpkgs.follows = "nixpkgs";};
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,17 +37,21 @@
     formatter.aarch64-darwin = pkgs.nixpkgs-fmt;
     packages.${system}.my-neovim = customNeovim.neovim;
     darwinConfigurations."andrewmontgomerys-Virtual-Machine" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-
-          ./configuration.nix
-          mac-app-util.darwinModules.default
-          home-manager.darwinModules.home-manager(
-          {pkgs, config, inputs, ...}:
+      system = "aarch64-darwin";
+      modules = [
+        ./configuration.nix
+        mac-app-util.darwinModules.default
+        home-manager.darwinModules.home-manager
+        (
           {
- home-manager.sharedModules = [
-                mac-app-util.homeManagerModules.default
-              ];
+            pkgs,
+            config,
+            inputs,
+            ...
+          }: {
+            home-manager.sharedModules = [
+              mac-app-util.homeManagerModules.default
+            ];
 
             users.users."andrewmontgomery" = {
               home = "/Users/andrewmontgomery/";
@@ -62,9 +67,9 @@
             # arguments to home.nix
             # home-manager.extraSpec ialArgs = [ inputs ];
             home-manager.extraSpecialArgs = {customNeovim = customNeovim;};
-          })
-        ];
-      };
+          }
+        )
+      ];
     };
   };
 }
