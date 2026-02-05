@@ -45,7 +45,7 @@
   ];
 
   programs.fish = {
-    enable = false;
+    enable = true;
     generateCompletions = true;
     interactiveShellInit = ''
       fish_vi_key_bindings
