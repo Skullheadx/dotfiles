@@ -1,4 +1,101 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  enabledLanguages ? ["all"], # "all" or list like ["go" "ts" "python" "markdown"]
+  ...
+}: let
+  # Check if a language should be enabled
+  langEnabled = lang:
+    builtins.elem "all" enabledLanguages || builtins.elem lang enabledLanguages;
+
+  # Base extra packages (always needed)
+  basePackages = with pkgs; [
+    ripgrep
+    lazygit
+    fd
+    imagemagick
+    alejandra
+    nixd
+    tree-sitter
+  ];
+
+  # Language-specific packages
+  langPackages = with pkgs;
+    (
+      if langEnabled "nix"
+      then [nixd nixpkgs-fmt statix]
+      else []
+    )
+    ++ (
+      if langEnabled "go"
+      then [gopls golangci-lint-langserver golangci-lint gofumpt delve]
+      else []
+    )
+    ++ (
+      if langEnabled "ts" || langEnabled "js"
+      then [deno vtsls vscode-langservers-extracted emmet-language-server prettierd prettier eslint]
+      else []
+    )
+    ++ (
+      if langEnabled "python"
+      then [basedpyright ruff python313Packages.debugpy]
+      else []
+    )
+    ++ (
+      if langEnabled "markdown"
+      then [marksman markdownlint-cli2]
+      else []
+    )
+    ++ (
+      if langEnabled "bash"
+      then [bash-language-server shfmt shellcheck]
+      else []
+    )
+    ++ (
+      if langEnabled "lua"
+      then [lua-language-server stylua selene]
+      else []
+    )
+    ++ (
+      if langEnabled "clang"
+      then [clang-tools cppcheck lldb]
+      else []
+    )
+    ++ (
+      if langEnabled "html" || langEnabled "css"
+      then [vscode-langservers-extracted emmet-language-server prettierd]
+      else []
+    )
+    ++ (
+      if langEnabled "sql"
+      then [sqls sqlfluff]
+      else []
+    )
+    ++ (
+      if langEnabled "zig"
+      then [zls]
+      else []
+    )
+    ++ (
+      if langEnabled "typst"
+      then [prettypst ghostscript tectonic nodePackages.mermaid-cli]
+      else []
+    )
+    ++ (
+      if langEnabled "yaml"
+      then [yaml-language-server yamllint]
+      else []
+    )
+    ++ (
+      if langEnabled "docker"
+      then [docker-language-server hadolint]
+      else []
+    )
+    ++ (
+      if langEnabled "json"
+      then [jq]
+      else []
+    );
+in {
   config.vim = {
     # core
     syntaxHighlighting = true;
@@ -77,29 +174,16 @@
     };
     comments.comment-nvim = {
       enable = true;
-
       mappings.toggleCurrentLine = "<leader>/";
-      /*
-      mappings.toggleOpLeaderLine = "<leader>/";
-      */
-      /*
-      mappings.toggleOpLeaderBlock = "<leader>/";
-      */
-      /*
-      mappings.toggleCurrentBlock = "<leader>/";
-      */
       mappings.toggleSelectedLine = "<leader>/";
-      /*
-      mappings.toggleSelectedBlock = "<leader>/";
-      */
-
       setupOpts.mappings.basic = true;
       setupOpts.mappings.extra = true;
     };
 
+    # Languages - conditionally enabled
     languages = {
       nix = {
-        enable = true;
+        enable = langEnabled "nix";
         format = {
           enable = true;
           type = ["alejandra"];
@@ -110,19 +194,19 @@
         };
         treesitter.enable = true;
       };
-      sql.enable = true;
-      ts.enable = true;
-      python.enable = true;
-      zig.enable = true;
-      markdown.enable = true;
-      html.enable = true;
-      go.enable = true;
-      lua.enable = true;
-      assembly.enable = true;
-      bash.enable = true;
-      clang.enable = true;
-      css.enable = true;
-      typst.enable = true;
+      sql.enable = langEnabled "sql";
+      ts.enable = langEnabled "ts" || langEnabled "js";
+      python.enable = langEnabled "python";
+      zig.enable = langEnabled "zig";
+      markdown.enable = langEnabled "markdown";
+      html.enable = langEnabled "html";
+      go.enable = langEnabled "go";
+      lua.enable = langEnabled "lua";
+      assembly.enable = langEnabled "assembly";
+      bash.enable = langEnabled "bash";
+      clang.enable = langEnabled "clang";
+      css.enable = langEnabled "css";
+      typst.enable = langEnabled "typst";
     };
 
     treesitter = {
@@ -149,37 +233,27 @@
       multicursors.enable = true;
       surround.enable = true;
       nix-develop.enable = true;
-      preview = {glow.enable = true;};
+      preview = {glow.enable = langEnabled "markdown";};
       sleuth.enable = true;
       snacks-nvim = {
         enable = true;
-
         setupOpts = {
           bigfile.enable = true;
-          dashboard = {
-            enable = false;
-          };
+          dashboard.enable = false;
           explorer.enable = true;
           indent.enable = true;
           input.enable = true;
-
           notifier = {
             enable = true;
             timeout = 3000;
           };
-
-          picker = {
-            enable = true;
-          };
+          picker.enable = true;
           quickfile.enable = true;
           scope.enable = true;
           scroll.enable = true;
           statuscolumn.enable = true;
           words.enable = true;
-
-          styles.notification = {
-            # wo.wrap = true;
-          };
+          styles.notification = {};
         };
       };
     };
@@ -187,15 +261,6 @@
     autocomplete.blink-cmp = {
       enable = true;
       friendly-snippets.enable = true;
-      # mappings = {
-      #   close = "<Esc>"; # abort / close the menu
-      #   complete = "<C-Space>"; # trigger completion manually
-      #   confirm = "<CR>"; # confirm selected item
-      #   next = "<C-n>"; # select next completion item
-      #   previous = "<C-p>"; # select previous completion item
-      #   scrollDocsDown = "<C-f>"; # scroll docs down
-      #   scrollDocsUp = "<C-d>"; # scroll docs up
-      # };
       setupOpts = {
         signature.enabled = true;
         cmdline.keymap.preset = "default";
@@ -219,67 +284,7 @@
     # keymaps
     keymaps = import ./keymaps.nix {};
 
-    # tools
-    extraPackages = with pkgs; [
-      ripgrep
-      lazygit
-      fd
-      imagemagick
-      alejandra
-      nixd
-      ghostscript
-      tectonic
-      nodePackages.mermaid-cli
-
-      # language server
-      bash-language-server
-      clang-tools
-      docker-language-server
-      gopls
-      golangci-lint-langserver
-      vscode-langservers-extracted
-      emmet-language-server
-      lua-language-server
-      marksman
-      nixd
-      basedpyright
-      ruff
-      sqls
-      deno
-      vtsls
-      yaml-language-server
-      zls
-
-      # formatter
-      shfmt
-      gofumpt
-      prettierd
-      prettier
-      jq
-      stylua
-      nixpkgs-fmt
-      sqlfluff
-      prettypst
-
-      # linter
-      shellcheck
-      cppcheck
-      hadolint
-      fish
-      golangci-lint
-      selene
-      markdownlint-cli2
-      statix
-      eslint
-      yamllint
-
-      # debugger
-      lldb
-      delve
-      python313Packages.debugpy
-
-      # tree sitter
-      tree-sitter
-    ];
+    # tools - only include packages for enabled languages
+    extraPackages = basePackages ++ langPackages;
   };
 }
