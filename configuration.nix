@@ -3,13 +3,17 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  go-migrate-mysql = pkgs.go-migrate.overrideAttrs (oldAttrs: {
+    tags = ["mysql"];
+  });
+in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # work tools
     go
-    go-migrate
+    go-migrate-mysql
     jdk17
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
@@ -24,6 +28,7 @@
     ngrok
 
     claude-code
+    air
   ];
 
   environment.systemPath = [
