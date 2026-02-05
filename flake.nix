@@ -56,7 +56,7 @@
             users.users."andrewmontgomery" = {
               home = "/Users/andrewmontgomery/";
 
-              shell = "/run/current-system/sw/bin/fish";
+              shell = "/run/current-system/sw/bin/zsh";
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

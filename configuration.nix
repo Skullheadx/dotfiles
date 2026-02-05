@@ -38,7 +38,7 @@ in {
   nix.settings.experimental-features = "nix-command flakes";
 
   # Enable alternative shell support in nix-darwin.
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
   security.pam.services.sudo_local = {
     enable = true;
     reattach = true;
@@ -108,7 +108,7 @@ in {
   };
 
   environment.shells = [
-    "/run/current-system/sw/bin/fish"
+    "/run/current-system/sw/bin/zsh"
   ];
 
   homebrew = {
