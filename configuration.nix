@@ -15,6 +15,7 @@
 
     zig
     typst
+    zathura
   ];
 
   environment.systemPath = [
