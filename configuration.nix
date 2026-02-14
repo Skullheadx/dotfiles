@@ -27,11 +27,6 @@
   # Enable alternative shell support in nix-darwin.
   programs.fish.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    # enableFishIntegration = true;
-  };
-
   security.pam.services.sudo_local = {
     enable = true;
     reattach = true;

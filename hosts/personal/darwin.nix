@@ -13,6 +13,7 @@
     audacity
     zig
     typst
+    zathura
   ];
 
   environment.systemPath = [

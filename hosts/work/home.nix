@@ -13,6 +13,7 @@
     ../../modules/home/tmux.nix
     ../../modules/home/git.nix
     ../../modules/home/fastfetch.nix
+    ../../direnv.nix
   ];
 
   home.username = username;

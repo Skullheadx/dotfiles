@@ -14,6 +14,7 @@
     ../../modules/home/git.nix
     ../../modules/home/fastfetch.nix
     ../../modules/home/librewolf.nix
+    ../../direnv.nix
   ];
 
   home.username = username;

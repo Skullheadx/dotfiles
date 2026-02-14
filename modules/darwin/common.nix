@@ -14,11 +14,6 @@
     touchIdAuth = true;
   };
 
-  # Direnv for development environments
-  programs.direnv = {
-    enable = true;
-  };
-
   system = {
     # Used for backwards compatibility
     stateVersion = 6;
