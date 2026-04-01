@@ -94,11 +94,6 @@
       if langEnabled "json"
       then [jq]
       else []
-    )
-    ++ (
-      if langEnabled "assembly"
-      then [vimplugin-vim-gas]
-      else []
     );
 in {
   config.vim = {

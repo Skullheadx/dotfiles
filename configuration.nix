@@ -16,6 +16,8 @@
     zig
     typst
     zathura
+    postgresql
+    air
   ];
 
   environment.systemPath = [
@@ -135,6 +137,7 @@
       "corretto@11" # java runtime for matlab
       "scroll-reverser"
       "librewolf"
+      "kdenlive"
     ];
   };
 

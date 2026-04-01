@@ -15,6 +15,7 @@
     ../../modules/home/fastfetch.nix
     ../../modules/home/librewolf.nix
     ../../direnv.nix
+    ../../ranger.nix
   ];
 
   home.username = username;
@@ -24,6 +25,10 @@
   home.packages = with pkgs; [
     htop
     customNeovim.neovim
+    go
+    qbittorrent
+    direnv
+    audacity
   ];
 
   # Personal config uses fish shell for tmux/ghostty
