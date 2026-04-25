@@ -17,45 +17,48 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    stylix,
-    nur,
-    ...
-  } @ inputs: let
-    lib = nixpkgs.lib;
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [nur.overlay];
-    };
-  in {
-    nixosConfigurations = {
-      home = lib.nixosSystem {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      nur,
+      ...
+    }@inputs:
+    let
+      lib = nixpkgs.lib;
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
         inherit system;
-        modules = [
-          ./configuration.nix
-        ];
-        specialArgs = {
-          inherit inputs;
+        config.allowUnfree = true;
+        overlays = [ nur.overlays.default ];
+      };
+    in
+    {
+      nixosConfigurations = {
+        home = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./configuration.nix
+          ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
+      };
+      homeConfigurations = {
+        andrew = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            stylix.homeModules.stylix
+            #nur.modules.nixos.default
+            ./dotfiles.nix
+            ./home.nix
+            { dotfiles.mutable = true; }
+          ];
+          extraSpecialArgs = { inherit inputs; };
         };
       };
     };
-    homeConfigurations = {
-      andrew = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          stylix.homeModules.stylix
-          #nur.modules.nixos.default
-          ./dotfiles.nix
-          ./home.nix
-          {dotfiles.mutable = true;}
-        ];
-        extraSpecialArgs = {inherit inputs;};
-      };
-    };
-  };
 }

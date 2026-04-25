@@ -78,12 +78,13 @@
 
     vlc
 
-    protonvpn-cli
     protonvpn-gui
     qbittorrent
 
     ffmpeg
     gimp
+
+    yt-dlp
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -215,6 +216,8 @@
     size = 25;
     package = pkgs.bibata-cursors;
   };
+
+  programs.ranger.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
