@@ -5,7 +5,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     betterlockscreen
-	lock-screen
+    lock-screen
   ];
 
   programs.i3lock = {

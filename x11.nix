@@ -25,7 +25,7 @@
     windowManager.dwm.enable = true;
     desktopManager.runXdgAutostartIfNone = false;
     displayManager = {
-      setupCommands = '''';
+      setupCommands = "";
       sessionCommands = ''
         		#!/bin/sh
         		${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360

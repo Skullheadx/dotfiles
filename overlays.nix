@@ -1,7 +1,8 @@
-{pkgs, ...} : {
-nixpkgs.overlays = [
-(final: prev: {
-lock-screen = import ./lock-screen.nix {pkgs= prev;};
-})
-];
+{ pkgs, ... }:
+{
+  nixpkgs.overlays = [
+    (final: prev: {
+      lock-screen = import ./lock-screen.nix { pkgs = prev; };
+    })
+  ];
 }

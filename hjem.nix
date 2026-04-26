@@ -18,20 +18,22 @@
     directory = "/home/andrew";
     files = {
 
-      ".config/sxhkd/sxhkdrc".text = builtins.readFile (pkgs.replaceVars ./dotfiles/sxhkdrc {
-		dmenu = pkgs.dmenu;
-	st = pkgs.st;
-      librewolf = pkgs.librewolf;
-      pamixer = pkgs.pamixer;
-      maim = pkgs.maim;
-      xdotool = pkgs.xdotool;
-      xclip = pkgs.xclip;
-      lockscreen = pkgs.lock-screen;
-});
+      ".config/sxhkd/sxhkdrc".text = builtins.readFile (
+        pkgs.replaceVars ./dotfiles/sxhkdrc {
+          dmenu = pkgs.dmenu;
+          st = pkgs.st;
+          librewolf = pkgs.librewolf;
+          pamixer = pkgs.pamixer;
+          maim = pkgs.maim;
+          xdotool = pkgs.xdotool;
+          xclip = pkgs.xclip;
+          lockscreen = pkgs.lock-screen;
+        }
+      );
     };
     packages = with pkgs; [
       discord
-lazygit
+      lazygit
     ];
   };
 

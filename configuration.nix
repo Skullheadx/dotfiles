@@ -2,10 +2,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-	./lockscreen.nix
-./x11.nix
-./hjem.nix
-./audio.nix
+    ./lockscreen.nix
+    ./x11.nix
+    ./hjem.nix
+    ./audio.nix
   ];
 
   # Bootloader.
@@ -37,14 +37,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  (lib.lowPrio pkgs.vim) # Lower Vim's priority
-  (pkgs.writeShellApplication {
-    name = "vi";
-    runtimeInputs = [ pkgs.nvi ];
-    text = ''
-      exec ${pkgs.nvi}/bin/vi "$@"
-    '';
-  })
+    (lib.lowPrio pkgs.vim) # Lower Vim's priority
+    (pkgs.writeShellApplication {
+      name = "vi";
+      runtimeInputs = [ pkgs.nvi ];
+      text = ''
+        exec ${pkgs.nvi}/bin/vi "$@"
+      '';
+    })
     neovim
     wget
     git
@@ -62,8 +62,6 @@
     xdotool
   ];
 
-
-
   programs.git = {
     enable = true;
     config = {
@@ -79,7 +77,6 @@
     };
   };
 
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -93,7 +90,6 @@
     # programs here, NOT in environment.systemPackages
   ];
 
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -104,7 +100,6 @@
 
   # Services
   services.openssh.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

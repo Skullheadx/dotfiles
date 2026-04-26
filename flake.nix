@@ -17,11 +17,11 @@
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-	specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         modules = [
           hjem.nixosModules.default
           ./configuration.nix
-	./overlays.nix
+          ./overlays.nix
         ];
       };
     };
