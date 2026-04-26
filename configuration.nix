@@ -5,6 +5,7 @@
 	./lockscreen.nix
 ./x11.nix
 ./hjem.nix
+./audio.nix
   ];
 
   # Bootloader.
@@ -91,34 +92,6 @@
     # Add any missing dynamic libraries for unpackaged
     # programs here, NOT in environment.systemPackages
   ];
-
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-  };
-
-  services.pipewire.wireplumber.enable = true;
-  hardware = {
-    graphics = {
-      enable = true;
-    };
-  };
-
-#  services.mpd = {
-#    enable = true;
-#    musicDirectory = "${config.home.homeDirectory}/Music";
-#    playlistDirectory = "${config.home.homeDirectory}/.playlists";
-#    # mixer_type "none" # maybe mess around with this some time, it will turn off volume in rmpc, but apparently it will make the sound more quality for music
-#     extraConfig = ''
-#       		      auto_update "yes"
-# 		      audio_output {
-# 			type "pulse"
-# 			name "PipeWire Output"
-# 		      }
-#       	      	'';
-#  };
 
 
   # Some programs need SUID wrappers, can be configured further or are
