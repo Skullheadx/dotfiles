@@ -80,9 +80,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
+  (lib.lowPrio pkgs.vim) # Lower Vim's priority
+  (pkgs.writeShellApplication {
+    name = "vi";
+    runtimeInputs = [ pkgs.nvi ];
+    text = ''
+      exec ${pkgs.nvi}/bin/vi "$@"
+    '';
+  })
     neovim
-    nvi
     wget
     git
     librewolf
@@ -99,6 +105,8 @@
     xclip
     xdotool
   ];
+
+
 
   programs.git = {
     enable = true;
