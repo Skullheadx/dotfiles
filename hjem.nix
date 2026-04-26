@@ -19,7 +19,7 @@
     files = {
 
       ".config/sxhkd/sxhkdrc".text = builtins.readFile (
-        pkgs.replaceVars ./dotfiles/sxhkdrc {
+        pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
           dmenu = pkgs.dmenu;
           st = pkgs.st;
           librewolf = pkgs.librewolf;
