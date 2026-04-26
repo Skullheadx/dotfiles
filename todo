@@ -2,7 +2,7 @@
 - [x] screen tearing
 - [x] grub disable secondary monitor
 - [ ] setup shell
-- [ ] setup dmenu
+- [x] setup dmenu
 - [x] fix keepassxc from opening even when not installed
 - [x] swapping windows between monitors
 - [ ] statusbar
@@ -16,4 +16,8 @@
 	- [ ] umatrix vs ublock
 - [ ] dunst notifs
 - [ ] get the dwm, st and other suckless stuff as own src
+- [ ] mpd and ncmpcpp or rmpc
+- [ ] pass + pass-otp
+- [ ] fix fans spinning at low loads
+
 
