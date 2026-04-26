@@ -21,6 +21,7 @@
         modules = [
           hjem.nixosModules.default
           ./configuration.nix
+	./overlays.nix
         ];
       };
     };

@@ -1,23 +1,8 @@
 { config, pkgs, ... }:
-let
-
-	lock-screen = pkgs.writeShellApplication {
-		name = "lock-screen";
-		runtimeInputs = [ pkgs.betterlockscreen ];
-		text = ''
-			if [ ! -f "$HOME/.cache/betterlockscreen/current/lock_dimblur.png" ]; then
-				betterlockscreen -u "$HOME/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg" --fx dimblur
-			fi
-
-			betterlockscreen -l dimblur
-		'';
-	};
-
-
-in
 {
   imports = [
     ./hardware-configuration.nix
+	./lockscreen.nix
   ];
 
   # Bootloader.
@@ -80,7 +65,7 @@ super + shift + s
 	${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
 
 super + l
-	${lock-screen}/bin/lock-screen 
+	${pkgs.lock-screen}/bin/lock-screen 
 
       '';
     };
@@ -117,8 +102,6 @@ super + l
     feh
     fastfetch
     sxhkd
-    betterlockscreen
-lock-screen
     pamixer
     maim
     slop
@@ -143,10 +126,6 @@ lock-screen
     };
   };
 
-  programs.i3lock = {
-    enable = true;
-    package = pkgs.i3lock-color;
-  };
 
   programs.steam = {
     enable = true;
@@ -167,6 +146,7 @@ lock-screen
     pulse.enable = true;
     alsa.enable = true;
   };
+
   services.pipewire.wireplumber.enable = true;
   hardware = {
     graphics = {
@@ -216,7 +196,6 @@ lock-screen
   services.dunst = {
     enable = true;
   };
-  security.pam.services.betterlockscreen = { };
 
   services.xserver = {
     enable = true;
@@ -236,12 +215,6 @@ lock-screen
     xkb = {
       layout = "us";
       options = "caps:escape";
-    };
-    xautolock = {
-      enable = true;
-      enableNotifier = true;
-      notifier = "${pkgs.dunst}/bin/notify-send 'Locking in 10 seconds'";
-      locker = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dimblur";
     };
     config = ''
       Section "InputClass"
