@@ -15,18 +15,28 @@
     };
   };
 
-  #  services.mpd = {
-  #    enable = true;
-  #    musicDirectory = "${config.home.homeDirectory}/Music";
-  #    playlistDirectory = "${config.home.homeDirectory}/.playlists";
-  #    # mixer_type "none" # maybe mess around with this some time, it will turn off volume in rmpc, but apparently it will make the sound more quality for music
-  #     extraConfig = ''
-  #       		      auto_update "yes"
-  # 		      audio_output {
-  # 			type "pulse"
-  # 			name "PipeWire Output"
-  # 		      }
-  #       	      	'';
-  #  };
+  hjem.users.andrew = {
+    files = {
+      ".config/mpd/mpd.conf".text = builtins.readFile ./dotfiles/mpd/mpd.conf;
+
+      ".config/rmpc/config.ron".text = builtins.readFile ./dotfiles/rmpc/config.ron;
+      ".config/rmpc/themes/theme.ron".text = builtins.readFile ./dotfiles/rmpc/themes/theme.ron;
+
+    };
+    packages = with pkgs; [
+      mpc
+      rmpc
+    ];
+  };
+
+
+systemd.user.services.mpd = {
+  description = "Music Player Daemon";
+  wantedBy = [ "default.target" ];
+  serviceConfig = {
+    ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /home/andrew/.config/mpd/mpd.conf";
+    Restart = "on-failure";
+  };
+};
 
 }
