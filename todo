@@ -1,0 +1,19 @@
+- [x] Fix monitor refresh rates
+- [x] screen tearing
+- [x] grub disable secondary monitor
+- [ ] setup shell
+- [ ] setup dmenu
+- [x] fix keepassxc from opening even when not installed
+- [x] swapping windows between monitors
+- [ ] statusbar
+- [ ] configure kinesis keyboard to work with dwm
+- [ ] hotkeys with sxhkd
+	- [ ] screenshot
+	- [ ] lockscreen
+	- [x] dmenu run
+- [ ] integrate with dotfiles git repo
+- [ ] browser (surf?)
+	- [ ] umatrix vs ublock
+- [ ] dunst notifs
+- [ ] get the dwm, st and other suckless stuff as own src
+
