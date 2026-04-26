@@ -81,10 +81,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    neovim
     nvi
     wget
     git
-    neovim
     librewolf
     nixfmt
     st
@@ -225,6 +225,7 @@
       EndSection
     '';
   };
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
