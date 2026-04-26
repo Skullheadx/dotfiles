@@ -1,5 +1,20 @@
 { config, pkgs, ... }:
+let
 
+	lock-screen = pkgs.writeShellApplication {
+		name = "lock-screen";
+		runtimeInputs = [ pkgs.betterlockscreen ];
+		text = ''
+			if [ ! -f "$HOME/.cache/betterlockscreen/current/lock_dimblur.png" ]; then
+				betterlockscreen -u "$HOME/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg" --fx dimblur
+			fi
+
+			betterlockscreen -l dimblur
+		'';
+	};
+
+
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -40,29 +55,33 @@
     files = {
 
       ".config/sxhkd/sxhkdrc".text = ''
-        super + space
-        	${pkgs.dmenu}/bin/dmenu_run
+super + space
+	${pkgs.dmenu}/bin/dmenu_run
 
-        super + Return
-        	${pkgs.st}/bin/st	
+super + Return
+	${pkgs.st}/bin/st	
 
-        super + b
-        	${pkgs.librewolf}/bin/librewolf
+super + b
+	${pkgs.librewolf}/bin/librewolf
 
-        XF86AudioRaiseVolume
-            ${pkgs.pamixer}/bin/pamixer -i 5
+XF86AudioRaiseVolume
+    ${pkgs.pamixer}/bin/pamixer -i 5
 
-        XF86AudioLowerVolume
-            ${pkgs.pamixer}/bin/pamixer -d 5
+XF86AudioLowerVolume
+    ${pkgs.pamixer}/bin/pamixer -d 5
 
-        XF86AudioMute
-            ${pkgs.pamixer}/bin/pamixer -t
+XF86AudioMute
+    ${pkgs.pamixer}/bin/pamixer -t
 
-        super + s
-            ${pkgs.maim}/bin/maim -i $(${pkgs.xdotool}/bin/xdotool getactivewindow) | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
+super + s
+    ${pkgs.maim}/bin/maim -i $(${pkgs.xdotool}/bin/xdotool getactivewindow) | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
 
-        super + shift + s
-            ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
+super + shift + s
+	${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
+
+super + l
+	${lock-screen}/bin/lock-screen 
+
       '';
     };
     packages = with pkgs; [
@@ -99,6 +118,7 @@
     fastfetch
     sxhkd
     betterlockscreen
+lock-screen
     pamixer
     maim
     slop

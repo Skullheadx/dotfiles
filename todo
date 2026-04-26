@@ -7,17 +7,19 @@
 - [x] swapping windows between monitors
 - [ ] statusbar
 - [ ] configure kinesis keyboard to work with dwm
+	- [ ] use macos to set the kinesis bindings properly or see if can do with nix
 - [ ] hotkeys with sxhkd
-	- [ ] screenshot
-	- [ ] lockscreen
+	- [x] screenshot
+	- [x] lockscreen
 	- [x] dmenu run
-- [ ] integrate with dotfiles git repo
+	- [ ] make hotkeys work well with kinesis
+- [x] integrate with dotfiles git repo
 - [ ] browser (surf?)
 	- [ ] umatrix vs ublock
 - [ ] dunst notifs
 - [ ] get the dwm, st and other suckless stuff as own src
 - [ ] mpd and ncmpcpp or rmpc
 - [ ] pass + pass-otp
-- [ ] fix fans spinning at low loads
+- [x] fix fans spinning at low loads
 
 
