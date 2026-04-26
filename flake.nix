@@ -17,6 +17,7 @@
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
+	specialArgs = {inherit inputs;};
         modules = [
           hjem.nixosModules.default
           ./configuration.nix
