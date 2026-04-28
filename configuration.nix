@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -60,7 +60,8 @@
     slop
     xclip
     xdotool
-gcc
+    gcc
+    inputs.my-slstatus.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.git = {

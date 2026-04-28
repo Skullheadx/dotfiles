@@ -8,12 +8,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    my-slstatus = {
+      url = "github:Skullheadx/slstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
+
+    };
+
   };
   outputs =
     {
       self,
       nixpkgs,
       hjem,
+      my-slstatus,
+
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
