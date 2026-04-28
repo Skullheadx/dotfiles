@@ -18,7 +18,9 @@
 	- [ ] umatrix vs ublock
 - [ ] dunst notifs
 - [ ] get the dwm, st and other suckless stuff as own src
-- [ ] mpd and ncmpcpp or rmpc
+- [ ] music
+	- [x] mpd and ncmpcpp or rmpc
+	- [ ] autostart the music
 - [ ] pass + pass-otp
 - [x] fix fans spinning at low loads
 

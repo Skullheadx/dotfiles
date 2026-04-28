@@ -60,6 +60,7 @@
     slop
     xclip
     xdotool
+gcc
   ];
 
   programs.git = {
