@@ -6,6 +6,9 @@
 
 - [ ] RICE
 	- [x] get the dwm, st and other suckless stuff as own src
+	- [ ] dwm
+		- [ ] swallow
+		- [ ] scratchpad
 	- [ ] browser surf + librewolf
 		- [ ] umatrix vs ublock
 		- [ ] surf startpage not white
@@ -17,12 +20,12 @@
 		- [ ] customize client to look better
 	- [ ] st
 		- [ ] tmux / sessionizer (mtm?)
-		- [ ] scrollback
-		- [ ] fix the font
+		- [x] scrollback
+		- [x] fix the font
 		- [ ] theme
-		- [ ] images look weird (rmpc/fastfetch)
-		- [ ] get rid of missing spaces
-		- [ ] toggable transparency
+		- [x] images look weird (rmpc/fastfetch)
+		- [x] get rid of missing spaces
+		- [x] toggable transparency
 	- [ ] vim
 		- [ ] find a non ai fork? vim classic?
 		- [ ] line nums
