@@ -22,7 +22,7 @@
         pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
           dmenu = pkgs.dmenu;
           st = pkgs.st;
-          librewolf = pkgs.librewolf;
+          surf = pkgs.surf;
           pamixer = pkgs.pamixer;
           maim = pkgs.maim;
           xdotool = pkgs.xdotool;

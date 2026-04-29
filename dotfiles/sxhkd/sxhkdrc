@@ -5,7 +5,7 @@ super + Return
     @st@/bin/st
 
 super + b
-    @librewolf@/bin/librewolf
+    @surf@/bin/surf
 
 XF86AudioRaiseVolume
     @pamixer@/bin/pamixer -i 5
