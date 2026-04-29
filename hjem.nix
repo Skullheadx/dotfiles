@@ -30,10 +30,15 @@
           lockscreen = pkgs.lock-screen;
         }
       );
+
+      ".config/surf/styles/default.css".text = builtins.readFile ./dotfiles/surf/styles/default.css;
+
     };
     packages = with pkgs; [
       discord
       lazygit
+      librewolf
+      btop
     ];
   };
 

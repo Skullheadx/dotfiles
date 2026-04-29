@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -48,7 +53,6 @@
     neovim
     wget
     git
-    librewolf
     nixfmt
     st
     dmenu
@@ -61,7 +65,8 @@
     xclip
     xdotool
     gcc
-slstatus
+    slstatus
+    surf
   ];
 
   programs.git = {

@@ -41,6 +41,26 @@
         "type": "github"
       }
     },
+    "my-surf": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777427138,
+        "narHash": "sha256-dwT1yAlfT5Db1JjDkBTyppCKIJrr1ECNW+GOr3wX2iM=",
+        "owner": "Skullheadx",
+        "repo": "surf",
+        "rev": "c185692a87395edf7dbc181520188a26bde065e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Skullheadx",
+        "repo": "surf",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -82,6 +102,7 @@
       "inputs": {
         "hjem": "hjem",
         "my-slstatus": "my-slstatus",
+        "my-surf": "my-surf",
         "nixpkgs": "nixpkgs"
       }
     }

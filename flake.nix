@@ -11,7 +11,11 @@
     my-slstatus = {
       url = "github:Skullheadx/slstatus";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    my-surf = {
+      url = "github:Skullheadx/surf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -21,7 +25,7 @@
       nixpkgs,
       hjem,
       my-slstatus,
-
+      my-surf,
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {

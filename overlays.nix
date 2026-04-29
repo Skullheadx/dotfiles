@@ -5,7 +5,10 @@
       lock-screen = import ./lock-screen.nix { pkgs = prev; };
     })
     (final: prev: {
-      slstatus  =inputs.my-slstatus.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      slstatus = inputs.my-slstatus.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    })
+    (final: prev: {
+      surf = inputs.my-surf.packages.${pkgs.stdenv.hostPlatform.system}.default;
     })
   ];
 }
