@@ -17,13 +17,13 @@
       url = "github:Skullheadx/surf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     my-dwm = {
       url = "github:Skullheadx/dwm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    my-st  = {
+    my-st = {
       url = "github:Skullheadx/st";
       inputs.nixpkgs.follows = "nixpkgs";
     };

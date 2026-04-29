@@ -50,6 +50,7 @@
         exec ${pkgs.nvi}/bin/vi "$@"
       '';
     })
+
     neovim
     wget
     git
@@ -66,9 +67,11 @@
     xdotool
     gcc
     slstatus
+    scrolling-title
     surf
     terminus_font
     terminus_font_ttf
+
   ];
 
   programs.git = {

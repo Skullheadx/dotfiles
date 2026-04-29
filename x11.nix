@@ -49,7 +49,6 @@
     '';
   };
 
-
   services.picom = {
     enable = true;
   };
