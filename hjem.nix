@@ -32,8 +32,10 @@
       );
 
       ".config/surf/styles/default.css".text = builtins.readFile ./dotfiles/surf/styles/default.css;
+      ".config/surf/script.js".text = builtins.readFile ./dotfiles/surf/script.js;
 
     };
+
     packages = with pkgs; [
       discord
       lazygit

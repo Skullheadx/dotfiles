@@ -36,7 +36,6 @@ pid=$1
 fid=$2
 xid=$3
 
-echo "DEBUG: pid=$pid fid=$fid xid=$xid" >> /tmp/surf_debug.log
 
 dmenu="@dmenu@/bin/dmenu -nb $normbgcolor -nf $normfgcolor \
 	   -sb $selbgcolor -sf $selfgcolor"

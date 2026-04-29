@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777427138,
-        "narHash": "sha256-dwT1yAlfT5Db1JjDkBTyppCKIJrr1ECNW+GOr3wX2iM=",
+        "lastModified": 1777441132,
+        "narHash": "sha256-stXvTsRfrZjwdUR1ZrNOh3fUFG/b+1RoINoJBuWMRR0=",
         "owner": "Skullheadx",
         "repo": "surf",
-        "rev": "c185692a87395edf7dbc181520188a26bde065e7",
+        "rev": "e83b7c93f4f45bec608251b3b28273d6d3c2ab53",
         "type": "github"
       },
       "original": {
