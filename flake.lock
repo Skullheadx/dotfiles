@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777442662,
-        "narHash": "sha256-GvpJhyPLf5l9NTe8otlRELgvEeWBlnRfiLbf1TN23H4=",
+        "lastModified": 1777453126,
+        "narHash": "sha256-xx+euZkDlxooXUIGaiXFUV4lBE4Y3zbbFjXE1dSQrNI=",
         "owner": "Skullheadx",
         "repo": "dwm",
-        "rev": "71efff2e17c7da99a5c609c20dd36493ed903263",
+        "rev": "7d13d69bbace4ce70d0c08357eddeb868da74623",
         "type": "github"
       },
       "original": {
