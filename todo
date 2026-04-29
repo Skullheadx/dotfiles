@@ -18,6 +18,7 @@
 	- [ ] music
 		- [x] mpd and ncmpcpp or rmpc
 		- [ ] customize client to look better
+		- [ ] fix slstatus to only show if playing a song
 	- [ ] st
 		- [ ] tmux / sessionizer (mtm?)
 		- [x] scrollback

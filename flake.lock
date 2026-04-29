@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777453126,
-        "narHash": "sha256-xx+euZkDlxooXUIGaiXFUV4lBE4Y3zbbFjXE1dSQrNI=",
+        "lastModified": 1777454369,
+        "narHash": "sha256-inaQz2ijnGAGCYCVUN8u09KkNujPSRdU2+ikcL4gW5Q=",
         "owner": "Skullheadx",
         "repo": "dwm",
-        "rev": "7d13d69bbace4ce70d0c08357eddeb868da74623",
+        "rev": "230d4c1552be9378e16cd1b14daff57ad1e00b19",
         "type": "github"
       },
       "original": {
@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777453715,
-        "narHash": "sha256-lKu9Hef765ov2uij9liGR2dGdxalvwrvntJHuBDsExM=",
+        "lastModified": 1777453951,
+        "narHash": "sha256-ZMtKdkzIFFkruKhbkIi+6snBIyhsUETYqIA3LoQFXwQ=",
         "owner": "Skullheadx",
         "repo": "slstatus",
-        "rev": "02701adf27c07e75e224a9a4990fabdc372e4c65",
+        "rev": "88af0b1eab66ff753004e55b549764f9cfa1af6c",
         "type": "github"
       },
       "original": {
