@@ -49,4 +49,9 @@
     '';
   };
 
+
+  services.picom = {
+    enable = true;
+  };
+
 }

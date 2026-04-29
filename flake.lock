@@ -68,11 +68,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777443946,
-        "narHash": "sha256-OoA6DNybQVIi+8CDTN4wxmALbdW39ps1ppuearJnyLA=",
+        "lastModified": 1777448971,
+        "narHash": "sha256-W0RYSkVkOTOKS/4r6Hq3LYaRkcvRv3bzzMAU3mNy6og=",
         "owner": "Skullheadx",
         "repo": "st",
-        "rev": "93a2e18b355bcc62cde3958e8afd1e5e808670a2",
+        "rev": "66b60431931ddad8da2ca8c9fa34e3ee783def27",
         "type": "github"
       },
       "original": {
