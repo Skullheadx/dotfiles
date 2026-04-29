@@ -39,6 +39,17 @@
       lazygit
       librewolf
       btop
+
+      (pkgs.writeShellScriptBin "surf.sh" (
+        builtins.readFile (
+          pkgs.replaceVars ./dotfiles/surf/surf.sh {
+            dmenu = pkgs.dmenu;
+            xprop = pkgs.xprop;
+            gnused = pkgs.gnused;
+            coreutils = pkgs.coreutils;
+          }
+        )
+      ))
     ];
   };
 
