@@ -10,5 +10,8 @@
     (final: prev: {
       surf = inputs.my-surf.packages.${pkgs.stdenv.hostPlatform.system}.default;
     })
+    (final: prev: {
+      dwm = inputs.my-dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    })
   ];
 }

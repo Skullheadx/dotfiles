@@ -17,6 +17,11 @@
       url = "github:Skullheadx/surf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    my-dwm = {
+      url = "github:Skullheadx/dwm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
   outputs =
@@ -26,6 +31,7 @@
       hjem,
       my-slstatus,
       my-surf,
+      my-dwm,
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
