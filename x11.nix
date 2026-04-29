@@ -31,6 +31,7 @@
         		${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
         		${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/andrew/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
         		${pkgs.sxhkd}/bin/sxhkd &
+        		${pkgs.slstatus}/bin/slstatus &
       '';
     };
     xkb = {

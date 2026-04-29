@@ -37,7 +37,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (lib.lowPrio pkgs.vim) # Lower Vim's priority
+    (lib.lowPrio pkgs.vim-full) # Lower Vim's priority
     (pkgs.writeShellApplication {
       name = "vi";
       runtimeInputs = [ pkgs.nvi ];
@@ -61,7 +61,7 @@
     xclip
     xdotool
     gcc
-    inputs.my-slstatus.packages.${pkgs.stdenv.hostPlatform.system}.default
+slstatus
   ];
 
   programs.git = {
