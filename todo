@@ -1,27 +1,60 @@
-- [x] Fix monitor refresh rates
-- [x] screen tearing
-- [x] grub disable secondary monitor
 - [ ] setup shell
-- [x] setup dmenu
-- [x] fix keepassxc from opening even when not installed
-- [x] swapping windows between monitors
-- [ ] statusbar
-- [ ] configure kinesis keyboard to work with dwm
-	- [ ] use macos to set the kinesis bindings properly or see if can do with nix
+	- [ ] autocomplete
+	- [ ] auto cd like z
+
+- [ ] dunst notifs or look at herbe
+
+- [ ] RICE
+	- [x] get the dwm, st and other suckless stuff as own src
+	- [ ] browser surf + librewolf
+		- [ ] umatrix vs ublock
+		- [ ] surf startpage not white
+		- [ ] hosts adblocking
+	- [x] statusbar
+		- [ ] name programs better?
+	- [ ] music
+		- [x] mpd and ncmpcpp or rmpc
+		- [ ] customize client to look better
+	- [ ] st
+		- [ ] tmux / sessionizer (mtm?)
+		- [ ] scrollback
+		- [ ] fix the font
+		- [ ] theme
+		- [ ] images look weird (rmpc/fastfetch)
+		- [ ] get rid of missing spaces
+		- [ ] toggable transparency
+	- [ ] vim
+		- [ ] find a non ai fork? vim classic?
+		- [ ] line nums
+		- [ ] color theme
+
+- [ ] password manager
+	- [ ] pass
+	- [ ] pass-otp
+	- [ ] browser integration
+
+- [ ] sent for presentation
+- [ ] dmenu suckless style
+- [ ] irc (soju + gamja?)
+	- [ ] bouncer
+	- [ ] client 
+
 - [ ] hotkeys with sxhkd
 	- [x] screenshot
 	- [x] lockscreen
 	- [x] dmenu run
 	- [ ] make hotkeys work well with kinesis
-- [x] integrate with dotfiles git repo
-- [ ] browser (surf?)
-	- [ ] umatrix vs ublock
-- [ ] dunst notifs
-- [ ] get the dwm, st and other suckless stuff as own src
-- [ ] music
-	- [x] mpd and ncmpcpp or rmpc
-	- [ ] autostart the music
-- [ ] pass + pass-otp
-- [x] fix fans spinning at low loads
+	- [ ] configure kinesis keyboard to work with dwm; use macos to set the kinesis bindings properly or see if can do with nix
 
+- [ ] look at other init systems than soystemD
 
+- [ ] email 
+	- [ ] neomutt ?
+
+- [ ] rss feed aggregator
+
+- [ ] file manager
+- [ ] image viewer
+- [ ] pdf viewer zathura?
+- [ ] mpv
+- [ ] real todo list + calendar

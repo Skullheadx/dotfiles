@@ -23,6 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    my-st  = {
+      url = "github:Skullheadx/st";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
@@ -32,6 +37,7 @@
       my-slstatus,
       my-surf,
       my-dwm,
+      my-st,
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {

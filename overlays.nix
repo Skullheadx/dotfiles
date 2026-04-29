@@ -13,5 +13,8 @@
     (final: prev: {
       dwm = inputs.my-dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
     })
+    (final: prev: {
+      st = inputs.my-st.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    })
   ];
 }
