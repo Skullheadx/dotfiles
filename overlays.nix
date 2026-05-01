@@ -19,5 +19,8 @@
     (final: prev: {
       st = inputs.my-st.packages.${pkgs.stdenv.hostPlatform.system}.default;
     })
+    (final: prev: {
+      dmenu= inputs.my-dmenu.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    })
   ];
 }

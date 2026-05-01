@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    my-dmenu = {
+      url = "github:Skullheadx/dmenu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
@@ -38,6 +43,7 @@
       my-surf,
       my-dwm,
       my-st,
+      my-dmenu,
     }@inputs:
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {

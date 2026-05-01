@@ -21,6 +21,26 @@
         "type": "github"
       }
     },
+    "my-dmenu": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777640804,
+        "narHash": "sha256-B2cgtaXJ1I9TZEudkKVUJXceWLUPwSTxvnKGd6wBDqE=",
+        "owner": "Skullheadx",
+        "repo": "dmenu",
+        "rev": "b0703d2fea4db925c06a7e7205d9d078ed258cb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Skullheadx",
+        "repo": "dmenu",
+        "type": "github"
+      }
+    },
     "my-dwm": {
       "inputs": {
         "nixpkgs": [
@@ -28,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777494424,
-        "narHash": "sha256-2cLtUE+vHQcAf8C9T6UGl1VLNFsHqxlBLcv/q6kXJCk=",
+        "lastModified": 1777645065,
+        "narHash": "sha256-4BsyPY7OvKn6k4VdlSv1WZRT9hY+yIG6utMbGj7I8E0=",
         "owner": "Skullheadx",
         "repo": "dwm",
-        "rev": "07b18fb47183244401c4389e469d6a249ac282ab",
+        "rev": "cac4d17833bbc027bbeb2b3a7f62e74f6be29e55",
         "type": "github"
       },
       "original": {
@@ -141,6 +161,7 @@
     "root": {
       "inputs": {
         "hjem": "hjem",
+        "my-dmenu": "my-dmenu",
         "my-dwm": "my-dwm",
         "my-slstatus": "my-slstatus",
         "my-st": "my-st",
