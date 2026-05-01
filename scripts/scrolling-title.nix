@@ -20,5 +20,7 @@ pkgs.writeShellApplication {
     INDEX=$(( T % LEN ))
 
     # Output the scrolled window
-    echo "$STR$STR" | cut -c "$((INDEX + 1))-$((INDEX + WIDTH))"'';
+    DOUBLE_STR="''$STR''$STR"
+    echo "''${DOUBLE_STR:''$INDEX:''$WIDTH}"
+'';
 }
