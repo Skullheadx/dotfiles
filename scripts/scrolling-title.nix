@@ -6,8 +6,8 @@ pkgs.writeShellApplication {
     coreutils
   ];
   text = ''
-    WIDTH=16
-    PADDING="          "
+    WIDTH=20
+    PADDING="        " 
 
     RAW_STR=$(mpc current)
 
@@ -23,7 +23,7 @@ pkgs.writeShellApplication {
     INDEX=$(( T % LEN ))
 
     # Output the scrolled window
-    DOUBLE_STR="''$STR''$STR"
+    DOUBLE_STR="''$STR''$STR''$STR"
     echo "''${DOUBLE_STR:''$INDEX:''$WIDTH}"
   '';
 }
