@@ -11,6 +11,7 @@
     ./x11.nix
     ./hjem.nix
     ./audio.nix
+    ./vim.nix
   ];
 
   # Bootloader.
@@ -124,6 +125,8 @@
     set show-all-if-ambiguous on
     set completion-map-case on
   '';
+
+
 
 
   programs.steam = {
