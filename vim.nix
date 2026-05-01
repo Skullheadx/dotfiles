@@ -1,5 +1,19 @@
 {config, pkgs, ... }:
 {
+
+  environment.systemPackages = with pkgs; [
+    (lib.lowPrio pkgs.vim-full) # Lower Vim's priority
+    (pkgs.writeShellApplication {
+      name = "vi";
+      runtimeInputs = [ pkgs.nvi ];
+      text = ''
+        exec ${pkgs.nvi}/bin/vi "$@"
+      '';
+    })
+    neovim
+  ];
+
+
   environment.etc."vimrc".text = ''
 set autoread
 au FocusGained,BufEnter * silent! checktime
@@ -54,8 +68,8 @@ set number relativenumber
 
 
   " Force the cursor to a Block when Vim starts
-let &t_ti .= "\e[2 q"
-let &t_te .= "\e[2 q"
+let &t_ti = &t_ti . "\e[2 q"
+let &t_te = &t_te . "\e[2 q"
 let &t_EI = "\e[2 q"
 let &t_SI = "\e[2 q"
   '';

@@ -12,6 +12,7 @@
     ./hjem.nix
     ./audio.nix
     ./vim.nix
+    ./sh.nix
   ];
 
   # Bootloader.
@@ -43,18 +44,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (lib.lowPrio pkgs.vim-full) # Lower Vim's priority
-    (pkgs.writeShellApplication {
-      name = "vi";
-      runtimeInputs = [ pkgs.nvi ];
-      text = ''
-        exec ${pkgs.nvi}/bin/vi "$@"
-      '';
-    })
-
-    neovim
     wget
-    git
     nixfmt
     st
     dmenu
@@ -72,7 +62,6 @@
     surf
     terminus_font
     terminus_font_ttf
-
   ];
 
   programs.git = {
@@ -90,41 +79,6 @@
     };
   };
 
-  programs.bash = {
-    enable = true;
-    interactiveShellInit = ''
-      shopt -s autocd
-      shopt -s cdable_vars
-      shopt -s cdspell
-      shopt -s dirspell
-      shopt -s checkjobs
-      shopt -s cmdhist
-      shopt -s histappend
-      shopt -s globstar
-      shopt -s extglob
-    '';
-    promptInit = ''
-      PS1="\[\e[97m\][\[\e[m\]\[\e[92m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[92m\]\h\[\e[m\]:\[\e[92m\]\w\[\e[m\]\[\e[97m\]]\[\e[m\]\[\e[97m\]\\$\[\e[m\] "
-    '';
-  };
-
-  environment.etc."inputrc".text = ''
-    set editing-mode vi
-    set show-mode-in-prompt on
-    set keyseq-timeout 10
-
-    set vi-ins-mode-string "\1\e[5 q\2"
-    set vi-cmd-mode-string "\1\e[2 q\2"
-
-
-    set colored-stats on
-    set colored-completion-prefix on
-    set blink-matching-paren on
-
-    set completion-ignore-case on
-    set show-all-if-ambiguous on
-    set completion-map-case on
-  '';
 
 
 
