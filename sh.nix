@@ -1,4 +1,5 @@
-{config, pkgs, ... }:{
+{ config, pkgs, ... }:
+{
   programs.bash = {
     enable = true;
     interactiveShellInit = ''
@@ -18,7 +19,7 @@
     shellAliases = {
       nix-sw = "sudo nixos-rebuild switch --flake .";
       nix-upd-sl = "sudo nix flake update my-slstatus my-dwm my-surf my-st my-dmenu";
-      
+
     };
   };
 
