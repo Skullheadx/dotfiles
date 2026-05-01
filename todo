@@ -13,6 +13,7 @@
 		- [ ] umatrix vs ublock
 		- [ ] surf startpage not white
 		- [ ] hosts adblocking
+        - [ ] clipboard
 	- [x] statusbar
 		- [ ] name programs better?
 	- [ ] music
@@ -27,6 +28,7 @@
 		- [x] images look weird (rmpc/fastfetch)
 		- [x] get rid of missing spaces
 		- [x] toggable transparency
+        - [ ] clipboard
 	- [ ] vim
 		- [ ] find a non ai fork? vim classic?
 		- [x] line nums
@@ -58,7 +60,7 @@
 - [ ] rss feed aggregator
 
 - [ ] file manager
-- [ ] image viewer
-- [ ] pdf viewer zathura?
-- [ ] mpv
+- [x] image viewer
+- [x] pdf viewer zathura?
+- [x] mpv
 - [ ] real todo list + calendar

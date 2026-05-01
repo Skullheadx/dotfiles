@@ -41,6 +41,9 @@
       lazygit
       librewolf
       btop
+      mpv
+      zathura
+      lf
 
       (pkgs.writeShellScriptBin "surf.sh" (
         builtins.readFile (
