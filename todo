@@ -1,14 +1,16 @@
 - [ ] setup shell
-	- [ ] autocomplete
+	- [x] autocomplete
 	- [ ] auto cd like z
+
+
 
 - [ ] dunst notifs or look at herbe
 
 - [ ] RICE
 	- [x] get the dwm, st and other suckless stuff as own src
-	- [ ] dwm
-		- [ ] swallow
-		- [ ] scratchpad
+	- [x] dwm
+		- [x] swallow
+		- [x] scratchpad
 	- [ ] browser surf + librewolf
 		- [ ] umatrix vs ublock
 		- [ ] surf startpage not white
@@ -18,7 +20,7 @@
 	- [ ] music
 		- [x] mpd and ncmpcpp or rmpc
 		- [ ] customize client to look better
-		- [ ] fix slstatus to only show if playing a song
+		- [x] fix slstatus to only show if playing a song
 	- [ ] st
 		- [ ] tmux / sessionizer (mtm?)
 		- [x] scrollback
@@ -38,7 +40,7 @@
 	- [ ] browser integration
 
 - [ ] sent for presentation
-- [ ] dmenu suckless style
+- [x] dmenu suckless style
 - [ ] irc (soju + gamja?)
 	- [ ] bouncer
 	- [ ] client 
