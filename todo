@@ -59,8 +59,8 @@
 
 - [ ] rss feed aggregator
 
-- [ ] file manager
+- [x] file manager
 - [x] image viewer
 - [x] pdf viewer zathura?
 - [x] mpv
-- [ ] real todo list + calendar
+- [x] real todo list + calendar

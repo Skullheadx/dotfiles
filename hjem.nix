@@ -34,6 +34,8 @@
       ".config/surf/styles/default.css".text = builtins.readFile ./dotfiles/surf/styles/default.css;
       ".config/surf/script.js".text = builtins.readFile ./dotfiles/surf/script.js;
 
+      ".config/calcurse".source = ./dotfiles/calcurse;
+
     };
 
     packages = with pkgs; [
@@ -44,6 +46,7 @@
       mpv
       zathura
       lf
+      calcurse
 
       (pkgs.writeShellScriptBin "surf.sh" (
         builtins.readFile (
