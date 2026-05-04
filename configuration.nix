@@ -93,6 +93,13 @@
     # programs here, NOT in environment.systemPackages
   ];
 
+    environment.sessionVariables = {
+      BROWSER = "surf";
+      SFEED_PLUMBER = "$BROWSER"; 
+      SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
+    };
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

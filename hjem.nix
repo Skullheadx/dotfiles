@@ -28,6 +28,9 @@
           xdotool = pkgs.xdotool;
           xclip = pkgs.xclip;
           lockscreen = pkgs.lock-screen;
+          sfeed = pkgs.sfeed;
+          rmpc = pkgs.rmpc;
+          librewolf = pkgs.librewolf;
         }
       );
 
@@ -35,6 +38,8 @@
       ".config/surf/script.js".text = builtins.readFile ./dotfiles/surf/script.js;
 
       ".config/calcurse".source = ./dotfiles/calcurse;
+
+        ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
 
     };
 
@@ -47,6 +52,7 @@
       zathura
       lf
       calcurse
+      sfeed
 
       (pkgs.writeShellScriptBin "surf.sh" (
         builtins.readFile (

@@ -7,6 +7,9 @@ super + Return
 super + b
     @surf@/bin/surf
 
+super + shift + b
+    @librewolf@/bin/librewolf
+
 XF86AudioRaiseVolume
     @pamixer@/bin/pamixer -i 5
 
@@ -24,3 +27,11 @@ super + shift + s
 
 super + l
     @lockscreen@/bin/lock-screen
+
+super + f
+    @st@/bin/st -e @sfeed@/bin/sfeed_curses ~/.local/share/sfeed/feeds/*
+
+super + m
+    @st@/bin/st -e @rmpc@/bin/rmpc
+ 
+
