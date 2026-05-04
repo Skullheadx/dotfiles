@@ -17,24 +17,6 @@
   hjem.users.andrew = {
     directory = "/home/andrew";
     files = {
-
-      ".config/sxhkd/sxhkdrc".text = builtins.readFile (
-        pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
-          dmenu = pkgs.dmenu;
-          st = pkgs.st;
-          surf = pkgs.surf;
-          pamixer = pkgs.pamixer;
-          maim = pkgs.maim;
-          xdotool = pkgs.xdotool;
-          xclip = pkgs.xclip;
-          lockscreen = pkgs.lock-screen;
-          sfeed = pkgs.sfeed;
-          rmpc = pkgs.rmpc;
-          mpc = pkgs.mpc;
-          librewolf = pkgs.librewolf;
-        }
-      );
-
       ".config/surf/styles/default.css".source = ./dotfiles/surf/styles/default.css;
       ".config/surf/script.js".source = ./dotfiles/surf/script.js;
 
@@ -53,16 +35,6 @@
       lf
       sfeed
 
-      (pkgs.writeShellScriptBin "surf.sh" (
-        builtins.readFile (
-          pkgs.replaceVars ./dotfiles/surf/surf.sh {
-            dmenu = pkgs.dmenu;
-            xprop = pkgs.xprop;
-            gnused = pkgs.gnused;
-            coreutils = pkgs.coreutils;
-          }
-        )
-      ))
     ];
   };
 

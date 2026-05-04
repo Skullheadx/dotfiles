@@ -52,8 +52,51 @@
   };
 
 
+  hjem.users.andrew = {
+    files = {
+      ".config/sxhkd/sxhkdrc".text = builtins.readFile (
+        pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
+          dmenu = pkgs.dmenu;
+          st = pkgs.st;
+          surf = pkgs.surf;
+          pamixer = pkgs.pamixer;
+          maim = pkgs.maim;
+          xdotool = pkgs.xdotool;
+          xclip = pkgs.xclip;
+          lockscreen = pkgs.lock-screen;
+          sfeed = pkgs.sfeed;
+          rmpc = pkgs.rmpc;
+          mpc = pkgs.mpc;
+          librewolf = pkgs.librewolf;
+        }
+      );
+    };
+  };
+
 systemd.user.services.sxhkd = {
   description = "Simple X Hot Key Daemon (sxhkd)";
+
+  path = with pkgs; [
+           dmenu
+           st
+
+           pamixer
+
+           maim
+           xdotool
+           xclip
+
+           lock-screen
+
+           sfeed
+
+           rmpc
+           mpc
+
+           surf
+           librewolf
+           surf_search
+  ];
   
   serviceConfig = {
     ExecStart = "${pkgs.sxhkd}/bin/sxhkd";

@@ -1,5 +1,5 @@
 #!/bin/sh
-# v. 2.0 - upgrade based on surf 4.0
+# v. 2.0 - upgrade ba@gnused@/bin/sed on surf 4.0
 # Creative Commons License.  Peter John Hartman (http://individual.utoronto.ca/peterjh)
 # Much thanks to nibble and pancake who have a different surf.sh script available which
 # doesn't do the history bit.
@@ -33,82 +33,85 @@ mkdir -p "$HOME/.local/share/surf"
 
 
 pid=$1
-fid=$2
+# fid=$2
 xid=$3
 
 
-dmenu="@dmenu@/bin/dmenu -nb $normbgcolor -nf $normfgcolor \
-	   -sb $selbgcolor -sf $selfgcolor"
-xprop="@xprop@/bin/xprop"
-sed="@gnused@/bin/sed"
-tac="@coreutils@/bin/tac"
+dmenu_cmd () {
 
-s_get_prop() { # xprop
-	xprop -id $xid $1 | cut -d '"' -f 2
+    @dmenu@/bin/dmenu -nb "$normbgcolor" -nf "$normfgcolor" \
+           -sb "$selbgcolor" -sf "$selfgcolor" "$@"
 }
-s_set_prop() { # xprop value
-	[ -n "$2" ] && xprop -id $xid -f $1 8u -set $1 "$2"
+
+s_get_prop() { # "@xprop@/bin/xprop
+	@xprop@/bin/xprop -id "$xid" "$1" | cut -d '\"' -f 2
+}
+s_set_prop() { # @xprop@/bin/xprop value
+	[ -n """$2""" ] && @xprop@/bin/xprop -id """$xid""" -f """$1""" 8u -set """$1""" """$2"""
 }
 s_write_f() { # file value
-	[ -n "$2" ] && (sed -i "\|$2|d" $1; echo "$2" >> $1)
-	#grep "$uri" $bmarks >/dev/null 2>&1 || echo "$uri" >> $bmarks
+	[ -n "$2" ] && (@gnused@/bin/sed -i "\|$2|d" "$1"; echo "$2" >> "$1")
 }
 s_set_write_proper_uri() { # uri
-	# TODO: (xprop -spy _SURF_URI ... | while read name __ value; do echo $value; done works quite nice for eventloops)
-	# input is whatever the use inputed, so don't store that!
-	# first, clear the name field because surf doesn't sometimes
-	#s_set_prop WM_ICON_NAME ""
-	# set the uri
 	s_set_prop _SURF_GO "$1"
-	# get the new name
-	 name=`s_get_prop WM_ICON_NAME`
-	# loop until the [10%] stuff is finished and we have a load (is this necessary?)
-	#while echo $name | grep "[*%\]" >/dev/null 2>&1; do 
-	#	name=`s_get_prop WM_ICON_NAME`
-	#done 
-	# bail on error and don't store
-	#if [[ $name != "Error" ]]; then
-	#	uri=`s_get_prop _SURF_URI`
-		# store to the bmarks file the OFFICIAL url (with http://whatever)
-		 s_write_f $bmarks "$1"
-		#grep "$uri" $bmarks >/dev/null 2>&1 || echo "$uri" >> $bmarks
-	#fi
+     s_write_f "$bmarks" "$1"
 }
 
 case "$pid" in
 "_SURF_INFO")
-	xprop -id $xid | sed 's/\t/    /g' | $dmenu -fn "$font" -b -l 20
+	@xprop@/bin/xprop -id "$xid" | @gnused@/bin/sed 's/\t/    /g' | dmenu_cmd -fn "$font" -b -l 20
 	;;
 "_SURF_FIND")
-	find="`tac $ffile 2>/dev/null | $dmenu -fn "$font" -b -p find:`"
+    find="$(@coreutils@/bin/tac "$ffile" 2>/dev/null | dmenu_cmd -fn "$font" -b -p find:)"
 	s_set_prop _SURF_FIND "$find"
-	s_write_f $ffile "$find"
+	s_write_f "$ffile" "$find"
 	;;
 "_SURF_BMARK")
-	uri=`s_get_prop _SURF_URI`
-	s_write_f $bmarks "$uri"
+    uri=$(s_get_prop _SURF_URI)
+	s_write_f "$bmarks" "$uri"
 	;;
 "_SURF_URI_RAW")
-	uri=`echo $(s_get_prop _SURF_URI) | $dmenu -fn "$font" -b -p "uri:"`
+    uri=$(s_get_prop _SURF_URI | dmenu_cmd -fn "$font" -b -p "uri:")
 	s_set_prop _SURF_GO "$uri"
 	;;
 "_SURF_URI")
-	sel=`tac $bmarks 2> /dev/null | $dmenu -fn "$font" -b -l 5 -p "uri [gxy*]:"`
+	sel=$(@coreutils@/bin/tac "$bmarks" 2> /dev/null | dmenu_cmd -fn "$font" -b -l 5 -p "uri [gynbwasx*]:")
 	[ -z "$sel" ] && exit
-	opt=$(echo $sel | cut -d ' ' -f 1)
-	arg=$(echo $sel | cut -d ' ' -f 2-)
+	opt=$(echo "$sel" | cut -d ' ' -f 1)
+	arg=$(echo "$sel" | cut -d ' ' -f 2-)
 	save=0
 	case "$opt" in
 	"g") # google for it
-		uri="http://www.google.com/search?q=$arg"
+		uri="http://www.google.com/search?q=""$arg"""
 		save=1
 		;;
 	"y") # youtube
-		uri="http://www.youtube.com/results?search_query=$arg&aq=f"
+		uri="http://www.youtube.com/results?search_query=""$arg""&aq=f"
 		save=1
 		;;
+	"n") # mynixos.org 
+		uri="https://mynixos.com/search?q=""$arg"""
+		save=1
+		;;
+    "b") # Brave Search
+        uri="https://search.brave.com/search?q=$arg"
+        save=1
+        ;;
+    "w") # Wiby 
+        uri="https://wiby.me/?q=$arg"
+        save=1
+        ;;
+    "a") # Anna's Archive
+        uri="https://annas-archive.gl//search?q=$arg"
+        save=1
+        ;;
+    "s") # SteamDB
+        uri="https://steamdb.info/search/?a=all&q=$arg"
+        save=1
+        ;;
+
 	"x") # delete
-		sed -i "\|$arg|d" $bmarks
+		@gnused@/bin/sed -i "\|$arg|d" "$bmarks"
 		exit;
 		;;
 	*)
@@ -117,13 +120,13 @@ case "$pid" in
 		;;
 	esac
 	# only set the uri; don't write to file
-	[ $save -eq 0 ] && s_set_prop _SURF_GO "$uri"
+	[ "$save" -eq 0 ] && s_set_prop _SURF_GO "$uri"
 	# set the url and write exactly what the user inputed to the file
-	[ $save -eq 1 ] && (s_set_prop _SURF_GO "$uri"; s_write_f $bmarks "$sel")
+	[ "$save" -eq 1 ] && (s_set_prop _SURF_GO "$uri"; s_write_f "$bmarks" "$sel")
 	# try to set the uri only if it is a success
-	[ $save -eq 2 ] && s_set_write_proper_uri "$uri"
+	[ "$save" -eq 2 ] && s_set_write_proper_uri "$uri"
 	;;
 *)
-	echo Unknown xprop
+	echo Unknown @xprop@/bin/xprop
 	;;
 esac

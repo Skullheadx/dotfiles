@@ -60,6 +60,7 @@
     slstatus
     scrolling-title
     surf
+    surf_search
     terminus_font
     terminus_font_ttf
     yt-dlp

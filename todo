@@ -30,6 +30,7 @@
 		- [x] get rid of missing spaces
 		- [x] toggable transparency
         - [ ] clipboard
+        - [ ] open new window in current dir
 	- [ ] vim
 		- [ ] find a non ai fork? vim classic?
 		- [x] line nums
