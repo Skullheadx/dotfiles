@@ -97,6 +97,11 @@ systemd.user.services.sxhkd = {
            librewolf
            surf_search
   ];
+
+  environment = {
+      SFEED_PLUMBER = "surf"; 
+      SFEED_URL_FILE = "/home/andrew/.local/share/sfeed/sfeed_read_url_file";
+  };
   
   serviceConfig = {
     ExecStart = "${pkgs.sxhkd}/bin/sxhkd";
