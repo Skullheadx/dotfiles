@@ -35,8 +35,8 @@
         }
       );
 
-      ".config/surf/styles/default.css".text = builtins.readFile ./dotfiles/surf/styles/default.css;
-      ".config/surf/script.js".text = builtins.readFile ./dotfiles/surf/script.js;
+      ".config/surf/styles/default.css".source = ./dotfiles/surf/styles/default.css;
+      ".config/surf/script.js".source = ./dotfiles/surf/script.js;
 
 
         ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
