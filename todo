@@ -1,6 +1,7 @@
 - [ ] setup shell
 	- [x] autocomplete
 	- [ ] auto cd like z
+    - [ ] dash
 
 - [ ] dunst notifs or look at herbe
 
@@ -33,6 +34,9 @@
 		- [ ] find a non ai fork? vim classic?
 		- [x] line nums
 		- [ ] color theme
+    - [ ] nvim
+        - [ ] fix color not refreshing when leave term
+        - [ ] copy from nvim
 
 - [ ] password manager
 	- [ ] pass
@@ -53,11 +57,12 @@
 	- [ ] configure kinesis keyboard to work with dwm; use macos to set the kinesis bindings properly or see if can do with nix
 
 - [ ] look at other init systems than soystemD
+    - [ ] WE GOING DEEPER INTO SOYSTEMD
 
 - [ ] email 
 	- [ ] neomutt ?
 
-- [ ] rss feed aggregator
+- [x] rss feed aggregator
 
 - [x] file manager
 - [x] image viewer
