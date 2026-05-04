@@ -37,7 +37,6 @@
       ".config/surf/styles/default.css".text = builtins.readFile ./dotfiles/surf/styles/default.css;
       ".config/surf/script.js".text = builtins.readFile ./dotfiles/surf/script.js;
 
-      ".config/calcurse".source = ./dotfiles/calcurse;
 
         ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
 
@@ -51,7 +50,6 @@
       mpv
       zathura
       lf
-      calcurse
       sfeed
 
       (pkgs.writeShellScriptBin "surf.sh" (
