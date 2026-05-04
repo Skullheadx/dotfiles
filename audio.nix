@@ -17,10 +17,10 @@
 
   hjem.users.andrew = {
     files = {
-      ".config/mpd/mpd.conf".text = builtins.readFile ./dotfiles/mpd/mpd.conf;
+      ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
 
-      ".config/rmpc/config.ron".text = builtins.readFile ./dotfiles/rmpc/config.ron;
-      ".config/rmpc/themes/theme.ron".text = builtins.readFile ./dotfiles/rmpc/themes/theme.ron;
+      ".config/rmpc/config.ron".source = ./dotfiles/rmpc/config.ron;
+      ".config/rmpc/themes/theme.ron".source = ./dotfiles/rmpc/themes/theme.ron;
 
     };
     packages = with pkgs; [

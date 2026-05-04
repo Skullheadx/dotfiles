@@ -19,6 +19,18 @@ XF86AudioLowerVolume
 XF86AudioMute
     @pamixer@/bin/pamixer -t
 
+XF86AudioPlay 
+    @mpc@/bin/mpc toggle
+
+XF86AudioStop 
+    @mpc@/bin/mpc stop
+
+XF86AudioNext 
+    @mpc@/bin/mpc next 
+
+XF86AudioPrev 
+    @mpc@/bin/mpc prev 
+
 super + s
     @maim@/bin/maim -i $(@xdotool@/bin/xdotool getactivewindow) | @xclip@/bin/xclip -selection clipboard -t image/png
 

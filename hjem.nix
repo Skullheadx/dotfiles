@@ -30,6 +30,7 @@
           lockscreen = pkgs.lock-screen;
           sfeed = pkgs.sfeed;
           rmpc = pkgs.rmpc;
+          mpc = pkgs.mpc;
           librewolf = pkgs.librewolf;
         }
       );
