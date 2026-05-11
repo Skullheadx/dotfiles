@@ -38,6 +38,7 @@ in {
     air
     pnpm
     librewolf
+    brave
     lazygit
     fastfetch
     customNeovim.neovim
