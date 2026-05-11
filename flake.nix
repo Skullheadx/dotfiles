@@ -3,28 +3,39 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+	inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf.url = "github:notashelf/nvf";
   };
   outputs = {
     self,
     nixpkgs,
-    hjem,
     nix-darwin,
-  } @ inputs: {
+nvf,
+  } @ inputs:
+  let
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+
+    customNeovim = nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [./nvf/nvf.nix];
+    };
+in
+ {
+    packages.${system}.my-neovim = customNeovim.neovim;
     darwinConfigurations."kenosis" = nix-darwin.lib.darwinSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        hjem.nixosModules.default
         ./configuration.nix
         ./overlays.nix
       ];
+
+      specialArgs = {
+        inherit customNeovim;
+      };
     };
   };
 }

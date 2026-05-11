@@ -13,9 +13,9 @@
       shopt -s globstar
       shopt -s extglob
     '';
-    promptInit = ''
-      PS1="\[\e[97m\][\[\e[m\]\[\e[92m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[92m\]\h\[\e[m\]:\[\e[92m\]\w\[\e[m\]\[\e[97m\]]\[\e[m\]\[\e[97m\]\\$\[\e[m\] "
-    '';
+#    promptInit = ''
+#      PS1="\[\e[97m\][\[\e[m\]\[\e[92m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[92m\]\h\[\e[m\]:\[\e[92m\]\w\[\e[m\]\[\e[97m\]]\[\e[m\]\[\e[97m\]\\$\[\e[m\] "
+#    '';
     shellAliases = {
       nix-sw = "sudo nixos-rebuild switch --flake .";
       nix-upd-sl = "sudo nix flake update my-slstatus my-dwm my-surf my-st my-dmenu";

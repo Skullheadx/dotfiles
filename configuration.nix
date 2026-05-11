@@ -2,86 +2,155 @@
   config,
   pkgs,
   inputs,
+  customNeovim,
   ...
-}: {
-  imports = [
-    ./hjem.nix
-    ./vim.nix
-    ./sh.nix
-  ];
-
-  networking.hostName = "kenosis";
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Toronto";
-
-  i18n.defaultLocale = "en_CA.UTF-8";
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+}: let
+  go-migrate-mysql = pkgs.go-migrate.overrideAttrs (oldAttrs: {
+    tags = ["mysql"];
+  });
+in {
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget
-    nixfmt
+    # work tools
+    go
+    go-migrate-mysql
+    jdk17
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+      google-cloud-sdk.components.pubsub-emulator
+      google-cloud-sdk.components.beta
+    ])
+    nodejs
+    yarn
+    kubectl
+    ffmpeg
+    dbeaver-bin
+    ngrok
+
+    claude-code
+    air
+    pnpm
+    librewolf
+    lazygit
     fastfetch
-    gcc
-    terminus_font
-    terminus_font_ttf
-    yt-dlp
+    customNeovim.neovim
+    git
   ];
 
-  programs.git = {
+  environment.systemPath = [
+    "/etc/profiles/per-user/andrew/bin"
+  ];
+
+  environment.etc."gitconfig".source = ./dotfiles/gitconfig;
+
+  # Necessary for using flakes on this system.
+  nix.settings.experimental-features = "nix-command flakes";
+
+  # Enable alternative shell support in nix-darwin.
+  programs.zsh.enable = true;
+  security.pam.services.sudo_local = {
     enable = true;
-    config = {
-      user = {
-        name = "Skullheadx";
-        email = "admonty1@protonmail.com";
+    reattach = true;
+    touchIdAuth = true;
+  };
+
+  system = {
+    defaults = {
+      NSGlobalDomain = {
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyle = "Dark";
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        NSAutomaticCapitalizationEnabled = false;
+        NSDocumentSaveNewDocumentsToCloud = false;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        NSWindowShouldDragOnGesture = true;
+        PMPrintingExpandedStateForPrint = true;
+        PMPrintingExpandedStateForPrint2 = true;
       };
-      pull.rebase = true;
-      url = {
-        "git@github.com:".insteadOf = "https://github.com/";
+
+      controlcenter.NowPlaying = true;
+
+      dock = {
+        minimize-to-application = true;
+        mru-spaces = false;
+        show-recents = false;
       };
+
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        FXEnableExtensionChangeWarning = false;
+        FXPreferredViewStyle = "Nlsv";
+        QuitMenuItem = true;
+        ShowMountedServersOnDesktop = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        _FXEnableColumnAutoSizing = true;
+        _FXSortFoldersFirst = true;
+      };
+
+      screencapture = {
+        location = "/Users/andrew/Documents/Screenshots";
+        type = "jpg";
+      };
+    };
+
+    keyboard = {
+      remapCapsLockToEscape = true;
+      swapLeftCtrlAndFn = true;
+      enableKeyMapping = true;
     };
   };
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged
-    # programs here, NOT in environment.systemPackages
+  environment.shells = [
+    "/run/current-system/sw/bin/zsh"
   ];
 
-  environment.sessionVariables = {
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
+  homebrew = {
     enable = true;
-    enableSSHSupport = true;
+    onActivation.cleanup = "uninstall";
+    user = "andrew";
+
+    taps = [
+    ];
+    brews = [
+      "openssh"
+      "redis"
+    ];
+    casks = [
+      "keepingyouawake"
+      "ghostty"
+      "feishu"
+      "surfshark"
+      "scroll-reverser"
+    ];
   };
 
-  # Services
-  services.openssh.enable = true;
+  # Primary user for user-specific settings (dock, etc.)
+  system.primaryUser = "andrew";
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Dock configuration
+  system.defaults.dock = {
+    persistent-apps = [
+      "/Applications/Nix Apps/Librewolf.app"
+      "/Applications/Feishu.app"
+      "/Applications/Ghostty.app"
+      "/Applications/Nix Apps/DBeaver.app"
+      "/Applications/Surfshark.app"
+      "/System/Applications/Utilities/Activity Monitor.app"
+    ];
+  };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 6;
+
+  # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
+
+  # nixpkgs.config.allowUnsupportedSystem = true;
+  power.sleep.display = "never";
 }
