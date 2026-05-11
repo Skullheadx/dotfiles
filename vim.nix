@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     (lib.lowPrio pkgs.vim-full) # Lower Vim's priority
     (pkgs.writeShellApplication {
       name = "vi";
-      runtimeInputs = [ pkgs.nvi ];
+      runtimeInputs = [pkgs.nvi];
       text = ''
         exec ${pkgs.nvi}/bin/vi "$@"
       '';
@@ -132,5 +134,4 @@
       '';
     };
   };
-
 }

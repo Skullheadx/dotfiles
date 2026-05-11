@@ -1,5 +1,5 @@
 {
-  description = "Based and Minimal Flake";
+  description = "Based and Minimal Flake For Darwin";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -7,52 +7,24 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    my-slstatus = {
-      url = "github:Skullheadx/slstatus";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    my-surf = {
-      url = "github:Skullheadx/surf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    my-dwm = {
-      url = "github:Skullheadx/dwm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    my-st = {
-      url = "github:Skullheadx/st";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    my-dmenu = {
-      url = "github:Skullheadx/dmenu";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
-  outputs =
-    {
-      self,
-      nixpkgs,
-      hjem,
-      my-slstatus,
-      my-surf,
-      my-dwm,
-      my-st,
-      my-dmenu,
-    }@inputs:
-    {
-      nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          hjem.nixosModules.default
-          ./configuration.nix
-          ./overlays.nix
-        ];
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    hjem,
+    nix-darwin,
+  } @ inputs: {
+    darwinConfigurations."kenosis" = nix-darwin.lib.darwinSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        hjem.nixosModules.default
+        ./configuration.nix
+        ./overlays.nix
+      ];
     };
+  };
 }

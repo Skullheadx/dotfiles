@@ -3,32 +3,15 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
-    ./hardware-configuration.nix
-    ./lockscreen.nix
-    ./x11.nix
     ./hjem.nix
-    ./audio.nix
     ./vim.nix
     ./sh.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "nepsis";
+  networking.hostName = "kenosis";
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   time.timeZone = "America/Toronto";
 
@@ -46,21 +29,8 @@
   environment.systemPackages = with pkgs; [
     wget
     nixfmt
-    st
-    dmenu
-    feh
     fastfetch
-    sxhkd
-    pamixer
-    maim
-    slop
-    xclip
-    xdotool
     gcc
-    slstatus
-    scrolling-title
-    surf
-    surf_search
     terminus_font
     terminus_font_ttf
     yt-dlp
@@ -77,15 +47,7 @@
       url = {
         "git@github.com:".insteadOf = "https://github.com/";
       };
-
     };
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   programs.nix-ld.enable = true;
@@ -94,12 +56,8 @@
     # programs here, NOT in environment.systemPackages
   ];
 
-    environment.sessionVariables = {
-      BROWSER = "surf";
-      SFEED_PLUMBER = "$BROWSER"; 
-      SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
-    };
-
+  environment.sessionVariables = {
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -125,4 +83,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+  nixpkgs.hostPlatform = "aarch64-darwin";
 }
