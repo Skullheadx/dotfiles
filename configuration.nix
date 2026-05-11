@@ -48,8 +48,6 @@ in {
     "/etc/profiles/per-user/andrew/bin"
   ];
 
-  environment.etc."gitconfig".source = ./dotfiles/gitconfig;
-
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
