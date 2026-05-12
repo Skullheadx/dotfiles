@@ -1,1 +1,1 @@
-sudo darwin-rebuild switch --flake .#kenosis
+sudo darwin-rebuild switch --flake .
