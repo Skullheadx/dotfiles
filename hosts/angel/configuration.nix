@@ -14,10 +14,6 @@
     utm
   ];
 
-  environment.shells = [
-    "/run/current-system/sw/bin/zsh"
-  ];
-
   homebrew = {
     enable = true;
     user = "andrewmontgomery";

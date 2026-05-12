@@ -42,14 +42,6 @@ in {
     git
   ];
 
-  environment.systemPath = [
-    "/etc/profiles/per-user/andrew/bin"
-  ];
-
-  environment.shells = [
-    "/run/current-system/sw/bin/zsh"
-  ];
-
   homebrew = {
     enable = true;
     user = "andrew";
