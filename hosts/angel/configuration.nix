@@ -20,7 +20,6 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "uninstall";
     user = "andrewmontgomery";
 
     taps = [
