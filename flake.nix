@@ -11,12 +11,17 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
     nixpkgs,
     nix-darwin,
     nvf,
+    home-manager,
   } @ inputs: let
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -32,6 +37,16 @@
           ./darwin-common.nix
           ./hosts/${hostname}/configuration.nix
           ./overlays.nix
+          home-manager.darwinModules.home-manager
+          {
+            users.users.andrew = {
+              home = "/Users/andrew/";
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.users.andrew = ./home.nix;
+          }
         ];
       };
   in {

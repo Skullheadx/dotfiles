@@ -54,7 +54,6 @@ in {
     ];
     casks = [
       "keepingyouawake"
-      "ghostty"
       "feishu"
       "surfshark"
       "scroll-reverser"

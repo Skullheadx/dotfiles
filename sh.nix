@@ -9,11 +9,4 @@
     enableFzfGit = true;
     enableFzfHistory = true;
   };
-
-  homebrew = {
-    brews = [
-      "fzf"
-      "zoxide"
-    ];
-  };
 }

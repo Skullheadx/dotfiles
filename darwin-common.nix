@@ -23,6 +23,8 @@
     fastfetch
     git
     vim
+    goose
+    air
   ];
 
   programs.zsh.enable = true;
@@ -91,9 +93,9 @@
     brews = [
     ];
     casks = [
-      "ghostty"
       "keepingyouawake"
       "scroll-reverser"
+      "ghostty"
     ];
   };
 

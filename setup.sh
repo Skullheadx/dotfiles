@@ -10,8 +10,8 @@ git fetch origin
 git checkout -b new-darwin origin/new-darwin
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo >>/Users/andrewmontgomery/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >>/Users/andrewmontgomery/.zprofile
+echo >>/Users/andrew/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >>/Users/andrew/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 sudo mkdir -p /etc/nix-darwin

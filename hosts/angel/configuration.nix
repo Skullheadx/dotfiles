@@ -6,7 +6,7 @@
   ...
 }: {
   # Primary user for user-specific settings (dock, etc.)
-  system.primaryUser = "andrewmontgomery";
+  system.primaryUser = "andrew";
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -16,7 +16,7 @@
 
   homebrew = {
     enable = true;
-    user = "andrewmontgomery";
+    user = "andrew";
 
     taps = [
     ];
