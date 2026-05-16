@@ -51,7 +51,6 @@
     enable = true;
   };
 
-
   hjem.users.andrew = {
     files = {
       ".config/sxhkd/sxhkdrc".text = builtins.readFile (
@@ -73,57 +72,55 @@
     };
   };
 
-systemd.user.services.sxhkd = {
-  description = "Simple X Hot Key Daemon (sxhkd)";
+  systemd.user.services.sxhkd = {
+    description = "Simple X Hot Key Daemon (sxhkd)";
 
-  path = with pkgs; [
-           dmenu
-           st
+    path = with pkgs; [
+      dmenu
+      st
 
-           pamixer
+      pamixer
 
-           maim
-           xdotool
-           xclip
+      maim
+      xdotool
+      xclip
 
-           lock-screen
+      lock-screen
 
-           sfeed
+      sfeed
 
-           rmpc
-           mpc
+      rmpc
+      mpc
 
-           surf
-           librewolf
-           surf_search
-  ];
+      surf
+      librewolf
+      surf_search
+    ];
 
-  environment = {
-      SFEED_PLUMBER = "surf"; 
+    environment = {
+      SFEED_PLUMBER = "surf";
       SFEED_URL_FILE = "/home/andrew/.local/share/sfeed/sfeed_read_url_file";
-  };
-  
-  serviceConfig = {
-    ExecStart = "${pkgs.sxhkd}/bin/sxhkd";
-    Restart = "on-failure";
-  };
-  wantedBy = [ "graphical-session.target" ];
-};
+    };
 
-
+    serviceConfig = {
+      ExecStart = "${pkgs.sxhkd}/bin/sxhkd";
+      Restart = "on-failure";
+    };
+    wantedBy = [ "graphical-session.target" ];
+  };
 
   systemd.user.services.slstatus = {
     description = "slstatus bar";
     wantedBy = [ "graphical-session.target" ];
-    
-    path = with pkgs; [ 
-        pamixer
-        scrolling-title
+
+    path = with pkgs; [
+      pamixer
+      scrolling-title
     ];
 
     serviceConfig = {
       ExecStart = "${pkgs.slstatus}/bin/slstatus";
-      
+
       Restart = "always";
       RestartSec = "1s";
     };

@@ -8,9 +8,8 @@
       scrolling-title = import ./scripts/scrolling-title.nix { pkgs = prev; };
     })
     (final: prev: {
-       surf_search = import ./scripts/surf_search.nix { pkgs = prev; };
+      surf_search = import ./scripts/surf_search.nix { pkgs = prev; };
     })
-
 
     (final: prev: {
       slstatus = inputs.my-slstatus.packages.${pkgs.stdenv.hostPlatform.system}.default;

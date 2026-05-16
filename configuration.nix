@@ -94,12 +94,11 @@
     # programs here, NOT in environment.systemPackages
   ];
 
-    environment.sessionVariables = {
-      BROWSER = "surf";
-      SFEED_PLUMBER = "$BROWSER"; 
-      SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
-    };
-
+  environment.sessionVariables = {
+    BROWSER = "surf";
+    SFEED_PLUMBER = "$BROWSER";
+    SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -111,6 +110,9 @@
 
   # Services
   services.openssh.enable = true;
+  services.rsync = {
+    enable = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

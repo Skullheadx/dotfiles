@@ -20,8 +20,7 @@
       ".config/surf/styles/default.css".source = ./dotfiles/surf/styles/default.css;
       ".config/surf/script.js".source = ./dotfiles/surf/script.js;
 
-
-        ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
+      ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
 
     };
 
@@ -40,7 +39,11 @@
 
   systemd.user.services."sfeed-update" = {
     description = "Update sfeed RSS feeds";
-    path = with pkgs; [ curl sfeed coreutils];
+    path = with pkgs; [
+      curl
+      sfeed
+      coreutils
+    ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.sfeed}/bin/sfeed_update";
@@ -55,6 +58,5 @@
     };
     wantedBy = [ "timers.target" ];
   };
-
 
 }
