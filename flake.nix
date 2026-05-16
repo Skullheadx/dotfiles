@@ -32,6 +32,10 @@
       url = "github:Skullheadx/dmenu";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
   outputs =
@@ -44,15 +48,26 @@
       my-dwm,
       my-st,
       my-dmenu,
+      nvf,
     }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      customNeovim = nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [ ./nvf/nvf.nix ];
+      };
+    in
     {
       nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs customNeovim; };
         modules = [
           hjem.nixosModules.default
           ./configuration.nix
           ./overlays.nix
         ];
       };
+
+      packages.${system}.my-neovim = customNeovim.neovim;
     };
 }
