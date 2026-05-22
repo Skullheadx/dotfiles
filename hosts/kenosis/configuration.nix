@@ -35,11 +35,13 @@ in {
     air
     pnpm
     librewolf
+    firefox
     brave
     lazygit
     fastfetch
     customNeovim.neovim
     git
+    go-swag
   ];
 
   homebrew = {
@@ -57,6 +59,8 @@ in {
       "feishu"
       "surfshark"
       "scroll-reverser"
+      "google-chrome"
+      "chatgpt"
     ];
   };
 
