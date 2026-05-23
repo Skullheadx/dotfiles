@@ -5,25 +5,17 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
-    ./lockscreen.nix
-    ./x11.nix
-    ./hjem.nix
-    ./audio.nix
-    ./vim.nix
     ./sh.nix
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
   boot.supportedFilesystems = ["exfat"];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nepsis";
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -47,24 +39,9 @@
   environment.systemPackages = with pkgs; [
     wget
     nixfmt
-    st
-    dmenu
-    feh
     fastfetch
-    sxhkd
     pamixer
-    maim
-    slop
-    xclip
-    xdotool
     gcc
-    slstatus
-    scrolling-title
-    surf
-    surf_search
-    terminus_font
-    terminus_font_ttf
-    yt-dlp
   ];
 
   programs.git = {
@@ -81,13 +58,6 @@
     };
   };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged
@@ -95,9 +65,6 @@
   ];
 
   environment.sessionVariables = {
-    BROWSER = "surf";
-    SFEED_PLUMBER = "$BROWSER";
-    SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
