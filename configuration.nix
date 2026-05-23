@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ./lockscreen.nix
@@ -18,6 +17,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.supportedFilesystems = ["exfat"];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -77,7 +78,6 @@
       url = {
         "git@github.com:".insteadOf = "https://github.com/";
       };
-
     };
   };
 

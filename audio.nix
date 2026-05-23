@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -21,7 +23,6 @@
 
       ".config/rmpc/config.ron".source = ./dotfiles/rmpc/config.ron;
       ".config/rmpc/themes/theme.ron".source = ./dotfiles/rmpc/themes/theme.ron;
-
     };
     packages = with pkgs; [
       mpc
@@ -31,11 +32,10 @@
 
   systemd.user.services.mpd = {
     description = "Music Player Daemon";
-    wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
     serviceConfig = {
       ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /home/andrew/.config/mpd/mpd.conf";
       Restart = "on-failure";
     };
   };
-
 }
