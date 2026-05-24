@@ -3,13 +3,16 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./../../lockscreen.nix
     ./../../x11.nix
     ./../../hjem.nix
     ./../../audio.nix
+    ./../../vim.nix
+    ./../../sh.nix
   ];
 
   networking.hostName = "nepsis";

@@ -37,42 +37,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {
-    self,
-    nixpkgs,
-    hjem,
-    my-slstatus,
-    my-surf,
-    my-dwm,
-    my-st,
-    my-dmenu,
-    nvf,
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    customNeovim = nvf.lib.neovimConfiguration {
-      inherit pkgs;
-      modules = [./nvf/nvf.nix];
-    };
-  in {
-    nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs customNeovim;};
-      modules = [
-        hjem.nixosModules.default
-        ./linux-common.nix
-        ./hosts/nepsis/configuration.nix
-        ./overlays.nix
-      ];
-    };
-    nixosConfigurations.icon = nixpkgs.lib.nixosSystem {
-      modules = [
-        hjem.nixosModules.default
-        ./linux-common.nix
-        ./hosts/icon/configuration.nix
-        ./overlays.nix
-      ];
-    };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      hjem,
+      my-slstatus,
+      my-surf,
+      my-dwm,
+      my-st,
+      my-dmenu,
+      nvf,
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      customNeovim = nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [ ./nvf/nvf.nix ];
+      };
+    in
+    {
+      nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs customNeovim; };
+        modules = [
+          hjem.nixosModules.default
+          ./linux-common.nix
+          ./hosts/nepsis/configuration.nix
+          ./overlays.nix
+        ];
+      };
+      nixosConfigurations.icon = nixpkgs.lib.nixosSystem {
+        modules = [
+          hjem.nixosModules.default
+          ./linux-common.nix
+          ./hosts/icon/configuration.nix
+          ./overlays.nix
+        ];
+      };
 
-    packages.${system}.my-neovim = customNeovim.neovim;
-  };
+      packages.${system}.my-neovim = customNeovim.neovim;
+    };
 }
