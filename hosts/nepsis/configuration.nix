@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ./../../lockscreen.nix
@@ -45,6 +44,9 @@
     terminus_font
     terminus_font_ttf
     yt-dlp
+    wireguard-tools
+    nethogs
+    iftop
   ];
 
   programs.git = {
