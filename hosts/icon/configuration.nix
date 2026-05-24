@@ -3,10 +3,10 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
+    ./../../vim.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -17,7 +17,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [lazygit];
   };
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
