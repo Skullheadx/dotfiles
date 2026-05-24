@@ -8,6 +8,16 @@
     ./hardware-configuration.nix
   ];
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.andrew = {
+    isNormalUser = true;
+
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
+  };
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
