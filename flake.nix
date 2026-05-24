@@ -68,6 +68,7 @@
         ];
       };
       nixosConfigurations.icon = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs customNeovim; };
         modules = [
           hjem.nixosModules.default
           ./linux-common.nix
