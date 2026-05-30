@@ -9,16 +9,30 @@
     ./../../vim.nix
   ];
 
+  users.groups.git = {};
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.andrew = {
-    isNormalUser = true;
+  users.users = {
+    andrew = {
+      isNormalUser = true;
 
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [lazygit];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      packages = with pkgs; [lazygit];
+    };
+    git = {
+      isSystemUser = true;
+      shell = "${pkgs.git}/bin/git-shell";
+      group = "git";
+      home = "/srv/git";
+      createHome = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfIZMlXeTEi0YoOq36WNo6xPoolqvoS77ygtKaySkoG admonty1@protonmail.com"
+      ];
+    };
   };
+
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -29,20 +43,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    wireguard-tools
   ];
 
   programs.git = {
     enable = true;
-    config = {
-      user = {
-        name = "Skullheadx";
-        email = "admonty1@protonmail.com";
-      };
-      pull.rebase = true;
-      url = {
-        "git@github.com:".insteadOf = "https://github.com/";
-      };
-    };
   };
 
   programs.nix-ld.enable = true;
@@ -69,10 +74,28 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [9418];
+  networking.firewall.allowedUDPPorts = [55555];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.wireguard = {
+    enable = true;
+  };
+
+  networking.wg-quick.interfaces.wg0 = {
+    address = ["10.0.0.2/24"];
+    privateKeyFile = "/var/lib/wireguard/private.key";
+
+    peers = [
+      {
+        publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
+        allowedIPs = ["10.0.0.1/32"];
+        endpoint = "170.205.37.7:55555";
+        persistentKeepalive = 25;
+      }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
