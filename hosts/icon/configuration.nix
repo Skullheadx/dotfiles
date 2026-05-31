@@ -10,6 +10,12 @@
   ];
 
   users.groups.git = {};
+  users.users.nginx.extraGroups = ["git"];
+  systemd.services.nginx.serviceConfig = {
+    SupplementaryGroups = ["git"];
+    ReadOnlyPaths = ["/srv/git" "/srv"];
+  };
+  # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     andrew = {
@@ -27,6 +33,7 @@
       group = "git";
       home = "/srv/git";
       createHome = true;
+      homeMode = "755";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfIZMlXeTEi0YoOq36WNo6xPoolqvoS77ygtKaySkoG admonty1@protonmail.com"
       ];
