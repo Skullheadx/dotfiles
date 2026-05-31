@@ -33,6 +33,29 @@
     };
   };
 
+  services.gitweb = {
+    projectroot = "/srv/git";
+  };
+
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      "git.skullheadx.com" = {
+        listen = [
+          {
+            addr = "10.0.0.2";
+            port = 8080;
+          }
+        ];
+      };
+    };
+    gitweb = {
+      enable = true;
+      location = "";
+      virtualHost = "git.skullheadx.com";
+    };
+  };
+
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -74,7 +97,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418];
+  networking.firewall.allowedTCPPorts = [9418 8080];
   networking.firewall.allowedUDPPorts = [55555];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
