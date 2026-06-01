@@ -42,6 +42,7 @@
 
   services.gitweb = {
     projectroot = "/srv/git";
+    extraConfig = ''$site_name =  "Skullheadx\'s Git Forge"'';
   };
 
   services.nginx = {
@@ -61,6 +62,12 @@
       location = "";
       virtualHost = "git.skullheadx.com";
     };
+  };
+
+  services.gitDaemon = {
+    enable = true;
+    basePath = "/srv/git";
+    listenAddress = "10.0.0.2";
   };
 
   networking.hostName = "icon";
