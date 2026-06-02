@@ -73,7 +73,7 @@
   };
 
   services.gitweb = {
-    projectroot = "/srv/git";
+    projectroot = "/srv/git/repos";
     extraConfig = ''
       $site_name =  "Skullheadx\'s Git Forge";
       $omit_owner = 1;
