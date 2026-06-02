@@ -42,6 +42,12 @@
         Port 2223
         User git
         ProxyJump git-vps
+      Host homelab
+        HostName 192.168.1.120
+        Port 22
+      Host vps
+        Hostname 170.205.37.7
+        Port 2222
     '';
   };
 
