@@ -15,6 +15,9 @@
         extraHostNames = ["192.168.1.122"];
         publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
       };
+      laptop = {
+        publicKeyFile = ./../../pubkeys/laptop_ssh.pub;
+      };
       vps = {
         extraHostNames = ["170.205.37.7"];
         publicKeyFile = ./../../pubkeys/vps_ssh.pub;
@@ -69,7 +72,7 @@
       home = "/srv/git";
       createHome = true;
       homeMode = "755";
-      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub ../../pubkeys/homelab_ssh.pub];
+      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub ../../pubkeys/homelab_ssh.pub ../../pubkeys/laptop_ssh.pub];
     };
   };
 
