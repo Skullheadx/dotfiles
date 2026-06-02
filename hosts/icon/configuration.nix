@@ -9,6 +9,23 @@
     ./../../vim.nix
   ];
 
+  programs.ssh = {
+    knownHosts = {
+      desktop = {
+        extraHostNames = ["192.168.1.122"];
+        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
+      };
+      vps = {
+        extraHostNames = ["170.205.37.7"];
+        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
+      };
+      github = {
+        extraHostNames = ["github.com"];
+        publicKeyFile = ./../../pubkeys/github_ssh.pub;
+      };
+    };
+  };
+
   users.groups.git = {};
   users.users.nginx.extraGroups = ["git"];
   systemd.services.nginx.serviceConfig = {
@@ -34,9 +51,7 @@
       home = "/srv/git";
       createHome = true;
       homeMode = "755";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfIZMlXeTEi0YoOq36WNo6xPoolqvoS77ygtKaySkoG admonty1@protonmail.com"
-      ];
+      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub];
     };
   };
 

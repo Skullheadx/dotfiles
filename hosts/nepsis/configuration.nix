@@ -17,6 +17,34 @@
   networking.hostName = "nepsis";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  programs.ssh = {
+    knownHosts = {
+      homelab = {
+        extraHostNames = ["192.168.1.120"];
+        publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
+      };
+      vps = {
+        extraHostNames = ["170.205.37.7"];
+        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
+      };
+      github = {
+        extraHostNames = ["github.com"];
+        publicKeyFile = ./../../pubkeys/github_ssh.pub;
+      };
+    };
+    extraConfig = ''
+      Host git-vps
+        HostName git.skullheadx.com
+        Port 2222
+        User git
+      Host git.skullheadx.com
+        HostName localhost
+        Port 2223
+        User git
+        ProxyJump git-vps
+    '';
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -61,20 +89,6 @@
         "git@github.com:".insteadOf = "https://github.com/";
       };
     };
-  };
-
-  programs.ssh = {
-    extraConfig = ''
-      Host git-vps
-        HostName git.skullheadx.com
-        Port 2222
-        User git
-      Host git.skullheadx.com
-        HostName localhost
-        Port 2223
-        User git
-        ProxyJump git-vps
-    '';
   };
 
   programs.steam = {
