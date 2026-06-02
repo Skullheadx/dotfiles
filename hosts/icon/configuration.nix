@@ -68,7 +68,7 @@
       home = "/srv/git";
       createHome = true;
       homeMode = "755";
-      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub];
+      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub ../../pubkeys/homelab_ssh.pub];
     };
   };
 
