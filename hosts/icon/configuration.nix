@@ -66,7 +66,7 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "gitweb.skullheadx.com" = {
+      "git.skullheadx.com" = {
         listen = [
           {
             addr = "10.0.0.2";
@@ -74,19 +74,11 @@
           }
         ];
       };
-      "git.skullheadx.com" = {
-        listen = [
-          {
-            addr = "10.0.0.2";
-            port = 8081;
-          }
-        ];
-      };
     };
     gitweb = {
       enable = true;
       location = "";
-      virtualHost = "gitweb.skullheadx.com";
+      virtualHost = "git.skullheadx.com";
     };
   };
 
@@ -104,33 +96,6 @@
       extraArguments = "-F /dev/null -o SendEnv=none -M 20000 -N -R 2223:localhost:22 git@git.skullheadx.com -p 2222";
     }
   ];
-
-  services.lighttpd = {
-    enable = false;
-    port = 8081;
-    enableModules = ["mod_cgi" "mod_alias" "mod_setenv"];
-    extraConfig = ''
-      # 1. Explicitly block any push attempts (git-receive-pack) with a 403 Forbidden
-      $HTTP["querystring"] =~ "service=git-receive-pack" {
-          url.access-deny = ("")
-      }
-      $HTTP["url"] =~ "^/.*/git-receive-pack$" {
-          url.access-deny = ("")
-      }
-
-      # 2. Redirect the root URL "/" to the git-http-backend
-      alias.url += ( "/" => "${pkgs.git}/git-http-backend" )
-
-      # 3. Apply Git variables globally to the root path
-      $HTTP["url"] =~ "^/" {
-          cgi.assign = ("" => "")
-          setenv.add-environment = (
-              "GIT_PROJECT_ROOT" => "/srv/git",
-              "GIT_PROTOCOL" => "HTTP_GIT_PROTOCOL"
-          )
-      }
-    '';
-  };
 
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -175,7 +140,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418 8080 8081];
+  networking.firewall.allowedTCPPorts = [9418 8080];
   networking.firewall.allowedUDPPorts = [55555];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
