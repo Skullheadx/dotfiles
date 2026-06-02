@@ -63,6 +63,20 @@
     };
   };
 
+  programs.ssh = {
+    extraConfig = ''
+      Host git-vps
+        HostName git.skullheadx.com
+        Port 2222
+        User git
+      Host git.skullheadx.com
+        HostName localhost
+        Port 2223
+        User git
+        ProxyJump git-vps
+    '';
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -91,7 +105,9 @@
   };
 
   # Services
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+  };
   services.rsync = {
     enable = true;
   };
