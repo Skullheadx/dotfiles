@@ -42,13 +42,16 @@
 
   services.gitweb = {
     projectroot = "/srv/git";
-    extraConfig = ''$site_name =  "Skullheadx\'s Git Forge"'';
+    extraConfig = ''
+      $site_name =  "Skullheadx\'s Git Forge";
+      $omit_owner = 1;
+    '';
   };
 
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "git.skullheadx.com" = {
+      "gitweb.skullheadx.com" = {
         listen = [
           {
             addr = "10.0.0.2";
@@ -56,11 +59,19 @@
           }
         ];
       };
+      "git.skullheadx.com" = {
+        listen = [
+          {
+            addr = "10.0.0.2";
+            port = 8081;
+          }
+        ];
+      };
     };
     gitweb = {
       enable = true;
       location = "";
-      virtualHost = "git.skullheadx.com";
+      virtualHost = "gitweb.skullheadx.com";
     };
   };
 
@@ -68,6 +79,42 @@
     enable = true;
     basePath = "/srv/git";
     listenAddress = "10.0.0.2";
+  };
+
+  services.autossh.sessions = [
+    {
+      name = "git-vps-tunnel";
+      user = "git";
+      monitoringPort = 20000;
+      extraArguments = "-F /dev/null -o SendEnv=none -M 20000 -N -R 2223:localhost:22 git@git.skullheadx.com -p 2222";
+    }
+  ];
+
+  services.lighttpd = {
+    enable = false;
+    port = 8081;
+    enableModules = ["mod_cgi" "mod_alias" "mod_setenv"];
+    extraConfig = ''
+      # 1. Explicitly block any push attempts (git-receive-pack) with a 403 Forbidden
+      $HTTP["querystring"] =~ "service=git-receive-pack" {
+          url.access-deny = ("")
+      }
+      $HTTP["url"] =~ "^/.*/git-receive-pack$" {
+          url.access-deny = ("")
+      }
+
+      # 2. Redirect the root URL "/" to the git-http-backend
+      alias.url += ( "/" => "${pkgs.git}/git-http-backend" )
+
+      # 3. Apply Git variables globally to the root path
+      $HTTP["url"] =~ "^/" {
+          cgi.assign = ("" => "")
+          setenv.add-environment = (
+              "GIT_PROJECT_ROOT" => "/srv/git",
+              "GIT_PROTOCOL" => "HTTP_GIT_PROTOCOL"
+          )
+      }
+    '';
   };
 
   networking.hostName = "icon";
@@ -81,6 +128,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wireguard-tools
+    btop
+    nethogs
   ];
 
   programs.git = {
@@ -111,7 +160,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418 8080];
+  networking.firewall.allowedTCPPorts = [9418 8080 8081];
   networking.firewall.allowedUDPPorts = [55555];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
