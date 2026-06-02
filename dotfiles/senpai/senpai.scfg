@@ -1,0 +1,5 @@
+address skullheadx.com
+nickname Skullheadx
+username andrew
+password-cmd "echo ~/.soju-pass"
+channel #lobsters #emacs

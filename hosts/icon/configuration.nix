@@ -47,7 +47,8 @@
   users.users.nginx.extraGroups = ["git"];
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = ["git"];
-    ReadOnlyPaths = ["/srv/git/repos" "/srv" "/srv/git"];
+    ReadOnlyPaths = ["/srv/git" "/srv"];
+    InaccessiblePaths = ["/srv/git/.ssh" "/srv/git/migrate_from_gh.sh" "/srv/git/make_new_repo.sh"];
   };
   # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -73,7 +74,7 @@
   };
 
   services.gitweb = {
-    projectroot = "/srv/git/repos";
+    projectroot = "/srv/git";
     extraConfig = ''
       $site_name =  "Skullheadx\'s Git Forge";
       $omit_owner = 1;
@@ -103,7 +104,7 @@
 
   services.gitDaemon = {
     enable = true;
-    basePath = "/srv/git/repos";
+    basePath = "/srv/git";
     listenAddress = "10.0.0.2";
     exportAll = false;
   };
@@ -116,6 +117,16 @@
       extraArguments = "-F /dev/null -o SendEnv=none -M 20000 -N -R 2223:localhost:22 git@git.skullheadx.com -p 2222";
     }
   ];
+
+  # IRC
+  services.soju = {
+    adminSocket.enable = true;
+    enable = true;
+    listen = [
+      "irc+insecure://10.0.0.2:6667"
+    ];
+    hostName = "skullheadx.com";
+  };
 
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -160,7 +171,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418 8080];
+  networking.firewall.allowedTCPPorts = [9418 8080 6667];
   networking.firewall.allowedUDPPorts = [55555];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
