@@ -60,6 +60,8 @@
     extraConfig = ''
       $site_name =  "Skullheadx\'s Git Forge";
       $omit_owner = 1;
+      $default_projects_order = "age";
+      $export_ok = "git-daemon-export-okt";
     '';
   };
 
@@ -86,6 +88,7 @@
     enable = true;
     basePath = "/srv/git";
     listenAddress = "10.0.0.2";
+    exportAll = false;
   };
 
   services.autossh.sessions = [
