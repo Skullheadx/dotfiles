@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
   ];
 
@@ -11,7 +14,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   hjem.users.andrew = {
@@ -21,7 +24,6 @@
       ".config/surf/script.js".source = ./dotfiles/surf/script.js;
 
       ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
-
     };
 
     packages = with pkgs; [
@@ -33,7 +35,7 @@
       zathura
       lf
       sfeed
-
+      senpai
     ];
   };
 
@@ -56,7 +58,6 @@
       OnCalendar = "daily";
       Persistent = true;
     };
-    wantedBy = [ "timers.target" ];
+    wantedBy = ["timers.target"];
   };
-
 }
