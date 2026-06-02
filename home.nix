@@ -19,4 +19,11 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  programs.hjem = {
+    enable = true;
+  };
+  home.file = {
+    ".config/senpai/senpai.scfg".source = ./dotfiles/senpai/senpai.scfg;
+  };
 }
