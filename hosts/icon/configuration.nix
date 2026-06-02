@@ -47,7 +47,7 @@
   users.users.nginx.extraGroups = ["git"];
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = ["git"];
-    ReadOnlyPaths = ["/srv/git" "/srv"];
+    ReadOnlyPaths = ["/srv/git/repos" "/srv" "/srv/git"];
   };
   # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -78,7 +78,7 @@
       $site_name =  "Skullheadx\'s Git Forge";
       $omit_owner = 1;
       $default_projects_order = "age";
-      $export_ok = "git-daemon-export-okt";
+      $export_ok = "git-daemon-export-ok";
     '';
   };
 
@@ -103,7 +103,7 @@
 
   services.gitDaemon = {
     enable = true;
-    basePath = "/srv/git";
+    basePath = "/srv/git/repos";
     listenAddress = "10.0.0.2";
     exportAll = false;
   };
