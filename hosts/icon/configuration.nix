@@ -148,7 +148,11 @@
       '';
     };
   };
-
+  fileSystems."/srv/data" = {
+    device = "/dev/disk/by-uuid/9014f510-b08e-488f-8c43-20a4ac7f15cc";
+    fsType = "ext4";
+    options = ["defaults" "nofail"];
+  };
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
