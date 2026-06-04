@@ -25,6 +25,7 @@
     vim-full
     goose
     air
+    senpai
   ];
 
   programs.zsh.enable = true;

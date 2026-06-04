@@ -1,5 +1,5 @@
 address skullheadx.com
 nickname Skullheadx
 username andrew
-password-cmd cat "~/.soju-pass"
+password-cmd cat "/Users/andrew/.soju-pass"
 channel #lobsters #emacs
