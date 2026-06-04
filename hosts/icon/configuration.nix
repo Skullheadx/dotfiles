@@ -131,6 +131,24 @@
     hostName = "skullheadx.com";
   };
 
+  # NFS
+  services.nfs = {
+    server = {
+      enable = true;
+      createMountPoints = true;
+      exports = ''
+        /srv/data *(rw,sync,no_subtree_check,crossmnt,fsid=0,root_squash)
+      '';
+      extraNfsdConfig = ''
+        [nfsd]
+        vers3=off
+        vers4=yes
+        udp=off
+        tcp=on
+      '';
+    };
+  };
+
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -142,6 +160,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wireguard-tools
+    nfs-utils
     btop
     nethogs
   ];
@@ -174,8 +193,8 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418 8080 6667];
-  networking.firewall.allowedUDPPorts = [55555];
+  networking.firewall.allowedTCPPorts = [9418 8080 6667 2049]; # git, gitweb, irc, nfs
+  networking.firewall.allowedUDPPorts = [55555]; # wireguard
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
