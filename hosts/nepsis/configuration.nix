@@ -84,6 +84,7 @@
     wireguard-tools
     nethogs
     iftop
+    nfs-utils
   ];
 
   programs.git = {
@@ -133,6 +134,17 @@
   };
   services.rsync = {
     enable = true;
+  };
+
+  fileSystems."/mnt/data" = {
+    device = "192.168.1.120:/";
+    fsType = "nfs4";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+      "rw"
+    ];
   };
 
   # Open ports in the firewall.

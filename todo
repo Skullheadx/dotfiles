@@ -46,9 +46,9 @@
 
 - [ ] sent for presentation
 - [x] dmenu suckless style
-- [ ] irc (soju + gamja?)
-	- [ ] bouncer
-	- [ ] client 
+- [x] irc (soju + gamja?)
+	- [x] bouncer
+	- [x] client 
 
 - [ ] hotkeys with sxhkd
 	- [x] screenshot
@@ -71,4 +71,18 @@
 - [x] mpv
 - [x] real todo list + calendar
 
-- [ ] test git forge
+- [x] test git forge
+- [x] IRC
+
+
+- [ ] fix home manager for laptop
+        - [ ] NEXT change the user to 'andrew'
+
+- [x] nfs
+- [ ] TODO transmission 
+- [ ] TODO mpd 
+- [ ] sfeed
+- [ ] abook 
+- [ ] pass 
+- [ ] vpn
+- [ ] WAITING status page
