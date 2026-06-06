@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.displayManager.ly = {
     enable = true;
     settings = {
@@ -11,7 +14,6 @@
       bigclock = "en";
       bigclock_seconds = true;
     };
-
   };
 
   services.dunst = {
@@ -27,9 +29,9 @@
     displayManager = {
       setupCommands = "";
       sessionCommands = ''
-        		#!/bin/sh
-        		${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
-        		${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/andrew/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
+        #!/bin/sh
+        ${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/andrew/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
       '';
     };
     xkb = {
@@ -99,19 +101,19 @@
 
     environment = {
       SFEED_PLUMBER = "surf";
-      SFEED_URL_FILE = "/home/andrew/.local/share/sfeed/sfeed_read_url_file";
+      SFEED_URL_FILE = "/mnt/data/sfeed/sfeed_read_url_file";
     };
 
     serviceConfig = {
       ExecStart = "${pkgs.sxhkd}/bin/sxhkd";
       Restart = "on-failure";
     };
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
   };
 
   systemd.user.services.slstatus = {
     description = "slstatus bar";
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
 
     path = with pkgs; [
       pamixer

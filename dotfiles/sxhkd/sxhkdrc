@@ -41,7 +41,7 @@ super + l
     @lockscreen@/bin/lock-screen
 
 super + f
-    @st@/bin/st -e @sfeed@/bin/sfeed_curses ~/.local/share/sfeed/feeds/*
+    @st@/bin/st -e @sfeed@/bin/sfeed_curses /mnt/data/sfeed/feeds/*
 
 super + m
     @st@/bin/st -e @rmpc@/bin/rmpc

@@ -127,7 +127,7 @@
   environment.sessionVariables = {
     BROWSER = "surf";
     SFEED_PLUMBER = "$BROWSER";
-    SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
+    SFEED_URL_FILE = "/mnt/data/sfeed/sfeed_read_url_file";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
