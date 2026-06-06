@@ -88,7 +88,14 @@
     pass
     passExtensions.pass-otp
     passExtensions.pass-update
+    passExtensions.pass-import
   ];
+
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages = [pkgs.passff-host];
+    package = pkgs.librewolf;
+  };
 
   programs.git = {
     enable = true;
@@ -126,9 +133,17 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs.gnupg = {
+    dirmngr.enable = true;
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      enableBrowserSocket = true;
+      settings = {
+        default-cache-ttl = 86400;
+        max-cache-ttl = 604800;
+      };
+    };
   };
 
   # Services
