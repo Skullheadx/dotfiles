@@ -1,4 +1,4 @@
-sfeedpath="/mnt/data/sfeed/feeds"
+sfeedpath="$HOME/.local/share/sfeed/feeds"
 
 # list of feeds to fetch:
 feeds() {
