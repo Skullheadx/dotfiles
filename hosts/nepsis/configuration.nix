@@ -85,6 +85,9 @@
     nethogs
     iftop
     nfs-utils
+    pass
+    passExtensions.pass-otp
+    passExtensions.pass-update
   ];
 
   programs.git = {
