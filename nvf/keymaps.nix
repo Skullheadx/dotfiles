@@ -1,5 +1,4 @@
-{ ... }:
-[
+{...}: [
   # Top Pickers & Explorer
   {
     key = "<leader><space>";

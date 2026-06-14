@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -12,7 +14,7 @@
     enable = true;
     package = pkgs.i3lock-color;
   };
-  security.pam.services.betterlockscreen = { };
+  security.pam.services.betterlockscreen = {};
   services.xserver = {
     xautolock = {
       enable = true;
@@ -21,5 +23,4 @@
       locker = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dimblur";
     };
   };
-
 }

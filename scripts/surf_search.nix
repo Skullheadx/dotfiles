@@ -1,4 +1,4 @@
-{ pkgs }:
+{pkgs}:
 pkgs.writeShellApplication {
   name = "surf_search";
   runtimeInputs = with pkgs; [

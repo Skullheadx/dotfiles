@@ -42,6 +42,7 @@
     fastfetch
     pamixer
     gcc
+    alejandra
   ];
 
   fonts = {

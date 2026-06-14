@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   config.vim = {
     # core
     syntaxHighlighting = true;
@@ -94,11 +93,11 @@
         enable = true;
         format = {
           enable = true;
-          type = [ "alejandra" ];
+          type = ["alejandra"];
         };
         lsp = {
           enable = true;
-          servers = [ "nixd" ];
+          servers = ["nixd"];
         };
         treesitter.enable = true;
       };
@@ -223,7 +222,7 @@
     autopairs.nvim-autopairs.enable = true;
 
     # keymaps
-    keymaps = import ./keymaps.nix { };
+    keymaps = import ./keymaps.nix {};
 
     # tools
     extraPackages = with pkgs; [

@@ -50,8 +50,15 @@
   users.users.nginx.extraGroups = ["git"];
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = ["git"];
-    ReadOnlyPaths = ["/srv/git" "/srv"];
-    InaccessiblePaths = ["/srv/git/.ssh" "/srv/git/migrate_from_gh.sh" "/srv/git/make_new_repo.sh"];
+    ReadOnlyPaths = [
+      "/srv/git"
+      "/srv"
+    ];
+    InaccessiblePaths = [
+      "/srv/git/.ssh"
+      "/srv/git/migrate_from_gh.sh"
+      "/srv/git/make_new_repo.sh"
+    ];
   };
   # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -72,7 +79,11 @@
       home = "/srv/git";
       createHome = true;
       homeMode = "755";
-      openssh.authorizedKeys.keyFiles = [../../pubkeys/desktop_ssh.pub ../../pubkeys/homelab_ssh.pub ../../pubkeys/laptop_ssh.pub];
+      openssh.authorizedKeys.keyFiles = [
+        ../../pubkeys/desktop_ssh.pub
+        ../../pubkeys/homelab_ssh.pub
+        ../../pubkeys/laptop_ssh.pub
+      ];
     };
   };
 
@@ -151,7 +162,10 @@
   fileSystems."/srv/data" = {
     device = "/dev/disk/by-uuid/9014f510-b08e-488f-8c43-20a4ac7f15cc";
     fsType = "ext4";
-    options = ["defaults" "nofail"];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
   networking.hostName = "icon";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -197,7 +211,12 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [9418 8080 6667 2049]; # git, gitweb, irc, nfs
+  networking.firewall.allowedTCPPorts = [
+    9418
+    8080
+    6667
+    2049
+  ]; # git, gitweb, irc, nfs
   networking.firewall.allowedUDPPorts = [55555]; # wireguard
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

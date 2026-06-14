@@ -1,4 +1,4 @@
-{ pkgs }:
+{pkgs}:
 pkgs.writeShellApplication {
   name = "scrolling-title";
   runtimeInputs = with pkgs; [
@@ -7,7 +7,7 @@ pkgs.writeShellApplication {
   ];
   text = ''
     WIDTH=20
-    PADDING="        " 
+    PADDING="        "
 
     RAW_STR=$(mpc current)
 
@@ -17,7 +17,7 @@ pkgs.writeShellApplication {
     fi
 
     STR="$RAW_STR$PADDING"
-    LEN=''${#STR} 
+    LEN=''${#STR}
 
     T=$(date +%s)
     INDEX=$(( T % LEN ))

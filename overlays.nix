@@ -1,14 +1,17 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   nixpkgs.overlays = [
     (final: prev: {
-      lock-screen = import ./scripts/lock-screen.nix { pkgs = prev; };
+      lock-screen = import ./scripts/lock-screen.nix {pkgs = prev;};
     })
     (final: prev: {
-      scrolling-title = import ./scripts/scrolling-title.nix { pkgs = prev; };
+      scrolling-title = import ./scripts/scrolling-title.nix {pkgs = prev;};
     })
     (final: prev: {
-      surf_search = import ./scripts/surf_search.nix { pkgs = prev; };
+      surf_search = import ./scripts/surf_search.nix {pkgs = prev;};
     })
 
     (final: prev: {
