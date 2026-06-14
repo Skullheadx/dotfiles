@@ -80,17 +80,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1777640804,
-        "narHash": "sha256-B2cgtaXJ1I9TZEudkKVUJXceWLUPwSTxvnKGd6wBDqE=",
-        "owner": "Skullheadx",
-        "repo": "dmenu",
-        "rev": "b0703d2fea4db925c06a7e7205d9d078ed258cb5",
-        "type": "github"
+        "lastModified": 1781402344,
+        "narHash": "sha256-vhY6GC5xLZtx0tdJendPRq72LrsBYJcEJ7zrc4MYOHw=",
+        "ref": "refs/heads/master",
+        "rev": "91e229306f4e847fa70d1d004b48c24723a8bfb6",
+        "revCount": 629,
+        "type": "git",
+        "url": "git://git.skullheadx.com/dmenu.git"
       },
       "original": {
-        "owner": "Skullheadx",
-        "repo": "dmenu",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/dmenu.git"
       }
     },
     "my-dwm": {
@@ -100,17 +100,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1777645065,
-        "narHash": "sha256-4BsyPY7OvKn6k4VdlSv1WZRT9hY+yIG6utMbGj7I8E0=",
-        "owner": "Skullheadx",
-        "repo": "dwm",
-        "rev": "cac4d17833bbc027bbeb2b3a7f62e74f6be29e55",
-        "type": "github"
+        "lastModified": 1781402267,
+        "narHash": "sha256-hAr/RzrOHXhavNUrpGCkHsnDDdy7eiNY9tMo5kVg7a8=",
+        "ref": "refs/heads/master",
+        "rev": "06e55b0ac5b05f7d50af0bc95e3ab60be1b7892c",
+        "revCount": 1746,
+        "type": "git",
+        "url": "git://git.skullheadx.com/dwm.git"
       },
       "original": {
-        "owner": "Skullheadx",
-        "repo": "dwm",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/dwm.git"
       }
     },
     "my-slstatus": {
@@ -122,15 +122,15 @@
       "locked": {
         "lastModified": 1777653948,
         "narHash": "sha256-oJ4BGbTjsaD39xcI9V9ICsKz9oCRHpsxqxL4ZL8NJjw=",
-        "owner": "Skullheadx",
-        "repo": "slstatus",
+        "ref": "refs/heads/master",
         "rev": "07e311ed5966079fbff18da4089279a77b60831b",
-        "type": "github"
+        "revCount": 624,
+        "type": "git",
+        "url": "git://git.skullheadx.com/slstatus.git"
       },
       "original": {
-        "owner": "Skullheadx",
-        "repo": "slstatus",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/slstatus.git"
       }
     },
     "my-st": {
@@ -140,17 +140,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1777451110,
-        "narHash": "sha256-FpsWzl+IhHxCU5nKOP15uivszsG9/tOC9mSnVjh9mw8=",
-        "owner": "Skullheadx",
-        "repo": "st",
-        "rev": "2209942d9b31a35ceb1f7fb9d76ad4753c0beeac",
-        "type": "github"
+        "lastModified": 1781403572,
+        "narHash": "sha256-ffX9W4Aouilh+bErk3A31rEJWq88caP+ddR0JYzfDMM=",
+        "ref": "refs/heads/master",
+        "rev": "152d350c2e341ba7960da2117372af62426bfb24",
+        "revCount": 1192,
+        "type": "git",
+        "url": "git://git.skullheadx.com/st.git"
       },
       "original": {
-        "owner": "Skullheadx",
-        "repo": "st",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/st.git"
       }
     },
     "my-surf": {
@@ -162,15 +162,15 @@
       "locked": {
         "lastModified": 1777933639,
         "narHash": "sha256-BMZmBTKFy8iab051rmXBHUZcfaav/c4GR9rpgdCR6XM=",
-        "owner": "Skullheadx",
-        "repo": "surf",
+        "ref": "refs/heads/surf-webkit2",
         "rev": "a9203494a3895f95a0207dabf7c587e60dab45c8",
-        "type": "github"
+        "revCount": 620,
+        "type": "git",
+        "url": "git://git.skullheadx.com/surf.git"
       },
       "original": {
-        "owner": "Skullheadx",
-        "repo": "surf",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/surf.git"
       }
     },
     "ndg": {

@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./sh.nix
   ];
@@ -12,7 +11,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "exfat" ];
+  boot.supportedFilesystems = ["exfat"];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -44,6 +43,26 @@
     pamixer
     gcc
   ];
+
+  fonts = {
+    fontDir.enable = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = ["Fira Code Nerd Font"];
+        sansSerif = ["Fira Sans"];
+      };
+      hinting = {
+        autohint = false;
+        enable = true;
+        style = "slight";
+      };
+    };
+    packages = with pkgs; [
+      fira-code
+      nerd-fonts.fira-code
+    ];
+  };
 
   programs.git = {
     enable = true;
