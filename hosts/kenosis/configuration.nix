@@ -4,11 +4,7 @@
   inputs,
   customNeovim,
   ...
-}: let
-  go-migrate-mysql = pkgs.go-migrate.overrideAttrs (oldAttrs: {
-    tags = ["mysql"];
-  });
-in {
+}: {
   # Primary user for user-specific settings (dock, etc.)
   system.primaryUser = "andrew";
   # List packages installed in system profile. To search by name, run:
@@ -16,11 +12,9 @@ in {
   environment.systemPackages = with pkgs; [
     # work tools
     go
-    go-migrate-mysql
     jdk17
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
-      google-cloud-sdk.components.pubsub-emulator
       google-cloud-sdk.components.beta
     ])
     nodejs
@@ -30,18 +24,21 @@ in {
     dbeaver-bin
     ngrok
 
-    codex
     claude-code
     air
     pnpm
     librewolf
     firefox
-    brave
     lazygit
     fastfetch
     customNeovim.neovim
     git
     go-swag
+    blender
+    (python313.withPackages (ps:
+      with ps; [
+        numpy
+      ]))
   ];
 
   homebrew = {
@@ -61,6 +58,7 @@ in {
       "scroll-reverser"
       "google-chrome"
       "chatgpt"
+      "capcut"
     ];
   };
 

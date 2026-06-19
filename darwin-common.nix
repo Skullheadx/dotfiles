@@ -23,8 +23,6 @@
     fastfetch
     git
     vim-full
-    goose
-    air
     senpai
   ];
 
