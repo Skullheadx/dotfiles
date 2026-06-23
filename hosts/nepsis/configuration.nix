@@ -72,7 +72,6 @@
     st
     dmenu
     feh
-    fastfetch
     sxhkd
     pamixer
     maim
@@ -95,6 +94,7 @@
     passExtensions.pass-otp
     passExtensions.pass-update
     passExtensions.pass-import
+    bibata-cursors
   ];
 
   programs.firefox = {
@@ -134,6 +134,8 @@
     BROWSER = "surf";
     SFEED_PLUMBER = "$BROWSER";
     SFEED_URL_FILE = "$HOME/.local/share/sfeed/sfeed_read_url_file";
+    XCURSOR_SIZE = 25;
+    XCURSOR_THEME = "Bibata-Modern-Ice";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

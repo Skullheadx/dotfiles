@@ -25,6 +25,8 @@
 
       ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
       ".config/senpai/senpai.scfg".source = ./dotfiles/senpai/senpai.scfg;
+
+      ".config/fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
     };
 
     packages = with pkgs; [
