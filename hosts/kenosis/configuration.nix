@@ -28,7 +28,6 @@
     air
     pnpm
     librewolf
-    firefox
     lazygit
     fastfetch
     customNeovim.neovim
@@ -57,6 +56,7 @@
       "surfshark"
       "scroll-reverser"
       "google-chrome"
+      "firefox"
       "chatgpt"
       "capcut"
     ];
