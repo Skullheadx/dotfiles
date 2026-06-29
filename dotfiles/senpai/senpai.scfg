@@ -1,5 +1,4 @@
 address skullheadx.com
 nickname Skullheadx
 username andrew
-password-cmd cat "/home/andrew/.soju-pass"
-channel #lobsters #emacs
+password-cmd pass "Personal/Comm/irc"

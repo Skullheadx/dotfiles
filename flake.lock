@@ -37,192 +37,69 @@
         "type": "github"
       }
     },
-    "hjem": {
+    "home-manager": {
       "inputs": {
-        "nix-darwin": "nix-darwin",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1780199518,
-        "narHash": "sha256-NhtWx0youXYRvcqtL+sjdqoZinMcnjcwRsh6eBJUZLg=",
-        "owner": "feel-co",
-        "repo": "hjem",
-        "rev": "ffa433dd86e761de45ef985d4293f31a4d2a775d",
+        "lastModified": 1782657028,
+        "narHash": "sha256-PHTCpYZCMzJYS3phhywqRAZphKVr2zjvlGYa+H20ZZ4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "4ad9aaae70c9aaab504127f926c0fa9cfbc2b365",
         "type": "github"
       },
       "original": {
-        "owner": "feel-co",
-        "repo": "hjem",
+        "owner": "nix-community",
+        "repo": "home-manager",
         "type": "github"
       }
     },
     "mnw": {
       "locked": {
-        "lastModified": 1778541201,
-        "narHash": "sha256-n0twkzWexzjsoDycOTvvQNuGEdg62UiNHYcFCduYpKI=",
+        "lastModified": 1780772958,
+        "narHash": "sha256-VKKe8r4pwCGWZ3Yr9CPN129R4S3CKLSrlYqdYz3vKpM=",
         "owner": "Gerg-L",
         "repo": "mnw",
-        "rev": "1a3573fc9d2486738fe0b2cacc5cd10dd5f3a445",
+        "rev": "0871dbf63a53610c95db04439ed8ea4d6ec9c160",
         "type": "github"
       },
       "original": {
         "owner": "Gerg-L",
         "repo": "mnw",
-        "type": "github"
-      }
-    },
-    "my-dmenu": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781402344,
-        "narHash": "sha256-vhY6GC5xLZtx0tdJendPRq72LrsBYJcEJ7zrc4MYOHw=",
-        "ref": "refs/heads/master",
-        "rev": "91e229306f4e847fa70d1d004b48c24723a8bfb6",
-        "revCount": 629,
-        "type": "git",
-        "url": "git://git.skullheadx.com/dmenu.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "git://git.skullheadx.com/dmenu.git"
-      }
-    },
-    "my-dwm": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781402267,
-        "narHash": "sha256-hAr/RzrOHXhavNUrpGCkHsnDDdy7eiNY9tMo5kVg7a8=",
-        "ref": "refs/heads/master",
-        "rev": "06e55b0ac5b05f7d50af0bc95e3ab60be1b7892c",
-        "revCount": 1746,
-        "type": "git",
-        "url": "git://git.skullheadx.com/dwm.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "git://git.skullheadx.com/dwm.git"
-      }
-    },
-    "my-slstatus": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777653948,
-        "narHash": "sha256-oJ4BGbTjsaD39xcI9V9ICsKz9oCRHpsxqxL4ZL8NJjw=",
-        "ref": "refs/heads/master",
-        "rev": "07e311ed5966079fbff18da4089279a77b60831b",
-        "revCount": 624,
-        "type": "git",
-        "url": "git://git.skullheadx.com/slstatus.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "git://git.skullheadx.com/slstatus.git"
-      }
-    },
-    "my-st": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781403572,
-        "narHash": "sha256-ffX9W4Aouilh+bErk3A31rEJWq88caP+ddR0JYzfDMM=",
-        "ref": "refs/heads/master",
-        "rev": "152d350c2e341ba7960da2117372af62426bfb24",
-        "revCount": 1192,
-        "type": "git",
-        "url": "git://git.skullheadx.com/st.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "git://git.skullheadx.com/st.git"
-      }
-    },
-    "my-surf": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777933639,
-        "narHash": "sha256-BMZmBTKFy8iab051rmXBHUZcfaav/c4GR9rpgdCR6XM=",
-        "ref": "refs/heads/surf-webkit2",
-        "rev": "a9203494a3895f95a0207dabf7c587e60dab45c8",
-        "revCount": 620,
-        "type": "git",
-        "url": "git://git.skullheadx.com/surf.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "git://git.skullheadx.com/surf.git"
-      }
-    },
-    "ndg": {
-      "inputs": {
-        "nixpkgs": [
-          "nvf",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779233504,
-        "narHash": "sha256-YIKEyzh0NFQlD0O92LQQNMoVCDwV8yw1Xz0Iu+4ZC5U=",
-        "owner": "feel-co",
-        "repo": "ndg",
-        "rev": "86f6644411a64d5413711895b7cf6e0e1be465b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "feel-co",
-        "ref": "refs/tags/v2.8.0",
-        "repo": "ndg",
         "type": "github"
       }
     },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
-          "hjem",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1777780666,
-        "narHash": "sha256-8wURyQMdDkGUarSTKOGdCuFfYiwa3HbzwscUfn3STDE=",
+        "lastModified": 1781761792,
+        "narHash": "sha256-rCPytmKNjctLloB6UgK5CRrHSwV4b0ygxtJLPPp8R14=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "8c62fba0854ba15c8917aed18894dbccb48a3777",
+        "rev": "a1fa429e945becaf60468600daf649be4ba0350c",
         "type": "github"
       },
       "original": {
         "owner": "nix-darwin",
+        "ref": "master",
         "repo": "nix-darwin",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1779560665,
-        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "lastModified": 1782467914,
+        "narHash": "sha256-pGvFkM8N0xEkIIXDe5YYfbEAvHrk4IxBrjB/x8OomhE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+        "rev": "e73de5be04e0eff4190a1432b946d469c794e7b4",
         "type": "github"
       },
       "original": {
@@ -237,18 +114,17 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "mnw": "mnw",
-        "ndg": "ndg",
         "nixpkgs": [
           "nixpkgs"
         ],
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1780042000,
-        "narHash": "sha256-RxFOqPMAlbWiWwh7CQ0bIHIdt4D5gAttx3YVifBBWgE=",
+        "lastModified": 1782660650,
+        "narHash": "sha256-d4Ndt82q9bhL+iKFr1reufZyE/MTdULzN3kEkXsNG88=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "07b57ebc6c9e778c536ac0ff1b01fb18dc90239a",
+        "rev": "18d2d23191250c7f597d85da07d860eb05f9e1be",
         "type": "github"
       },
       "original": {
@@ -259,12 +135,8 @@
     },
     "root": {
       "inputs": {
-        "hjem": "hjem",
-        "my-dmenu": "my-dmenu",
-        "my-dwm": "my-dwm",
-        "my-slstatus": "my-slstatus",
-        "my-st": "my-st",
-        "my-surf": "my-surf",
+        "home-manager": "home-manager",
+        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf"
       }

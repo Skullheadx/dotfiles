@@ -1,10 +1,10 @@
 {
-  description = "Based and Minimal Flake";
+  description = "Based and Minimal Flake For Darwin";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hjem = {
-      url = "github:feel-co/hjem";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,6 +36,14 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
@@ -47,6 +55,8 @@
     my-st,
     my-dmenu,
     nvf,
+    nix-darwin,
+    home-manager,
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -54,6 +64,9 @@
       inherit pkgs;
       modules = [./nvf/nvf.nix];
     };
+
+    system2 = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system2};
   in {
     nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs customNeovim;};
@@ -75,5 +88,57 @@
     };
 
     packages.${system}.my-neovim = customNeovim.neovim;
+
+    packages.${system2}.my-neovim = customNeovim.neovim;
+    darwinConfigurations = {
+      kenosis = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs customNeovim;};
+        modules = [
+          ./darwin-common.nix
+          ./hosts/kenosis/configuration.nix
+          ./overlays.nix
+          home-manager.darwinModules.home-manager
+          {
+            users.users.andrew = {
+              home = /Users/andrew;
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+            home-manager.users.andrew = {
+              imports = [./home.nix];
+              home.username = "andrew";
+              home.homeDirectory = /Users/andrew/;
+            };
+          }
+        ];
+      };
+      bear = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs customNeovim;};
+        modules = [
+          ./darwin-common.nix
+          ./hosts/bear/configuration.nix
+          ./overlays.nix
+          home-manager.darwinModules.home-manager
+          {
+            users.users.andrewmontgomery = {
+              home = /Users/andrewmontgomery;
+            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
+            home-manager.users.andrewmontgomery = {
+              imports = [./home.nix];
+              home.username = "andrewmontgomery";
+              home.homeDirectory = /Users/andrewmontgomery;
+            };
+          }
+        ];
+      };
+    };
   };
 }
