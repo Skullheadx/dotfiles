@@ -18,6 +18,7 @@
     git
     vim-full
     senpai
+    wget
   ];
 
   programs.zsh.enable = true;

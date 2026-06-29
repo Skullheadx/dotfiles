@@ -12,5 +12,8 @@
     enableFzfCompletion = true;
     enableFzfGit = true;
     enableFzfHistory = true;
+    interactiveShellInit = ''
+      eval "$(direnv hook zsh)"
+    '';
   };
 }

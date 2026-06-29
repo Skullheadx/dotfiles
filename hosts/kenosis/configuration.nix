@@ -39,10 +39,16 @@
     git
     go-swag
     blender
+    temporal-cli
+    corepack
+    direnv
     (python313.withPackages (ps:
       with ps; [
         numpy
       ]))
+    imagemagick
+    audacity
+    goose
   ];
 
   homebrew = {
@@ -64,6 +70,9 @@
       "firefox"
       "chatgpt"
       "capcut"
+      "docker"
+      "musicbrainz-picard"
+      "gimp"
     ];
   };
 
