@@ -8,6 +8,7 @@
   imports = [
     ./zsh.nix
     ./vim.nix
+    ./irc.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -24,9 +25,22 @@
     pass
     passExtensions.pass-otp
     passExtensions.pass-update
+    nh
+    nix-output-monitor
   ];
 
+  nix.gc = {
+    automatic = true;
+    interval.Day = 7;
+    options = "--delete-older-than 14d";
+  };
+
   programs.zsh.enable = true;
+
+  fonts.packages = with pkgs; [
+    fira-code
+    nerd-fonts.fira-code
+  ];
 
   security.pam.services.sudo_local = {
     enable = true;
@@ -106,5 +120,17 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    extra-substituters = ["https://nix-community.cachix.org"];
+    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+  };
+  nix.optimise = {
+    automatic = true;
+    interval = {
+      Weekday = 0;
+      Hour = 0;
+      Minute = 0;
+    };
+  };
 }

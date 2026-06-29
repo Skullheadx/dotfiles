@@ -25,7 +25,6 @@
       ".config/surf/script.js".source = ./dotfiles/surf/script.js;
 
       ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
-      ".config/senpai/senpai.scfg".source = ./dotfiles/senpai/senpai.scfg;
 
       ".config/fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
     };
@@ -39,7 +38,6 @@
       zathura
       lf
       sfeed
-      senpai
     ];
   };
 

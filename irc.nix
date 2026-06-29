@@ -8,12 +8,12 @@
   ];
 
   hjem.users.${username} = {
-    directory = "/Users/${username}";
     files = {
-      ".config/ghostty/config.ghostty".source = ./dotfiles/ghostty/config.ghostty;
+      ".config/senpai/senpai.scfg".source = ./dotfiles/senpai/senpai.scfg;
     };
 
     packages = with pkgs; [
+      senpai
     ];
   };
 }
