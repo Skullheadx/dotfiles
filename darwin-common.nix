@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./sh.nix
+    ./zsh.nix
   ];
 
   # List packages installed in system profile. To search by name, run:

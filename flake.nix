@@ -60,16 +60,20 @@
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    customNeovim = nvf.lib.neovimConfiguration {
+    nvim = nvf.lib.neovimConfiguration {
       inherit pkgs;
       modules = [./nvf/nvf.nix];
     };
 
-    system2 = "aarch64-darwin";
-    darwin-pkgs = nixpkgs.legacyPackages.${system2};
+    system-darwin = "aarch64-darwin";
+    pkgs-darwin = nixpkgs.legacyPackages.${system-darwin};
+    nvim-darwin = nvf.lib.neovimConfiguration {
+      pkgs = pkgs-darwin;
+      modules = [./nvf/nvf.nix];
+    };
   in {
     nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs customNeovim;};
+      specialArgs = {inherit inputs nvim;};
       modules = [
         hjem.nixosModules.default
         ./linux-common.nix
@@ -78,7 +82,7 @@
       ];
     };
     nixosConfigurations.icon = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs customNeovim;};
+      specialArgs = {inherit inputs nvim;};
       modules = [
         hjem.nixosModules.default
         ./linux-common.nix
@@ -87,12 +91,12 @@
       ];
     };
 
-    packages.${system}.my-neovim = customNeovim.neovim;
+    packages.${system}.nvim = nvim.neovim;
+    packages.${system-darwin}.nvim = nvim-darwin.neovim;
 
-    packages.${system2}.my-neovim = customNeovim.neovim;
     darwinConfigurations = {
       kenosis = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs customNeovim;};
+        specialArgs = {inherit inputs nvim-darwin;};
         modules = [
           ./darwin-common.nix
           ./hosts/kenosis/configuration.nix
@@ -116,7 +120,7 @@
         ];
       };
       bear = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs customNeovim;};
+        specialArgs = {inherit inputs nvim-darwin;};
         modules = [
           ./darwin-common.nix
           ./hosts/bear/configuration.nix

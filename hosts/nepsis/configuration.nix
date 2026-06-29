@@ -11,7 +11,6 @@
     ./../../hjem.nix
     ./../../audio.nix
     ./../../vim.nix
-    ./../../sh.nix
   ];
 
   networking.hostName = "nepsis";

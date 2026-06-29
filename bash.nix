@@ -24,16 +24,6 @@
       nix-upd-sl = "sudo nix flake update my-slstatus my-dwm my-surf my-st my-dmenu";
     };
   };
-  programs.zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    enableBashCompletion = true;
-    enableCompletion = true;
-    enableFastSyntaxHighlighting = true;
-    enableFzfCompletion = true;
-    enableFzfGit = true;
-    enableFzfHistory = true;
-  };
 
   environment.etc."inputrc".text = ''
     set editing-mode vi

@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  customNeovim,
+  nvim,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -14,7 +14,7 @@
       '';
     })
 
-    customNeovim.neovim
+    nvim.neovim
   ];
 
   environment.etc."vimrc".text = ''

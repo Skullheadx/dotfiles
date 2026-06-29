@@ -2,7 +2,7 @@
   config,
   pkgs,
   inputs,
-  customNeovim,
+  nvim,
   ...
 }: {
   networking = {
@@ -35,7 +35,7 @@
     librewolf
     lazygit
     fastfetch
-    customNeovim.neovim
+    nvim.neovim
     git
     go-swag
     blender

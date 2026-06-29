@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./sh.nix
+    ./bash.nix
   ];
 
   # Bootloader.
