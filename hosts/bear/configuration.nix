@@ -15,12 +15,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    nvim.neovim
-    senpai
     mpv
-    pass
-    passExtensions.pass-otp
-    passExtensions.pass-update
   ];
 
   programs.ssh = {

@@ -5,6 +5,10 @@
   nvim,
   ...
 }: {
+  imports = [
+    # ./legacy.nix
+  ];
+
   networking = {
     computerName = "kenosis";
     hostName = "kenosis";
@@ -15,19 +19,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    # work tools
     go
-    jdk17
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
-      google-cloud-sdk.components.beta
-    ])
     nodejs
     yarn
     kubectl
     ffmpeg
     dbeaver-bin
-    ngrok
 
     claude-code
     air
@@ -35,13 +32,11 @@
     librewolf
     lazygit
     fastfetch
-    nvim.neovim
     git
     go-swag
     blender
     temporal-cli
     corepack
-    direnv
     (python313.withPackages (ps:
       with ps; [
         numpy
@@ -58,14 +53,10 @@
     taps = [
     ];
     brews = [
-      "openssh"
-      "redis"
     ];
     casks = [
-      "keepingyouawake"
       "feishu"
       "surfshark"
-      "scroll-reverser"
       "google-chrome"
       "firefox"
       "chatgpt"

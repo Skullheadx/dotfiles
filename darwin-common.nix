@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./zsh.nix
+    ./vim.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -16,9 +17,13 @@
     lazygit
     fastfetch
     git
-    vim-full
     senpai
     wget
+    curl
+    direnv
+    pass
+    passExtensions.pass-otp
+    passExtensions.pass-update
   ];
 
   programs.zsh.enable = true;
@@ -85,6 +90,7 @@
     taps = [
     ];
     brews = [
+      "openssh"
     ];
     casks = [
       "keepingyouawake"
