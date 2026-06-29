@@ -6,12 +6,13 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./../../lockscreen.nix
-    ./../../x11.nix
     ./../../hjem-linux.nix
     ./../../audio.nix
     ./../../vim.nix
   ];
+
+  my.lockscreen.enable = true;
+  my.x11.enable = true;
 
   networking.hostName = "nepsis";
   # networking.extraHosts = ''

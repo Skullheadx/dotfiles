@@ -71,6 +71,10 @@
     packages.${system}.nvim = nvim.neovim;
     packages.${system-darwin}.nvim = nvim-darwin.neovim;
 
+    nixosModules = {
+      linux = ./modules/linux;
+    };
+
     nixosConfigurations = {
       nepsis = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -79,6 +83,7 @@
         };
         modules = [
           hjem.nixosModules.default
+          self.nixosModules.linux
           ./common-linux.nix
           ./hosts/nepsis/configuration.nix
           ./overlays.nix
@@ -91,6 +96,7 @@
         };
         modules = [
           hjem.nixosModules.default
+          self.nixosModules.linux
           ./common-linux.nix
           ./hosts/icon/configuration.nix
           ./overlays.nix
