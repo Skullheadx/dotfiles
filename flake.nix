@@ -66,7 +66,7 @@
     };
 
     system2 = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system2};
+    darwin-pkgs = nixpkgs.legacyPackages.${system2};
   in {
     nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs customNeovim;};
@@ -110,7 +110,7 @@
             home-manager.users.andrew = {
               imports = [./home.nix];
               home.username = "andrew";
-              home.homeDirectory = /Users/andrew/;
+              home.homeDirectory = /Users/andrew;
             };
           }
         ];
