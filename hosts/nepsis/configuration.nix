@@ -15,11 +15,11 @@
   ];
 
   networking.hostName = "nepsis";
-  networking.extraHosts = ''
-    0.0.0.0 youtube.com
-    0.0.0.0 www.youtube.com
-    0.0.0.0 www.youtu.be
-  '';
+  # networking.extraHosts = ''
+  #   0.0.0.0 youtube.com
+  #   0.0.0.0 www.youtube.com
+  #   0.0.0.0 www.youtu.be
+  # '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
