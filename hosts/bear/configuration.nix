@@ -18,6 +18,10 @@
     customNeovim.neovim
     senpai
     mpv
+    pass
+    passExtensions.pass-otp
+    passExtensions.pass-update
+    passExtensions.pass-import
   ];
 
   programs.ssh = {
@@ -56,6 +60,18 @@
         Hostname 170.205.37.7
         Port 2222
     '';
+  };
+
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # enableBrowserSocket = true;
+      # settings = {
+      #   default-cache-ttl = 86400;
+      #   max-cache-ttl = 604800;
+      # };
+    };
   };
 
   homebrew = {
