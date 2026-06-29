@@ -97,6 +97,13 @@
     bibata-cursors
   ];
 
+  services.emacs = {
+    enable = true;
+    startWithGraphical = config.services.xserver.enable;
+    install = true;
+    defaultEditor = true;
+  };
+
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [pkgs.passff-host];
