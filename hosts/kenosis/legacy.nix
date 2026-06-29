@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -14,7 +15,7 @@
 
   homebrew = {
     enable = true;
-    user = "andrew";
+    user = username;
 
     taps = [
     ];

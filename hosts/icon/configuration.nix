@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  username,
   ...
 }: {
   imports = [
@@ -63,7 +64,7 @@
   # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
-    andrew = {
+    ${username} = {
       isNormalUser = true;
 
       extraGroups = [

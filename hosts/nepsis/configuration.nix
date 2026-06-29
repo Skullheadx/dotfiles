@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
     ./../../lockscreen.nix
     ./../../x11.nix
-    ./../../hjem.nix
+    ./../../hjem-linux.nix
     ./../../audio.nix
     ./../../vim.nix
   ];

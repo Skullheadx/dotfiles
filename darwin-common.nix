@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  username,
   ...
 }: {
   imports = [
@@ -17,7 +18,6 @@
     lazygit
     fastfetch
     git
-    senpai
     wget
     curl
     direnv
@@ -70,10 +70,10 @@
         _FXSortFoldersFirst = true;
       };
 
-      # screencapture = {
-      #   location = "/Users/andrew/Documents/Screenshots";
-      #   type = "jpg";
-      # };
+      screencapture = {
+        location = "/Users/${username}/Documents/Screenshots";
+        type = "jpg";
+      };
     };
 
     keyboard = {

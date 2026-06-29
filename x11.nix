@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: {
   services.displayManager.ly = {
@@ -31,7 +32,7 @@
       sessionCommands = ''
         #!/bin/sh
         ${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
-        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/andrew/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/${username}/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
       '';
     };
     xkb = {
@@ -53,7 +54,7 @@
     enable = true;
   };
 
-  hjem.users.andrew = {
+  hjem.users.${username} = {
     files = {
       ".config/sxhkd/sxhkdrc".text = builtins.readFile (
         pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
@@ -101,7 +102,7 @@
 
     environment = {
       SFEED_PLUMBER = "surf";
-      SFEED_URL_FILE = "/home/andrew/.local/share/sfeed/sfeed_read_url_file";
+      SFEED_URL_FILE = "/home/${username}/.local/share/sfeed/sfeed_read_url_file";
     };
 
     serviceConfig = {

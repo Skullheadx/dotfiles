@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: {
   services.pipewire = {
@@ -17,7 +18,7 @@
     };
   };
 
-  hjem.users.andrew = {
+  hjem.users.${username} = {
     files = {
       ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
 
@@ -34,7 +35,7 @@
     description = "Music Player Daemon";
     wantedBy = ["default.target"];
     serviceConfig = {
-      ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /home/andrew/.config/mpd/mpd.conf";
+      ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /home/${username}/.config/mpd/mpd.conf";
       Restart = "on-failure";
     };
   };

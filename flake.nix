@@ -36,10 +36,6 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,81 +68,61 @@
       modules = [./nvf/nvf.nix];
     };
   in {
-    nixosConfigurations.nepsis = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs nvim;};
-      modules = [
-        hjem.nixosModules.default
-        ./linux-common.nix
-        ./hosts/nepsis/configuration.nix
-        ./overlays.nix
-      ];
-    };
-    nixosConfigurations.icon = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs nvim;};
-      modules = [
-        hjem.nixosModules.default
-        ./linux-common.nix
-        ./hosts/icon/configuration.nix
-        ./overlays.nix
-      ];
-    };
-
     packages.${system}.nvim = nvim.neovim;
     packages.${system-darwin}.nvim = nvim-darwin.neovim;
+
+    nixosConfigurations = {
+      nepsis = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs nvim;
+          username = "andrew";
+        };
+        modules = [
+          hjem.nixosModules.default
+          ./linux-common.nix
+          ./hosts/nepsis/configuration.nix
+          ./overlays.nix
+        ];
+      };
+      icon = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs nvim;
+          username = "andrew";
+        };
+        modules = [
+          hjem.nixosModules.default
+          ./linux-common.nix
+          ./hosts/icon/configuration.nix
+          ./overlays.nix
+        ];
+      };
+    };
 
     darwinConfigurations = {
       kenosis = nix-darwin.lib.darwinSystem {
         specialArgs = {
           inherit inputs;
           nvim = nvim-darwin;
+          username = "andrew";
         };
         modules = [
           ./darwin-common.nix
           ./hosts/kenosis/configuration.nix
           ./overlays.nix
-          home-manager.darwinModules.home-manager
-          {
-            users.users.andrew = {
-              home = /Users/andrew;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-            };
-            home-manager.users.andrew = {
-              imports = [./home.nix];
-              home.username = "andrew";
-              home.homeDirectory = /Users/andrew;
-            };
-          }
+          hjem.darwinModules.default
         ];
       };
       bear = nix-darwin.lib.darwinSystem {
         specialArgs = {
           inherit inputs;
           nvim = nvim-darwin;
+          username = "andrewmontgomery";
         };
         modules = [
           ./darwin-common.nix
           ./hosts/bear/configuration.nix
           ./overlays.nix
-          home-manager.darwinModules.home-manager
-          {
-            users.users.andrewmontgomery = {
-              home = /Users/andrewmontgomery;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-            };
-            home-manager.users.andrewmontgomery = {
-              imports = [./home.nix];
-              home.username = "andrewmontgomery";
-              home.homeDirectory = /Users/andrewmontgomery;
-            };
-          }
+          hjem.darwinModules.default
         ];
       };
     };

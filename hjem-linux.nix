@@ -1,13 +1,14 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: {
   imports = [
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.andrew = {
+  users.users.${username} = {
     isNormalUser = true;
 
     extraGroups = [
@@ -17,8 +18,8 @@
     packages = with pkgs; [];
   };
 
-  hjem.users.andrew = {
-    directory = "/home/andrew";
+  hjem.users.${username} = {
+    directory = "/home/${username}";
     files = {
       ".config/surf/styles/default.css".source = ./dotfiles/surf/styles/default.css;
       ".config/surf/script.js".source = ./dotfiles/surf/script.js;
