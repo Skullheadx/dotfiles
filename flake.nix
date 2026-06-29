@@ -79,7 +79,7 @@
         };
         modules = [
           hjem.nixosModules.default
-          ./linux-common.nix
+          ./common-linux.nix
           ./hosts/nepsis/configuration.nix
           ./overlays.nix
         ];
@@ -91,7 +91,7 @@
         };
         modules = [
           hjem.nixosModules.default
-          ./linux-common.nix
+          ./common-linux.nix
           ./hosts/icon/configuration.nix
           ./overlays.nix
         ];
@@ -106,7 +106,7 @@
           username = "andrew";
         };
         modules = [
-          ./darwin-common.nix
+          ./common-darwin.nix
           ./hosts/kenosis/configuration.nix
           ./overlays.nix
           hjem.darwinModules.default
@@ -119,7 +119,7 @@
           username = "andrewmontgomery";
         };
         modules = [
-          ./darwin-common.nix
+          ./common-darwin.nix
           ./hosts/bear/configuration.nix
           ./overlays.nix
           hjem.darwinModules.default
