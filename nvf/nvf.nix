@@ -241,16 +241,16 @@
       docker-language-server
       gopls
       golangci-lint-langserver
-      # vscode-langservers-extracted
-      # emmet-language-server
+      vscode-langservers-extracted
+      emmet-language-server
       lua-language-server
       marksman
       nixd
-      # basedpyright
-      # ruff
-      # sqls
-      # deno
-      # vtsls
+      basedpyright
+      ruff
+      sqls
+      deno
+      vtsls
       yaml-language-server
       zls
 
@@ -274,13 +274,13 @@
       selene
       markdownlint-cli2
       # statix
-      # eslint
-      # yamllint
+      eslint
+      yamllint
 
       # debugger
-      # lldb
-      # delve
-      # python313Packages.debugpy
+      lldb
+      delve
+      python313Packages.debugpy
 
       # tree sitter
       tree-sitter
