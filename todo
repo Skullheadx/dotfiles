@@ -39,10 +39,10 @@
         - [ ] fix color not refreshing when leave term
         - [ ] copy from nvim
 
-- [ ] password manager
-	- [ ] pass
-	- [ ] pass-otp
-	- [ ] browser integration
+- [x] password manager
+	- [x] pass
+	- [x] pass-otp
+	- [x] browser integration
 
 - [ ] sent for presentation
 - [x] dmenu suckless style
@@ -57,8 +57,8 @@
 	- [ ] make hotkeys work well with kinesis
 	- [ ] configure kinesis keyboard to work with dwm; use macos to set the kinesis bindings properly or see if can do with nix
 
-- [ ] look at other init systems than soystemD
-    - [ ] WE GOING DEEPER INTO SOYSTEMD
+- [x] look at other init systems than soystemD
+    - [x] WE GOING DEEPER INTO SOYSTEMD
 
 - [ ] email 
 	- [ ] neomutt ?
@@ -75,14 +75,13 @@
 - [x] IRC
 
 
-- [ ] fix home manager for laptop
-        - [ ] NEXT change the user to 'andrew'
+- [z] fix home manager for laptop
 
 - [x] nfs
 - [ ] TODO transmission 
 - [ ] TODO mpd 
-- [ ] sfeed
+- [x] sfeed
 - [ ] abook 
-- [ ] pass 
+- [x] pass 
 - [ ] vpn
 - [ ] WAITING status page
