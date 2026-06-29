@@ -96,7 +96,10 @@
 
     darwinConfigurations = {
       kenosis = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs nvim-darwin;};
+        specialArgs = {
+          inherit inputs;
+          nvim = nvim-darwin;
+        };
         modules = [
           ./darwin-common.nix
           ./hosts/kenosis/configuration.nix
@@ -120,7 +123,10 @@
         ];
       };
       bear = nix-darwin.lib.darwinSystem {
-        specialArgs = {inherit inputs nvim-darwin;};
+        specialArgs = {
+          inherit inputs;
+          nvim = nvim-darwin;
+        };
         modules = [
           ./darwin-common.nix
           ./hosts/bear/configuration.nix

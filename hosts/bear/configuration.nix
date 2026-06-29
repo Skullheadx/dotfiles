@@ -2,7 +2,7 @@
   config,
   pkgs,
   inputs,
-  nvim-darwin,
+  nvim,
   ...
 }: {
   networking = {
@@ -15,7 +15,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    nvim-darwin.neovim
+    nvim.neovim
     senpai
     mpv
     pass
