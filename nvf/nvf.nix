@@ -67,6 +67,11 @@
       };
       lspconfig.enable = true;
       otter-nvim.enable = true;
+
+      mappings = {
+        signatureHelp = null;
+        listDocumentSymbols = null;
+      };
     };
 
     notes.todo-comments.enable = true;

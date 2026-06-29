@@ -350,14 +350,14 @@
     mode = "n";
     silent = true;
     desc = "LSP Symbols";
-    action = "<cmd>lua Snacks.picker.lsp_symbols()<CR>";
+    action = "<cmd>lua Snacks.picker.lsp_symbols({ filter = { default = true } })<CR>";
   }
   {
     key = "<leader>lS";
     mode = "n";
     silent = true;
     desc = "LSP Workspace Symbols";
-    action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>";
+    action = "<cmd>lua Snacks.picker.lsp_workspace_symbols({ filter = { default = true } })<CR>";
   }
 
   # Other
