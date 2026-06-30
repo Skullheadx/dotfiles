@@ -3,3 +3,4 @@ font-size = 14
 theme = "Dimmed Monokai"
 mouse-hide-while-typing = true
 mouse-shift-capture = true
+term = xterm
