@@ -84,6 +84,7 @@
         ../../pubkeys/desktop_ssh.pub
         ../../pubkeys/homelab_ssh.pub
         ../../pubkeys/laptop_ssh.pub
+        ../../pubkeys/work_laptop_ssh.pub
       ];
     };
   };
