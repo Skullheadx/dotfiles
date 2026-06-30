@@ -27,6 +27,7 @@
     passExtensions.pass-update
     nh
     nix-output-monitor
+    fzf
   ];
 
   nix.gc = {

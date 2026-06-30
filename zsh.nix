@@ -21,8 +21,10 @@
     interactiveShellInit = ''
       eval "$(direnv hook zsh)"
 
+      setopt autocd extendedglob nomatch notify
+
       bindkey -v
-      export KEYTIMEOUT=1
+      export KEYTIMEOUT=20
     '';
   };
 }
