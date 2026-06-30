@@ -46,6 +46,10 @@
     nerd-fonts.fira-code
   ];
 
+  security.sudo.extraConfig = ''
+    Defaults timestamp_type=global
+    Defaults timestamp_timeout=60
+  '';
   security.pam.services.sudo_local = {
     enable = true;
     reattach = true;
