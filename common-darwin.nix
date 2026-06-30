@@ -34,6 +34,10 @@
     tealdeer
   ];
 
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
   nix.gc = {
     automatic = true;
     interval.Day = 7;
