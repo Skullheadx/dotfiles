@@ -179,6 +179,17 @@
 
           picker = {
             enable = true;
+            # Show hidden (dotfiles) and gitignored files (e.g. .env) by
+            # default in all pickers (smart/grep/files) and the explorer,
+            # which is a picker source.
+            hidden = true;
+            ignored = true;
+            # The `files` source overrides the top-level defaults with
+            # hidden=false/ignored=false, so set them explicitly too.
+            sources.files = {
+              hidden = true;
+              ignored = true;
+            };
           };
           quickfile.enable = true;
           scope.enable = true;
