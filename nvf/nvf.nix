@@ -4,6 +4,12 @@
     syntaxHighlighting = true;
     binds.whichKey.enable = true;
 
+    luaConfigPost = ''
+      -- `:q` quits all buffers
+      vim.cmd([[cnoreabbrev <expr> q  (getcmdtype() == ':' && getcmdline() ==# 'q')  ? 'qa'  : 'q']])
+      vim.cmd([[cnoreabbrev <expr> q! (getcmdtype() == ':' && getcmdline() ==# 'q!') ? 'qa!' : 'q!']])
+    '';
+
     # ui
     theme = {
       enable = true;
