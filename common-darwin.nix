@@ -38,6 +38,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
   nix.gc = {
     automatic = true;
     interval.Day = 7;
@@ -48,6 +49,18 @@
 
   services.openssh = {
     enable = true;
+  };
+
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # enableBrowserSocket = true;
+      # settings = {
+      #   default-cache-ttl = 86400;
+      #   max-cache-ttl = 604800;
+      # };
+    };
   };
 
   fonts.packages = with pkgs; [
