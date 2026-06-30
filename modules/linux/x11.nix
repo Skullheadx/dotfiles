@@ -64,18 +64,8 @@ in {
       files = {
         ".config/sxhkd/sxhkdrc".text = builtins.readFile (
           pkgs.replaceVars ../../dotfiles/sxhkd/sxhkdrc {
-            dmenu = pkgs.dmenu;
-            st = pkgs.st;
-            surf = pkgs.surf;
-            pamixer = pkgs.pamixer;
-            maim = pkgs.maim;
-            xdotool = pkgs.xdotool;
-            xclip = pkgs.xclip;
+            inherit (pkgs) dmenu st surf pamixer maim xdotool xclip sfeed rmpc mpc librewolf;
             lockscreen = pkgs.lock-screen;
-            sfeed = pkgs.sfeed;
-            rmpc = pkgs.rmpc;
-            mpc = pkgs.mpc;
-            librewolf = pkgs.librewolf;
           }
         );
       };
