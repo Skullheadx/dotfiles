@@ -55,9 +55,11 @@
       Host homelab
         HostName 192.168.1.120
         Port 22
+        User andrew
       Host vps
         Hostname 170.205.37.7
         Port 2222
+        User andrew
     '';
   };
 
