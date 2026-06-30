@@ -28,6 +28,7 @@
     nh
     nix-output-monitor
     fzf
+    zoxide
   ];
 
   nix.gc = {

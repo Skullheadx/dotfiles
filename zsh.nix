@@ -20,6 +20,7 @@
     '';
     interactiveShellInit = ''
       eval "$(direnv hook zsh)"
+      eval "$(zoxide init zsh)"
 
       setopt autocd extendedglob nomatch notify
 
