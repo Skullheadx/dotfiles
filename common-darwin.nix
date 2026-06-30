@@ -29,6 +29,9 @@
     nix-output-monitor
     fzf
     zoxide
+    jq
+    btop
+    tealdeer
   ];
 
   nix.gc = {
