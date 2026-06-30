@@ -103,6 +103,8 @@
     };
 
     languages = {
+      enableFormat = true;
+
       nix = {
         enable = true;
         format = {
