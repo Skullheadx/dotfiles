@@ -8,6 +8,9 @@
       -- `:q` quits all buffers
       vim.cmd([[cnoreabbrev <expr> q  (getcmdtype() == ':' && getcmdline() ==# 'q')  ? 'qa'  : 'q']])
       vim.cmd([[cnoreabbrev <expr> q! (getcmdtype() == ':' && getcmdline() ==# 'q!') ? 'qa!' : 'q!']])
+
+      -- yank/paste through the system clipboard
+      vim.opt.clipboard = "unnamedplus"
     '';
 
     # ui
