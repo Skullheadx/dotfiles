@@ -25,6 +25,10 @@
         extraHostNames = ["192.168.1.120"];
         publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
       };
+      desktop = {
+        extraHostNames = ["192.168.1.122"];
+        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
+      };
       vps = {
         extraHostNames = ["170.205.37.7"];
         publicKeyFile = ./../../pubkeys/vps_ssh.pub;
