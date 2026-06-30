@@ -67,18 +67,6 @@
     '';
   };
 
-  programs.gnupg = {
-    agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # enableBrowserSocket = true;
-      # settings = {
-      #   default-cache-ttl = 86400;
-      #   max-cache-ttl = 604800;
-      # };
-    };
-  };
-
   homebrew = {
     enable = true;
     user = username;
