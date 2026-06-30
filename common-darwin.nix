@@ -51,9 +51,9 @@
     Defaults timestamp_timeout=60
   '';
   security.pam.services.sudo_local = {
-    enable = true;
-    reattach = true;
-    touchIdAuth = true;
+    enable = false;
+    reattach = false;
+    touchIdAuth = false;
   };
 
   system = {
