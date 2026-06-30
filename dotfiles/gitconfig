@@ -1,9 +1,0 @@
-[user]
-	name = Skullheadx
-	email = andrew@montgomery.systems 
-
-[pull]
-	rebase = true
-
-[url "git@github.com:"]
-	insteadOf = https://github.com/

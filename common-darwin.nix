@@ -37,6 +37,10 @@
 
   programs.zsh.enable = true;
 
+  services.openssh = {
+    enable = true;
+  };
+
   fonts.packages = with pkgs; [
     fira-code
     nerd-fonts.fira-code
@@ -104,7 +108,6 @@
     taps = [
     ];
     brews = [
-      "openssh"
     ];
     casks = [
       "keepingyouawake"
