@@ -72,6 +72,12 @@
 - [x] real todo list + calendar
 
 - [x] test git forge
+        - [ ] organize by project
+        - [ ] deal with scrapers using too much bandwidth
+                - [ ] do some analysis on the query patterns
+                - [ ] rate limit project pages?
+        - [ ] fix the readme not appearing
+
 - [x] IRC
 
 
@@ -85,3 +91,5 @@
 - [x] pass 
 - [ ] vpn
 - [ ] WAITING status page
+
+
