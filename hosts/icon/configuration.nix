@@ -89,20 +89,104 @@
     };
   };
 
-  services.gitweb = {
-    projectroot = "/srv/git";
+  # services.gitweb = {
+  #   projectroot = "/srv/git";
+  #   extraConfig = ''
+  #     $site_name =  "Skullheadx\'s Git Forge";
+  #     $omit_owner = 1;
+  #     $default_projects_order = "age";
+  #     $export_ok = "git-daemon-export-ok";
+  #     $strict_export = 1;
+  #     our @extra_breadcrumbs = (
+  #       [ 'home' => 'https://www.skullheadx.com/' ],
+  #     );
+  #     our @git_base_url_list = ( "git://git.skullheadx.com" );
+  #     $feature{'timed'}{'default'} = [1];
+  #   '';
+  # };
+  services.cgit."cgit" = {
+    enable = true;
+    scanPath = "/srv/git";
+    settings = {
+      # readme = "";
+      remove-suffix = true;
+      root-title = "Skullheadx's Git Forge";
+      root-desc = "Source code for various projects";
+      repository-sort = "age";
+      enable-follow-links = true;
+      source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
+      strict-export = "git-daemon-export-ok";
+      cache-size = 1000;
+      cache-root = "/srv/git/.cache";
+      clone-url = "git://git.skullheadx.com/$CGIT_REPO_URL git@git.skullheadx.com:$CGIT_REPO_URL";
+      enable-http-clone = true;
+      enable-index-links = true;
+      enable-blame = true;
+      enable-commit-graph = true;
+      enable-log-filecount = true;
+      enable-log-linecount = true;
+      enable-subject-links = true;
+      # enable-owner-index = false;
+      enable-git-config = true;
+      local-time = true;
+      branch-sort = "age";
+      max-stats = "quarter";
+      snapshots = "tar.gz tar.bz2 zip";
+      logo-link = "https://git.skullheadx.com";
+      favicon = "/cgit/favicon.ico";
+      logo = "/cgit/logo.webp";
+      css = "/cgit/cgit.css";
+    };
     extraConfig = ''
-      $site_name =  "Skullheadx\'s Git Forge";
-      $omit_owner = 1;
-      $default_projects_order = "age";
-      $export_ok = "git-daemon-export-ok";
-      $strict_export = 1;
-      our @extra_breadcrumbs = (
-        [ 'home' => 'https://www.skullheadx.com/' ],
-      );
-      our @git_base_url_list = ( "git://git.skullheadx.com" );
-      $feature{'timed'}{'default'} = [1];
+      mimetype.gif=image/gif
+      mimetype.html=text/html
+      mimetype.jpg=image/jpeg
+      mimetype.jpeg=image/jpeg
+      mimetype.pdf=application/pdf
+      mimetype.png=image/png
+      mimetype.webp=image/webp
+      mimetype.svg=image/svg+xml
+
+      readme=:README.md
+      readme=:readme.md
+      readme=:README.mkd
+      readme=:readme.mkd
+      readme=:README.rst
+      readme=:readme.rst
+      readme=:README.html
+      readme=:readme.html
+      readme=:README.htm
+      readme=:readme.htm
+      readme=:README.txt
+      readme=:readme.txt
+      readme=:README
+      readme=:readme
+      readme=:INSTALL.md
+      readme=:install.md
+      readme=:INSTALL.mkd
+      readme=:install.mkd
+      readme=:INSTALL.rst
+      readme=:install.rst
+      readme=:INSTALL.html
+      readme=:install.html
+      readme=:INSTALL.htm
+      readme=:install.htm
+      readme=:INSTALL.txt
+      readme=:install.txt
+      readme=:INSTALL
+      readme=:install
+
+
     '';
+
+    gitHttpBackend = {
+      enable = true;
+      checkExportOkFiles = true;
+    };
+    nginx = {
+      location = "";
+      virtualHost = "git.skullheadx.com";
+    };
   };
 
   services.nginx = {
@@ -115,13 +199,16 @@
             port = 8080;
           }
         ];
+        locations."/cgit/" = {
+          alias = "/srv/git/cgit/";
+        };
       };
     };
-    gitweb = {
-      enable = true;
-      location = "";
-      virtualHost = "git.skullheadx.com";
-    };
+    # gitweb = {
+    #   enable = true;
+    #   location = "";
+    #   virtualHost = "git.skullheadx.com";
+    # };
   };
 
   services.gitDaemon = {
