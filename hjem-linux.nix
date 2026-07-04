@@ -27,6 +27,7 @@
       ".sfeed/sfeedrc".source = ./dotfiles/sfeed/sfeedrc;
 
       ".config/fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
+      ".config/lazygit/config.yml".source = ./dotfiles/lazygit/config.yml;
     };
 
     packages = with pkgs; [
@@ -38,6 +39,7 @@
       zathura
       lf
       sfeed
+      delta
     ];
   };
 
