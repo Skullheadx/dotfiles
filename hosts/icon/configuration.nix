@@ -118,7 +118,7 @@
       strict-export = "git-daemon-export-ok";
       cache-size = 1000;
       cache-root = "/srv/git/.cache";
-      clone-url = "git://git.skullheadx.com/$CGIT_REPO_URL git@git.skullheadx.com:$CGIT_REPO_URL";
+      clone-url = "git://git.skullheadx.com/$CGIT_REPO_URL";
       enable-http-clone = true;
       enable-index-links = true;
       enable-blame = true;
