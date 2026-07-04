@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ./zsh.nix
+    ./zsh-darwin.nix
     ./vim.nix
     ./irc.nix
   ];
@@ -27,8 +27,6 @@
     passExtensions.pass-update
     nh
     nix-output-monitor
-    fzf
-    zoxide
     jq
     btop
     tealdeer

@@ -102,27 +102,13 @@
     enable = true;
     startWithGraphical = config.services.xserver.enable;
     install = true;
-    defaultEditor = true;
+    # defaultEditor = true;
   };
 
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages = [pkgs.passff-host];
     package = pkgs.librewolf;
-  };
-
-  programs.git = {
-    enable = true;
-    config = {
-      user = {
-        name = "Skullheadx";
-        email = "admonty1@protonmail.com";
-      };
-      pull.rebase = true;
-      url = {
-        "git@github.com:".insteadOf = "https://github.com/";
-      };
-    };
   };
 
   programs.steam = {

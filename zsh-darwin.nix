@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    direnv
+    fzf
+    zoxide
+  ];
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;

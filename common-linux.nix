@@ -2,10 +2,12 @@
   config,
   pkgs,
   inputs,
+  username,
   ...
 }: {
   imports = [
     ./bash.nix
+    ./zsh-linux.nix
     ./irc.nix
   ];
 
@@ -48,13 +50,23 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    ffmpeg
+
     wget
-    nixfmt
+    curl
+    jq
+
+    lazygit
     fastfetch
     pamixer
+    btop
+    tealdeer
+
+    nixfmt
     gcc
     alejandra
     gnumake
+
     nh
     nix-output-monitor
   ];
@@ -84,7 +96,7 @@
     config = {
       user = {
         name = "Skullheadx";
-        email = "admonty1@protonmail.com";
+        email = "andrew@montgomery.systems";
       };
       pull.rebase = true;
       url = {
@@ -98,6 +110,11 @@
     # Add any missing dynamic libraries for unpackaged
     # programs here, NOT in environment.systemPackages
   ];
+
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   environment.sessionVariables = {
   };
