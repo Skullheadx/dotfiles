@@ -28,6 +28,7 @@
 
       ".config/fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
       ".config/lazygit/config.yml".source = ./dotfiles/lazygit/config.yml;
+      ".config/tealdeer/config.toml".source = ./dotfiles/tealdeer/config.toml;
     };
 
     packages = with pkgs; [
