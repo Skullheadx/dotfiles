@@ -72,9 +72,10 @@
 - [x] real todo list + calendar
 
 - [x] test git forge
-        - [ ] organize by project
+        - [x] organize by project
         - [ ] deal with scrapers using too much bandwidth
-                - [ ] do some analysis on the query patterns
+                - [x] do some analysis on the query patterns
+                        - Seems to mostly be scraping routes from the www subdomain and gitweb was serving 3KB for these routes that should have been 404s. Fix in place to use cgit which properly sends 404s.
                 - [ ] rate limit project pages?
         - [ ] fix the readme not appearing
 

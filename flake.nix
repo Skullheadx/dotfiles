@@ -1,5 +1,5 @@
 {
-  description = "Based and Minimal Flake For Darwin";
+  description = "A minimal Suckless-inspired Flake for NixOS and Nix Darwin, created by Skullheadx.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
