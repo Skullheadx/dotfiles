@@ -4,3 +4,5 @@ theme = "Dimmed Monokai"
 mouse-hide-while-typing = true
 mouse-shift-capture = true
 term = xterm
+link-url = true
+link-previews = true
