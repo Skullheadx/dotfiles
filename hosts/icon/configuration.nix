@@ -89,21 +89,6 @@
     };
   };
 
-  # services.gitweb = {
-  #   projectroot = "/srv/git";
-  #   extraConfig = ''
-  #     $site_name =  "Skullheadx\'s Git Forge";
-  #     $omit_owner = 1;
-  #     $default_projects_order = "age";
-  #     $export_ok = "git-daemon-export-ok";
-  #     $strict_export = 1;
-  #     our @extra_breadcrumbs = (
-  #       [ 'home' => 'https://www.skullheadx.com/' ],
-  #     );
-  #     our @git_base_url_list = ( "git://git.skullheadx.com" );
-  #     $feature{'timed'}{'default'} = [1];
-  #   '';
-  # };
   services.cgit."cgit" = {
     enable = true;
     scanPath = "/srv/git";
@@ -210,11 +195,6 @@
         };
       };
     };
-    # gitweb = {
-    #   enable = true;
-    #   location = "";
-    #   virtualHost = "git.skullheadx.com";
-    # };
   };
 
   services.gitDaemon = {
