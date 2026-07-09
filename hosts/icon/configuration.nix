@@ -189,6 +189,12 @@
     };
   };
 
+  services.nix-serve = {
+    enable = true;
+    package = pkgs.nix-serve-ng;
+    secretKeyFile = "/var/cache-priv-key.pem";
+  };
+
   services.nginx = {
     enable = true;
     virtualHosts = {
@@ -311,7 +317,8 @@
     8080
     6667
     2049
-  ]; # git, gitweb, irc, nfs
+    5000
+  ]; # git, gitweb, irc, nfs, nix-serve-ng
   networking.firewall.allowedUDPPorts = [55555]; # wireguard
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
