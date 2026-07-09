@@ -68,6 +68,7 @@
     pamixer
     btop
     tealdeer
+    tokei
 
     nixfmt
     gcc
