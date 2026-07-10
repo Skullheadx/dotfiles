@@ -96,6 +96,7 @@
     passExtensions.pass-update
     passExtensions.pass-import
     bibata-cursors
+    libreoffice-fresh
   ];
 
   services.emacs = {
