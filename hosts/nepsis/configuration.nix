@@ -97,6 +97,8 @@
     passExtensions.pass-import
     bibata-cursors
     libreoffice-fresh
+    obs-studio
+    sent
   ];
 
   services.emacs = {
