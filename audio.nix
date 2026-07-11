@@ -18,6 +18,10 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+  ];
+
   hjem.users.${username} = {
     files = {
       ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
