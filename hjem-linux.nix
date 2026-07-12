@@ -41,6 +41,8 @@
       lf
       sfeed
       delta
+      python313
+      imagemagick
     ];
   };
 
