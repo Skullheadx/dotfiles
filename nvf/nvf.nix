@@ -166,7 +166,7 @@
         setupOpts = {
           bigfile.enable = true;
           dashboard = {
-            enable = false;
+            enabled = false;
           };
           explorer.enable = true;
           indent.enable = true;
