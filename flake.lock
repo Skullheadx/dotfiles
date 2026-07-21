@@ -23,17 +23,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1784518440,
-        "narHash": "sha256-oRa9hS/Mrw0ENKar89vej8A8B2t62klF6Bh83NgaUnw=",
-        "owner": "feel-co",
-        "repo": "hjem",
-        "rev": "da98f49312a31468137759756319324cdfb47f98",
-        "type": "github"
+        "lastModified": 1784601896,
+        "narHash": "sha256-rkpUOBv9pVG+GxhK90ebCrFpvjnfP4u2y/iGrzA42K4=",
+        "ref": "refs/heads/main",
+        "rev": "35e95ebb9557ac41a72fe00dd55218d1a7f21679",
+        "revCount": 398,
+        "type": "git",
+        "url": "git://git.skullheadx.com/hjem.git"
       },
       "original": {
-        "owner": "feel-co",
-        "repo": "hjem",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/hjem.git"
       }
     },
     "home-manager": {
@@ -177,16 +177,15 @@
       "locked": {
         "lastModified": 1784500460,
         "narHash": "sha256-UvORnAxTRHax7RG74W8Z2t4GvIkX6AjJ5kk0QlwZomo=",
-        "owner": "nix-darwin",
-        "repo": "nix-darwin",
+        "ref": "refs/heads/master",
         "rev": "57a3171f94705599a2499248ca5758d5eb47c0e0",
-        "type": "github"
+        "revCount": 2398,
+        "type": "git",
+        "url": "git://git.skullheadx.com/nix-darwin.git"
       },
       "original": {
-        "owner": "nix-darwin",
-        "ref": "master",
-        "repo": "nix-darwin",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/nix-darwin.git"
       }
     },
     "nixpkgs": {
@@ -207,18 +206,14 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
-        "type": "github"
+        "lastModified": 1784601824,
+        "narHash": "sha256-PWSbYaEbYsEQhZNJoOBI3WTagAVTTdBDEUIuOv8C9to=",
+        "type": "tarball",
+        "url": "https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz"
       }
     },
     "nvf": {
@@ -232,15 +227,15 @@
       "locked": {
         "lastModified": 1784580101,
         "narHash": "sha256-bjXMyQJiDtFftBMJxHQXIXUz3ZOdS48kKaSnkyoOB0c=",
-        "owner": "notashelf",
-        "repo": "nvf",
+        "ref": "refs/heads/main",
         "rev": "424ac2bb417e0e5cb4f7be19dfb661668cbbf638",
-        "type": "github"
+        "revCount": 3658,
+        "type": "git",
+        "url": "git://git.skullheadx.com/nvf.git"
       },
       "original": {
-        "owner": "notashelf",
-        "repo": "nvf",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/nvf.git"
       }
     },
     "root": {

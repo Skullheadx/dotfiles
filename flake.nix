@@ -2,11 +2,7 @@
   description = "A minimal Suckless-inspired Flake for NixOS and Nix Darwin, created by Skullheadx.";
 
   inputs = {
-    nixpkgs = {
-      type = "git";
-      url = "git://git.skullheadx.com/nixpkgs.git";
-      ref = "refs/heads/nixos-unstable";
-    };
+    nixpkgs.url = "tarball+https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz";
     nix-darwin = {
       url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";
