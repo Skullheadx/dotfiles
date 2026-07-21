@@ -2,9 +2,13 @@
   description = "A minimal Suckless-inspired Flake for NixOS and Nix Darwin, created by Skullheadx.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      type = "git";
+      url = "git://git.skullheadx.com/nixpkgs.git";
+      ref = "refs/heads/nixos-unstable";
+    };
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
+      url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,11 +37,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "github:notashelf/nvf";
+      url = "git://git.skullheadx.com/nvf.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hjem = {
-      url = "github:feel-co/hjem";
+      url = "git://git.skullheadx.com/hjem.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
