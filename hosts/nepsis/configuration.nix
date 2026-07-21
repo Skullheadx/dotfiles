@@ -98,6 +98,7 @@
     libreoffice-fresh
     obs-studio
     sent
+    zig
   ];
 
   services.emacs = {
