@@ -48,6 +48,7 @@
   };
 
   users.groups.git = {};
+  users.groups.nixremote = {};
   users.users.nginx.extraGroups = ["git"];
   systemd.services.nginx.serviceConfig = {
     SupplementaryGroups = ["git"];
@@ -87,7 +88,19 @@
         ../../pubkeys/work_laptop_ssh.pub
       ];
     };
+    nixremote = {
+      isSystemUser = true;
+      group = "nixremote";
+      home = "/home/nixremote";
+      createHome = true;
+      homeMode = "555";
+      openssh.authorizedKeys.keyFiles = [
+        ../../pubkeys/desktop_ssh.pub
+      ];
+    };
   };
+
+  nix.settings.trusted-users = ["root" "andrew" "nixremote" "@wheel"];
 
   services.cgit."cgit" = {
     enable = true;
