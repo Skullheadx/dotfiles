@@ -57,8 +57,30 @@
       Host vps
         Hostname 170.205.37.7
         Port 2222
+      Host builder
+        HostName 192.168.1.120
+        StrictHostKeyChecking=accept-new
+        IdentitiesOnly yes
+        IdentityFile /root/.ssh/nixremote
+        User nixremote
     '';
   };
+
+  nix.buildMachines = [
+    {
+      hostName = "builder";
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 1;
+      speedFactor = 2;
+      supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      mandatoryFeatures = [];
+    }
+  ];
+  nix.distributedBuilds = true;
+  nix.extraOptions = ''
+    builders-use-substitutes = true
+  '';
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
