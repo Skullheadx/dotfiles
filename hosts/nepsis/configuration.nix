@@ -73,7 +73,7 @@
       protocol = "ssh-ng";
       sshUser = "nixremote";
       sshKey = "/root/.ssh/nixremote";
-      maxJobs = 1;
+      maxJobs = 3;
       speedFactor = 2;
       supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
       mandatoryFeatures = [];
