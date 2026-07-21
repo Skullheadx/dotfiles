@@ -71,6 +71,8 @@
       hostName = "builder";
       system = "x86_64-linux";
       protocol = "ssh-ng";
+      sshUser = "nixremote";
+      sshKey = "/root/.ssh/nixremote";
       maxJobs = 1;
       speedFactor = 2;
       supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
@@ -121,6 +123,8 @@
     obs-studio
     sent
     zig
+    typst
+    bat
   ];
 
   services.emacs = {
