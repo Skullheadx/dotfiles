@@ -92,10 +92,11 @@
       isSystemUser = true;
       group = "nixremote";
       home = "/home/nixremote";
+      shell = pkgs.bash;
       createHome = true;
       homeMode = "555";
       openssh.authorizedKeys.keyFiles = [
-        ../../pubkeys/desktop_ssh.pub
+        ../../pubkeys/desktop_builder_ssh.pub
       ];
     };
   };
