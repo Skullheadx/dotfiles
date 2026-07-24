@@ -46,6 +46,7 @@
     };
     flake-compat = {
       url = "git://git.skullheadx.com/flake-compat.git";
+      flake = false;
     };
 
     hjem = {
@@ -64,6 +65,8 @@
     my-dmenu,
     nvf,
     nix-darwin,
+    mnw,
+    flake-compat,
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
