@@ -1,7 +1,6 @@
 {
   "nodes": {
     "flake-compat": {
-      "flake": false,
       "locked": {
         "lastModified": 1777699697,
         "narHash": "sha256-Eg9b/rq/ECYwNwEXs5i9wHyhxNI0JrYx2srdI2uZMaQ=",
@@ -9,11 +8,11 @@
         "rev": "382052b74656a369c5408822af3f2501e9b1af81",
         "revCount": 94,
         "type": "git",
-        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+        "url": "git://git.skullheadx.com/flake-compat.git"
       },
       "original": {
         "type": "git",
-        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+        "url": "git://git.skullheadx.com/flake-compat.git"
       }
     },
     "hjem": {
@@ -36,36 +35,19 @@
         "url": "git://git.skullheadx.com/hjem.git"
       }
     },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1784588016,
-        "narHash": "sha256-ouZe80aWEhMLVMkqICFDN+JUw+0FJtCr/bh+hHtRtMg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "deeb6b7eb7e0c44ae1819c051ce175bd92a85100",
-        "type": "github"
-      },
-      "original": {
-        "id": "home-manager",
-        "type": "indirect"
-      }
-    },
     "mnw": {
       "locked": {
-        "lastModified": 1780772958,
-        "narHash": "sha256-VKKe8r4pwCGWZ3Yr9CPN129R4S3CKLSrlYqdYz3vKpM=",
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "rev": "0871dbf63a53610c95db04439ed8ea4d6ec9c160",
-        "type": "github"
+        "lastModified": 1784154424,
+        "narHash": "sha256-HRn4O1X2ShYtbq5Egji72/aemyc2cIQicjRZD9hBqM8=",
+        "ref": "refs/heads/master",
+        "rev": "0151d9fa87992cbeb67c86616fb9170dcec830b6",
+        "revCount": 193,
+        "type": "git",
+        "url": "git://git.skullheadx.com/mnw.git"
       },
       "original": {
-        "owner": "Gerg-L",
-        "repo": "mnw",
-        "type": "github"
+        "type": "git",
+        "url": "git://git.skullheadx.com/mnw.git"
       }
     },
     "my-dmenu": {
@@ -190,36 +172,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1783604885,
-        "narHash": "sha256-tzMgSkV7kljEkqIjlgV6F+n+xD+/a35Db8bs7a4BFAo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "767b0d3ec98a143ad9ed7dfc0d5553510ac27133",
-        "type": "github"
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "ref": "refs/heads/nixos-unstable",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "revCount": 1037713,
+        "type": "git",
+        "url": "git://git.skullheadx.com/nixpkgs.git"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1784601824,
-        "narHash": "sha256-PWSbYaEbYsEQhZNJoOBI3WTagAVTTdBDEUIuOv8C9to=",
-        "type": "tarball",
-        "url": "https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz"
+        "type": "git",
+        "url": "git://git.skullheadx.com/nixpkgs.git"
       }
     },
     "nvf": {
       "inputs": {
-        "flake-compat": "flake-compat",
-        "mnw": "mnw",
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "mnw": [
+          "mnw"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -240,15 +213,16 @@
     },
     "root": {
       "inputs": {
+        "flake-compat": "flake-compat",
         "hjem": "hjem",
-        "home-manager": "home-manager",
+        "mnw": "mnw",
         "my-dmenu": "my-dmenu",
         "my-dwm": "my-dwm",
         "my-slstatus": "my-slstatus",
         "my-st": "my-st",
         "my-surf": "my-surf",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nvf": "nvf"
       }
     }

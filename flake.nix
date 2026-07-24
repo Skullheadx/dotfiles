@@ -2,7 +2,7 @@
   description = "A minimal Suckless-inspired Flake for NixOS and Nix Darwin, created by Skullheadx.";
 
   inputs = {
-    nixpkgs.url = "tarball+https://git.skullheadx.com/nixpkgs/snapshot/nixpkgs-nixos-unstable.tar.gz";
+    nixpkgs.url = "git://git.skullheadx.com/nixpkgs.git";
     nix-darwin = {
       url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,8 +34,20 @@
     };
     nvf = {
       url = "git://git.skullheadx.com/nvf.git";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        mnw.follows = "mnw";
+        flake-compat.follows = "flake-compat";
+      };
     };
+
+    mnw = {
+      url = "git://git.skullheadx.com/mnw.git";
+    };
+    flake-compat = {
+      url = "git://git.skullheadx.com/flake-compat.git";
+    };
+
     hjem = {
       url = "git://git.skullheadx.com/hjem.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +64,6 @@
     my-dmenu,
     nvf,
     nix-darwin,
-    home-manager,
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
