@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "git://git.skullheadx.com/nixpkgs.git";
+    nixpkgs-stable.url = "git://git.skullheadx.com/nixpkgs.git?ref=refs/heads/nixos-26.05";
     nix-darwin = {
       url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +58,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     hjem,
     my-slstatus,
     my-surf,
@@ -70,6 +72,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    pkgs-stable = nixpkgs-stable.legacyPackages.${system};
     nvim = nvf.lib.neovimConfiguration {
       inherit pkgs;
       modules = [./nvf/nvf.nix];
@@ -77,6 +80,7 @@
 
     system-darwin = "aarch64-darwin";
     pkgs-darwin = nixpkgs.legacyPackages.${system-darwin};
+    pkgs-stable-darwin = nixpkgs-stable.legacyPackages.${system-darwin};
     nvim-darwin = nvf.lib.neovimConfiguration {
       pkgs = pkgs-darwin;
       modules = [./nvf/nvf.nix];
@@ -90,6 +94,7 @@
         specialArgs = {
           inherit inputs nvim;
           username = "andrew";
+          pkgs-stable = pkgs-stable;
         };
         modules = [
           hjem.nixosModules.default
@@ -102,6 +107,7 @@
         specialArgs = {
           inherit inputs nvim;
           username = "andrew";
+          pkgs-stable = pkgs-stable;
         };
         modules = [
           hjem.nixosModules.default
@@ -118,6 +124,7 @@
           inherit inputs;
           nvim = nvim-darwin;
           username = "andrew";
+          pkgs-stable = pkgs-stable-darwin;
         };
         modules = [
           ./common-darwin.nix
@@ -131,6 +138,7 @@
           inherit inputs;
           nvim = nvim-darwin;
           username = "andrewmontgomery";
+          pkgs-stable = pkgs-stable-darwin;
         };
         modules = [
           ./common-darwin.nix
