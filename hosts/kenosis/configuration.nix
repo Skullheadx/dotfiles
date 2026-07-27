@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-nixos-26,
   inputs,
   nvim,
   username,
@@ -16,6 +17,7 @@
     hostName = "kenosis";
     localHostName = "kenosis";
   };
+
   # Primary user for user-specific settings (dock, etc.)
   system.primaryUser = username;
 
@@ -58,33 +60,37 @@
   };
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    go
-    nodejs
-    yarn
-    kubectl
-    ffmpeg
-    dbeaver-bin
+  environment.systemPackages = with pkgs;
+    [
+      go
+      nodejs
+      yarn
+      kubectl
+      ffmpeg
+      dbeaver-bin
 
-    claude-code
-    air
-    pnpm
-    librewolf
-    lazygit
-    fastfetch
-    git
-    go-swag
-    blender
-    temporal-cli
-    corepack
-    (python313.withPackages (ps:
-      with ps; [
-        numpy
-      ]))
-    imagemagick
-    audacity
-    goose
-  ];
+      claude-code
+      air
+      pnpm
+      librewolf
+      lazygit
+      fastfetch
+      git
+      go-swag
+      temporal-cli
+      corepack
+      (python313.withPackages (ps:
+        with ps; [
+          numpy
+        ]))
+      imagemagick
+      goose
+      chatgpt
+      codex
+    ]
+    ++ (with pkgs-nixos-26; [
+      audacity
+    ]);
 
   homebrew = {
     enable = true;
@@ -102,7 +108,6 @@
       "chatgpt"
       "capcut"
       "docker-desktop"
-      "musicbrainz-picard"
       "gimp"
     ];
   };

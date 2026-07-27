@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-nixos-26,
   inputs,
   nvim,
   username,
@@ -19,9 +20,13 @@
   system.primaryUser = username;
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    mpv
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      mpv
+    ]
+    ++ (with pkgs-nixos-26; [
+      audacity
+    ]);
 
   programs.ssh = {
     knownHosts = {
@@ -76,11 +81,9 @@
     brews = [
     ];
     casks = [
-      "keepassxc"
       "protonvpn"
       "selfcontrol"
       "kdenlive"
-      "audacity"
       "steam"
     ];
   };
