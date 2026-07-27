@@ -43,7 +43,10 @@
       "nix-cache.skullheadx.com:Nom1Auo0mjFVJGnquoIabtMrMEksqBQEab2RNv0ZnBc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+    flake-registry = "";
+    max-jobs = "auto";
   };
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.optimise = {
     automatic = true;
     dates = ["Sun 00:00:00"];
