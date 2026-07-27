@@ -193,6 +193,8 @@
     package = pkgs.nix-serve-ng;
     secretKeyFile = "/var/cache-priv-key.pem";
   };
+  nix.settings.keep-derivations = true;
+  nix.settings.keep-outputs = true;
 
   services.nginx = {
     enable = true;
