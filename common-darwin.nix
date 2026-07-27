@@ -161,7 +161,10 @@
     flake-registry = "";
     max-jobs = "auto";
   };
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs;
+    nixpkgs-nixos-26.flake = inputs.nixpkgs-nixos-26;
+  };
   nix.optimise = {
     automatic = true;
     interval = {
