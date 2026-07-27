@@ -65,7 +65,9 @@
       PROMPT=$'%{\e[97m%}[%{\e[m%}%{\e[92m%}%n%{\e[m%}%{\e[32m%}@%{\e[m%}%{\e[92m%}%m%{\e[m%}:%{\e[92m%}%~%{\e[m%}%{\e[97m%}]%{\e[m%}%{\e[97m%}%#%{\e[m%} '
     '';
     interactiveShellInit = ''
-      setopt autocd extendedglob nomatch notify
+      setopt autocd extendedglob notify
+      # let unmatched globs (e.g. flake refs like .#bear) pass through literally
+      unsetopt nomatch
 
       bindkey -v
       export KEYTIMEOUT=20

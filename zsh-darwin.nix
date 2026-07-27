@@ -28,7 +28,9 @@
       eval "$(direnv hook zsh)"
       eval "$(zoxide init zsh)"
 
-      setopt autocd extendedglob nomatch notify
+      setopt autocd extendedglob notify
+      # let unmatched globs (e.g. flake refs like .#bear) pass through literally
+      unsetopt nomatch
 
       bindkey -v
       export KEYTIMEOUT=20
