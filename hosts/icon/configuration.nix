@@ -86,6 +86,8 @@
         ../../pubkeys/homelab_ssh.pub
         ../../pubkeys/laptop_ssh.pub
         ../../pubkeys/work_laptop_ssh.pub
+        ../../pubkeys/gamer_desktop_ssh.pub
+        ../../pubkeys/gamer_laptop_ssh.pub
       ];
     };
     nixremote = {
