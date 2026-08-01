@@ -207,6 +207,10 @@
             addr = "10.0.0.2";
             port = 8080;
           }
+          {
+            addr = "127.0.0.1";
+            port = 8080;
+          }
         ];
         locations."/cgit/" = {
           alias = "/srv/git/cgit/";
@@ -218,7 +222,7 @@
   services.gitDaemon = {
     enable = true;
     basePath = "/srv/git";
-    listenAddress = "10.0.0.2";
+    listenAddress = "0.0.0.0";
     exportAll = false;
   };
 
@@ -308,6 +312,12 @@
   services.rsync = {
     enable = true;
   };
+
+  # services.dnsmasq = {
+  #   enable = true;
+  #   alwaysKeepRunning = true;
+  #   resolveLocalQueries = true;
+  # };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
