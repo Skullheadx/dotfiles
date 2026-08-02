@@ -82,6 +82,7 @@
       createHome = true;
       homeMode = "755";
       openssh.authorizedKeys.keyFiles = [
+        ../../pubkeys/eric_ssh.pub
         ../../pubkeys/desktop_ssh.pub
         ../../pubkeys/homelab_ssh.pub
         ../../pubkeys/laptop_ssh.pub
@@ -193,6 +194,7 @@
   services.nix-serve = {
     enable = true;
     package = pkgs.nix-serve-ng;
+    bindAddress = "0.0.0.0";
     secretKeyFile = "/var/cache-priv-key.pem";
   };
   nix.settings.keep-derivations = true;
@@ -313,11 +315,42 @@
     enable = true;
   };
 
-  # services.dnsmasq = {
-  #   enable = true;
-  #   alwaysKeepRunning = true;
-  #   resolveLocalQueries = true;
-  # };
+  services.dnsmasq = {
+    enable = true;
+    alwaysKeepRunning = true;
+    resolveLocalQueries = true;
+    settings = {
+      # Upstream dns
+      server = [
+        "192.168.1.211"
+        "1.1.1.1"
+        "9.9.9.9"
+
+        "/git.skullheadx.com/192.168.1.120"
+        "/nixcache.skullheadx.com/192.168.1.120"
+      ];
+
+      # pihole
+      # split horizon config
+
+      interface = ["eno1" "lo"];
+      bind-interfaces = true;
+
+      # num of dns entries to cache
+      cache-size = 10000;
+      domain-needed = true;
+      bogus-priv = true;
+      # no-hosts = true;
+      no-resolv = true;
+
+      port = 53;
+    };
+  };
+
+  # TODO: Remove this when you setup your own router
+  networking.networkmanager.dns = "none";
+  networking.nameservers = ["127.0.0.1"];
+  networking.useDHCP = false;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
@@ -326,8 +359,12 @@
     6667
     2049
     5000
-  ]; # git, gitweb, irc, nfs, nix-serve-ng
-  networking.firewall.allowedUDPPorts = [55555]; # wireguard
+    53
+  ]; # git, gitweb, irc, nfs, nix-serve-ng, dns
+  networking.firewall.allowedUDPPorts = [
+    55555
+    53
+  ]; # wireguard, dns
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

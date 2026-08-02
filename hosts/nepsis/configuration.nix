@@ -22,6 +22,10 @@
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # TODO: Remove this when you setup your own router
+  networking.networkmanager.dns = "none";
+  networking.nameservers = ["192.168.1.120"];
+
   programs.ssh = {
     knownHosts = {
       homelab = {

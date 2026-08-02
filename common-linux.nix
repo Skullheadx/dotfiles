@@ -80,6 +80,8 @@
 
     nh
     nix-output-monitor
+
+    dig
   ];
 
   fonts = {
@@ -140,6 +142,7 @@
 
   # Services
   services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
   services.rsync = {
     enable = true;
   };
