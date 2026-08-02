@@ -25,6 +25,7 @@
   # TODO: Remove this when you setup your own router
   networking.networkmanager.dns = "none";
   networking.nameservers = ["192.168.1.120"];
+  networking.useDHCP = false;
 
   programs.ssh = {
     knownHosts = {
