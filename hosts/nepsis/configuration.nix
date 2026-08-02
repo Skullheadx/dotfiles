@@ -129,6 +129,8 @@
     zig
     typst
     bat
+    python313
+    python313Packages.opencv4
   ];
 
   services.emacs = {
