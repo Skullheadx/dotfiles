@@ -129,8 +129,10 @@
     zig
     typst
     bat
-    python313
-    python313Packages.opencv4
+    (python313.withPackages (ps:
+      with ps; [
+        opencv4
+      ]))
   ];
 
   services.emacs = {
