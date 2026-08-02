@@ -329,7 +329,7 @@
       port = 53;
       address = [
         "/git.skullheadx.com/192.168.1.120"
-        "/nixcache.skullheadx.com/192.168.1.120"
+        "/nix-cache.skullheadx.com/192.168.1.120"
         "/irc.skullheadx.com/192.168.1.120"
       ];
 
