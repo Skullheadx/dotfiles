@@ -35,7 +35,7 @@
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     substituters = [
-      "https://nix-cache.skullheadx.com"
+      "https://nix-cache.skullheadx.com:5000"
       "https://nix-community.cachix.org"
       "https://cache.nixos.org/"
     ];
