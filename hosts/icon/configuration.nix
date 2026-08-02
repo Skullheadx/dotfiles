@@ -243,6 +243,7 @@
     enable = true;
     listen = [
       "irc+insecure://10.0.0.2:6667"
+      "irc+insecure://127.0.0.1:6697"
     ];
     hostName = "skullheadx.com";
   };
@@ -320,19 +321,6 @@
     alwaysKeepRunning = true;
     resolveLocalQueries = true;
     settings = {
-      # Upstream dns
-      server = [
-        "192.168.1.211"
-        "1.1.1.1"
-        "9.9.9.9"
-
-        "/git.skullheadx.com/192.168.1.120"
-        "/nixcache.skullheadx.com/192.168.1.120"
-      ];
-
-      # pihole
-      # split horizon config
-
       interface = ["eno1" "lo"];
       bind-interfaces = true;
 
@@ -340,10 +328,25 @@
       cache-size = 10000;
       domain-needed = true;
       bogus-priv = true;
-      # no-hosts = true;
+      no-hosts = true;
       no-resolv = true;
 
       port = 53;
+      address = [
+        "/git.skullheadx.com/192.168.1.120"
+        "/nixcache.skullheadx.com/192.168.1.120"
+        "/irc.skullheadx.com/192.168.1.120"
+      ];
+
+      # Upstream dns
+      server = [
+        "192.168.1.211"
+        "1.1.1.1"
+        "9.9.9.9"
+      ];
+
+      # pihole
+      # split horizon config
     };
   };
 
@@ -357,10 +360,11 @@
     9418
     8080
     6667
+    6697
     2049
     5000
     53
-  ]; # git, gitweb, irc, nfs, nix-serve-ng, dns
+  ]; # git, gitweb, irc (vps), irc (local), nfs, nix-serve-ng, dns
   networking.firewall.allowedUDPPorts = [
     55555
     53
