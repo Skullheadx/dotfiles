@@ -129,7 +129,7 @@
     zig
     typst
     bat
-    (python313.withPackages (ps:
+    (python314.withPackages (ps:
       with ps; [
         opencv4
       ]))
