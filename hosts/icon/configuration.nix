@@ -195,6 +195,8 @@
 
   services.nginx = {
     enable = true;
+    recommendedProxySettings = true;
+    recommendedOptimisation = true;
     virtualHosts = {
       "git.skullheadx.com" = {
         listen = [
