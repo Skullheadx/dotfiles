@@ -341,8 +341,8 @@
       address = [
         "/git.skullheadx.com/192.168.1.120"
         "/nix-cache.skullheadx.com/192.168.1.120"
-        # "/irc.skullheadx.com/192.168.1.120"
-        # TODO: Can be enabled when you setup your own router
+        "/irc.skullheadx.com/192.168.1.120"
+        # TODO: Can re-enable tls in senpai when you setup your own router
       ];
 
       # Upstream dns
