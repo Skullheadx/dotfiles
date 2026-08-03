@@ -111,6 +111,7 @@
         name = "Skullheadx";
         email = "andrew@montgomery.systems";
       };
+      init.defaultBranch = "master";
       pull.rebase = true;
       url = {
         "git@github.com:".insteadOf = "https://github.com/";
