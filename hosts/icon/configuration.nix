@@ -99,6 +99,13 @@
 
   nix.settings.trusted-users = ["root" "andrew" "nixremote" "@wheel"];
 
+  hjem.users.git = {
+    enable = true;
+    environment.sessionVariables = {
+      XDG_CACHE_HOME = "$HOME/.cache2";
+    };
+  };
+
   services.cgit."cgit" = {
     enable = true;
     scanPath = "/srv/git";
