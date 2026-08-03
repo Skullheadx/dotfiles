@@ -65,6 +65,10 @@
         "wheel"
       ];
       packages = with pkgs; [lazygit];
+      openssh.authorizedKeys.keyFiles = [
+        ../../pubkeys/desktop_ssh.pub
+        ../../pubkeys/laptop_ssh.pub
+      ];
     };
     git = {
       isSystemUser = true;
@@ -235,7 +239,7 @@
       name = "git-vps-tunnel";
       user = "git";
       monitoringPort = 20000;
-      extraArguments = "-F /dev/null -o SendEnv=none -M 20000 -N -R 2223:localhost:22 git@git.skullheadx.com -p 2222";
+      extraArguments = "-M 20000 -F /dev/null -o SendEnv=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 -N -R 2223:localhost:22 git@170.205.37.7";
     }
   ];
 
