@@ -249,7 +249,7 @@
     enable = true;
     listen = [
       "irc+insecure://10.0.0.2:6667"
-      "irc+insecure://127.0.0.1:6697"
+      "irc+insecure://192.168.1.120:6697"
     ];
     hostName = "skullheadx.com";
   };
@@ -341,7 +341,8 @@
       address = [
         "/git.skullheadx.com/192.168.1.120"
         "/nix-cache.skullheadx.com/192.168.1.120"
-        "/irc.skullheadx.com/192.168.1.120"
+        # "/irc.skullheadx.com/192.168.1.120"
+        # TODO: Can be enabled when you setup your own router
       ];
 
       # Upstream dns
