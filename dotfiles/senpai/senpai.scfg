@@ -1,4 +1,5 @@
 address irc.skullheadx.com
+tls false
 nickname Skullheadx
 username andrew
 password-cmd pass "Personal/Comm/irc"
