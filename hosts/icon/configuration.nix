@@ -249,7 +249,7 @@
     enable = true;
     listen = [
       "irc+insecure://10.0.0.2:6667"
-      "irc+insecure://192.168.1.120:6697"
+      "irc+insecure://192.168.1.120:6667"
     ];
     hostName = "skullheadx.com";
   };
