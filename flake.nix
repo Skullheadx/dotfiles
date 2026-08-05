@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "git://git.skullheadx.com/nixpkgs.git?shallow=1";
-    nixpkgs-nixos-26.url = "git://git.skullheadx.com/nixpkgs.git?ref=refs/heads/nixos-26.05";
+    nixpkgs-nixos-26.url = "git://git.skullheadx.com/nixpkgs.git?ref=refs/heads/nixos-26.05&shallow=1";
     nix-darwin = {
       url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";

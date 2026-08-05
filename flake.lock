@@ -1,6 +1,7 @@
 {
   "nodes": {
     "flake-compat": {
+      "flake": false,
       "locked": {
         "lastModified": 1777699697,
         "narHash": "sha256-Eg9b/rq/ECYwNwEXs5i9wHyhxNI0JrYx2srdI2uZMaQ=",
@@ -176,11 +177,12 @@
         "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
         "ref": "refs/heads/nixos-unstable",
         "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
-        "revCount": 1037713,
+        "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
       },
       "original": {
+        "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
       }
@@ -191,12 +193,13 @@
         "narHash": "sha256-n3gKTBIV4ZA5VQpUakffBe3KGu4+mhPoA34rrqS0GkA=",
         "ref": "refs/heads/nixos-26.05",
         "rev": "fd1462031fdee08f65fd0b4c6b64e22239a77870",
-        "revCount": 1009882,
+        "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
       },
       "original": {
         "ref": "refs/heads/nixos-26.05",
+        "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
       }
