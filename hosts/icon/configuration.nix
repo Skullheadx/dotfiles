@@ -239,9 +239,7 @@
       map $http_user_agent $bot_class {
           default                        "";
           ~*GPTBot                       "gptbot";
-          ~*Amazonbot                    "amazonbot";
           ~*meta-externalagent           "metabot";
-          ~*ClaudeBot                    "claudebot";
       }
 
       limit_req_zone $bot_class zone=bots:10m rate=1r/m;
