@@ -142,6 +142,15 @@
       favicon = "/cgit/favicon.ico";
       logo = "/cgit/logo.webp";
       css = "/cgit/cgit.css";
+
+      # robots = ''
+      #   User-agent: *
+      #   Disallow: /*/snapshot/*
+      #   Disallow: /*/blame/*
+      #   Disallow: /*/diff/*
+      #   Disallow: /nixpkgs/*
+      #   Allow: /
+      # '';
     };
     extraConfig = ''
       mimetype.gif=image/gif
@@ -211,7 +220,33 @@
     recommendedProxySettings = true;
     recommendedOptimisation = true;
     appendHttpConfig = ''
-      limit_req_zone $binary_remote_addr zone=expensive:10m rate=1r/s;
+      log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                       '$status $body_bytes_sent "$http_referer" '
+                       '"$http_user_agent"';
+
+      access_log /var/log/nginx/access.log main;
+
+      set_real_ip_from 10.0.0.1;
+      real_ip_header X-Forwarded-For;
+
+      map $request_uri $limit_key {
+        default "";
+        ~^/nixpkgs/atom  $binary_remote_addr;
+      }
+
+      limit_req_zone $limit_key zone=expensive:10m rate=1r/m;
+
+      map $http_user_agent $bot_class {
+          default                        "";
+          ~*GPTBot                       "gptbot";
+          ~*Amazonbot                    "amazonbot";
+          ~*meta-externalagent           "metabot";
+          ~*ClaudeBot                    "claudebot";
+      }
+
+      limit_req_zone $bot_class zone=bots:10m rate=1r/m;
+
+
     '';
     virtualHosts = {
       "git.skullheadx.com" = {
@@ -225,19 +260,33 @@
             port = 8080;
           }
         ];
+
+        extraConfig = ''
+          limit_req zone=expensive burst=1 nodelay;
+          limit_req zone=bots burst=3 nodelay;
+        '';
         locations = {
           "/cgit/" = {
             alias = "/srv/git/cgit/";
           };
-          "/nixpkgs/atom/" = {
-            extraConfig = ''
-              limit_req zone=expensive burst=1 nodelay;
-            '';
-          };
+          # "^/[^/]+/(blame|log|diff|commit)/" = {
+          #   extraConfig = ''
+          #         if ($bot_class != "") {
+          #             return 403;
+          #         }
+          #         try_files $uri @cgit;
+          #     }
+          #   '';
+          # };
         };
       };
     };
   };
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=500M
+    MaxRetentionSec=30day
+  '';
 
   services.gitDaemon = {
     enable = true;
