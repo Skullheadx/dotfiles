@@ -50,8 +50,8 @@
     ];
     InaccessiblePaths = [
       "/srv/git/.ssh"
-      "/srv/git/migrate_from_gh.sh"
-      "/srv/git/make_new_repo.sh"
+      # "/srv/git/migrate_from_gh.sh"
+      # "/srv/git/make_new_repo.sh"
     ];
   };
   # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
@@ -194,6 +194,8 @@
       virtualHost = "git.skullheadx.com";
     };
   };
+
+  services.fcgiwrap.instances."cgit-cgit".process.prefork = 8;
 
   services.nix-serve = {
     enable = true;
