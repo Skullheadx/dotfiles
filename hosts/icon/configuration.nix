@@ -231,7 +231,7 @@
           };
           "/nixpkgs/atom/" = {
             extraConfig = ''
-              limit_req zone=expensive burst=3 nodelay;
+              limit_req zone=expensive burst=1 nodelay;
             '';
           };
         };
