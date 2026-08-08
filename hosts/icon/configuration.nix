@@ -210,6 +210,9 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedOptimisation = true;
+    appendHttpConfig = ''
+      limit_req_zone $binary_remote_addr zone=expensive:10m rate=1r/s;
+    '';
     virtualHosts = {
       "git.skullheadx.com" = {
         listen = [
@@ -222,8 +225,15 @@
             port = 8080;
           }
         ];
-        locations."/cgit/" = {
-          alias = "/srv/git/cgit/";
+        locations = {
+          "/cgit/" = {
+            alias = "/srv/git/cgit/";
+          };
+          "/nixpkgs/atom/" = {
+            extraConfig = ''
+              limit_req zone=expensive burst=3 nodelay;
+            '';
+          };
         };
       };
     };
