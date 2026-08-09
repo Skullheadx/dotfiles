@@ -30,6 +30,7 @@
     jq
     btop
     tealdeer
+    pinentry-curses
   ];
 
   environment.variables = {
