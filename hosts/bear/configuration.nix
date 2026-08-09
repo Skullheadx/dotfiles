@@ -23,6 +23,7 @@
   environment.systemPackages = with pkgs;
     [
       mpv
+      brave
     ]
     ++ (with pkgs-nixos-26; [
       audacity
@@ -85,6 +86,7 @@
       "selfcontrol"
       "kdenlive"
       "steam"
+      "google-chrome"
     ];
   };
   # Dock configuration
@@ -95,7 +97,6 @@
       "/System/Applications/Music.app"
       "/System/Applications/Messages.app"
 
-      "/Applications/KeePassXC.app"
       "/Applications/Ghostty.app"
       # "/Applications/Nix Apps/Brave Browser.app"
       "/Applications/Nix Apps/LibreWolf.app"
