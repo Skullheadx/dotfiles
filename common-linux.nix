@@ -82,6 +82,8 @@
     nix-output-monitor
 
     dig
+
+    qbittorrent
   ];
 
   fonts = {

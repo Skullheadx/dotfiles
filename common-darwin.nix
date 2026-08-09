@@ -31,6 +31,8 @@
     btop
     tealdeer
     pinentry-curses
+
+    qbittorrent
   ];
 
   environment.variables = {
