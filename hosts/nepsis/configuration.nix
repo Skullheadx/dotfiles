@@ -57,6 +57,9 @@
       Host vps
         Hostname 170.205.37.7
         Port 2222
+      Host router
+        Hostname 192.168.1.115
+        Port 2222
       Host builder
         HostName 192.168.1.120
         StrictHostKeyChecking=accept-new
