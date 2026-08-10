@@ -355,6 +355,7 @@
     nfs-utils
     btop
     nethogs
+    screen
   ];
 
   programs.git = {
