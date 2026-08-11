@@ -31,6 +31,7 @@
     btop
     tealdeer
     pinentry-curses
+    pinentry_mac
 
     qbittorrent
   ];
