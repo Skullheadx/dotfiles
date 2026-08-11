@@ -109,6 +109,7 @@
       "capcut"
       "docker-desktop"
       "gimp"
+      "unity"
     ];
   };
 
