@@ -47,10 +47,6 @@
       };
     };
     extraConfig = ''
-      Host git.skullheadx.com
-        HostName 192.168.1.120
-        Port 22
-        User git
       Host homelab
         HostName 192.168.1.120
         Port 22
