@@ -151,6 +151,19 @@
     enableRecommendedAlgorithms = true;
     settings = {
       PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+
+      PermitRootLogin = "no";
+
+      PubkeyAuthentication = "yes";
+      MaxAuthTries = 3;
+      LoginGraceTime = "30s";
+
+      X11Forwarding = false;
+      AllowAgentForwarding = false;
+      AllowTcpForwarding = true;
+      StreamLocalForwarding = "no";
+      PermitTTY = false;
     };
     ports = [22 2222];
   };
