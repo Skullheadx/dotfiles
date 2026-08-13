@@ -60,6 +60,7 @@
       Host router
         Hostname 192.168.1.115
         Port 2222
+        User andrew
       Host desktop
         HostName 192.168.1.122
         Port 22
