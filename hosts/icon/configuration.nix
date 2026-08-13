@@ -434,23 +434,23 @@
   # networking.firewall.enable = false;
 
   networking.wireguard = {
-    enable = false;
+    enable = true;
   };
 
-  # networking.wg-quick.interfaces.wg0 = {
-  #   address = ["10.0.0.2/24"];
-  #   privateKeyFile = "/var/lib/wireguard/private.key";
-  #   mtu = 1360;
-  #
-  #   peers = [
-  #     {
-  #       publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
-  #       allowedIPs = ["10.0.0.1/32"];
-  #       endpoint = "170.205.37.7:55555";
-  #       persistentKeepalive = 25;
-  #     }
-  #   ];
-  # };
+  networking.wg-quick.interfaces.wg0 = {
+    address = ["10.0.0.2/24"];
+    privateKeyFile = "/var/lib/wireguard/private.key";
+    mtu = 1360;
+
+    peers = [
+      {
+        publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
+        allowedIPs = ["10.0.0.1/32"];
+        endpoint = "170.205.37.7:55555";
+        persistentKeepalive = 25;
+      }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
