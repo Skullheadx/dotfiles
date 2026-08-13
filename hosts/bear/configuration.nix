@@ -49,15 +49,6 @@
       };
     };
     extraConfig = ''
-      Host git-vps
-        HostName git.skullheadx.com
-        Port 2222
-        User git
-      Host git.skullheadx.com
-        HostName localhost
-        Port 2223
-        User git
-        ProxyJump git-vps
       Host homelab
         HostName 192.168.1.120
         Port 22
