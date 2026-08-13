@@ -84,6 +84,8 @@
     dig
 
     qbittorrent
+    proton-vpn-cli
+    proton-vpn
   ];
 
   fonts = {
