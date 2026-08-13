@@ -287,6 +287,12 @@
     exportAll = false;
   };
 
+  programs.git.config.url."git://127.0.0.1/" = {
+    insteadOf = [
+      "git://git.skullheadx.com/"
+    ];
+  };
+
   # IRC
   services.soju = {
     adminSocket.enable = true;
