@@ -150,7 +150,9 @@
     settings = {
       PasswordAuthentication = false;
     };
+    ports = [22 2222];
   };
+
   services.rsync = {
     enable = true;
   };

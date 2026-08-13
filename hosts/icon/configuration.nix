@@ -296,15 +296,6 @@
     exportAll = false;
   };
 
-  services.autossh.sessions = [
-    {
-      name = "git-vps-tunnel";
-      user = "git";
-      monitoringPort = 20000;
-      extraArguments = "-M 20000 -F /dev/null -o SendEnv=none -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 -N -R 2223:localhost:22 git@170.205.37.7";
-    }
-  ];
-
   # IRC
   services.soju = {
     adminSocket.enable = true;
@@ -402,9 +393,9 @@
 
       port = 53;
       address = [
-        "/git.skullheadx.com/192.168.1.120"
-        "/nix-cache.skullheadx.com/192.168.1.120"
-        "/irc.skullheadx.com/192.168.1.120"
+        "/git.skullheadx.com/192.168.1.115"
+        "/nix-cache.skullheadx.com/192.168.1.115"
+        "/irc.skullheadx.com/192.168.1.115"
         # TODO: Can re-enable tls in senpai when you setup your own router
       ];
 
@@ -428,13 +419,14 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     9418
+    22
     8080
     6667
     6697
     2049
     5000
     53
-  ]; # git, cgit, irc (vps), irc (local), nfs, nix-serve-ng, dns
+  ]; # git, git (ssh), cgit, irc (vps), irc (local), nfs, nix-serve-ng, dns
   networking.firewall.allowedUDPPorts = [
     55555
     53
@@ -443,22 +435,23 @@
   # networking.firewall.enable = false;
 
   networking.wireguard = {
-    enable = true;
+    enable = false;
   };
 
-  networking.wg-quick.interfaces.wg0 = {
-    address = ["10.0.0.2/24"];
-    privateKeyFile = "/var/lib/wireguard/private.key";
-
-    peers = [
-      {
-        publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
-        allowedIPs = ["10.0.0.1/32"];
-        endpoint = "170.205.37.7:55555";
-        persistentKeepalive = 25;
-      }
-    ];
-  };
+  # networking.wg-quick.interfaces.wg0 = {
+  #   address = ["10.0.0.2/24"];
+  #   privateKeyFile = "/var/lib/wireguard/private.key";
+  #   mtu = 1360;
+  #
+  #   peers = [
+  #     {
+  #       publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
+  #       allowedIPs = ["10.0.0.1/32"];
+  #       endpoint = "170.205.37.7:55555";
+  #       persistentKeepalive = 25;
+  #     }
+  #   ];
+  # };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
