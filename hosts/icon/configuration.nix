@@ -71,6 +71,7 @@
       openssh.authorizedKeys.keyFiles = [
         ../../pubkeys/desktop_ssh.pub
         ../../pubkeys/laptop_ssh.pub
+        ../../pubkeys/work_laptop_ssh.pub
       ];
     };
     git = {
