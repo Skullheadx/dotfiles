@@ -146,15 +146,6 @@
       favicon = "/cgit/favicon.ico";
       logo = "/cgit/logo.webp";
       css = "/cgit/cgit.css";
-
-      # robots = ''
-      #   User-agent: *
-      #   Disallow: /*/snapshot/*
-      #   Disallow: /*/blame/*
-      #   Disallow: /*/diff/*
-      #   Disallow: /nixpkgs/*
-      #   Allow: /
-      # '';
     };
     extraConfig = ''
       mimetype.gif=image/gif
@@ -276,15 +267,9 @@
           "/cgit/" = {
             alias = "/srv/git/cgit/";
           };
-          # "^/[^/]+/(blame|log|diff|commit)/" = {
-          #   extraConfig = ''
-          #         if ($bot_class != "") {
-          #             return 403;
-          #         }
-          #         try_files $uri @cgit;
-          #     }
-          #   '';
-          # };
+          "= /robots.txt" = {
+            alias = "/srv/git/cgit/robots.txt";
+          };
         };
       };
     };
