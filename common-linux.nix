@@ -162,8 +162,6 @@
       X11Forwarding = false;
       AllowAgentForwarding = false;
       AllowTcpForwarding = true;
-      StreamLocalForwarding = "no";
-      PermitTTY = false;
     };
     ports = [22 2222];
   };
