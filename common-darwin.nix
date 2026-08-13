@@ -34,6 +34,7 @@
     pinentry_mac
 
     qbittorrent
+    tokei
   ];
 
   environment.variables = {
