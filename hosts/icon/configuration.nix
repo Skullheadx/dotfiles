@@ -396,7 +396,6 @@
         "/git.skullheadx.com/192.168.1.115"
         "/nix-cache.skullheadx.com/192.168.1.115"
         "/irc.skullheadx.com/192.168.1.115"
-        # TODO: Can re-enable tls in senpai when you setup your own router
       ];
 
       # Upstream dns
