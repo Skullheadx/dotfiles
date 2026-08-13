@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784601896,
-        "narHash": "sha256-rkpUOBv9pVG+GxhK90ebCrFpvjnfP4u2y/iGrzA42K4=",
+        "lastModified": 1785929776,
+        "narHash": "sha256-qwppDYdtxqtDpI1iSp7bs8prOJ0KQSvhJchfROD04f0=",
         "ref": "refs/heads/main",
-        "rev": "35e95ebb9557ac41a72fe00dd55218d1a7f21679",
-        "revCount": 398,
+        "rev": "b610953d0c56da6b28fd39c21bd193b88e91341c",
+        "revCount": 427,
         "type": "git",
         "url": "git://git.skullheadx.com/hjem.git"
       },
@@ -158,11 +158,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784500460,
-        "narHash": "sha256-UvORnAxTRHax7RG74W8Z2t4GvIkX6AjJ5kk0QlwZomo=",
+        "lastModified": 1785389976,
+        "narHash": "sha256-0tLW8Ff5yt8AH97jw4ZpFJ0OCJ122zIlgWGDmOfU/VU=",
         "ref": "refs/heads/master",
-        "rev": "57a3171f94705599a2499248ca5758d5eb47c0e0",
-        "revCount": 2398,
+        "rev": "15abb8c98f336cd8bd840d71059adebabe60bf04",
+        "revCount": 2401,
         "type": "git",
         "url": "git://git.skullheadx.com/nix-darwin.git"
       },
@@ -173,10 +173,10 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
-        "ref": "refs/heads/nixos-unstable",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "lastModified": 1786628936,
+        "narHash": "sha256-5ylAfbfGP1Nqu/qtcBuhudYR/y9nmQeH7JyAERdhvCY=",
+        "ref": "refs/heads/master",
+        "rev": "d0356a338b3a5df3adf8f85b173fd4b5cfd6f70d",
         "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
@@ -189,10 +189,10 @@
     },
     "nixpkgs-nixos-26": {
       "locked": {
-        "lastModified": 1784432872,
-        "narHash": "sha256-n3gKTBIV4ZA5VQpUakffBe3KGu4+mhPoA34rrqS0GkA=",
+        "lastModified": 1786535285,
+        "narHash": "sha256-rG5HKMAgAhMgydvKGtco6rqTxRq4EDZQCx9USLvVqYw=",
         "ref": "refs/heads/nixos-26.05",
-        "rev": "fd1462031fdee08f65fd0b4c6b64e22239a77870",
+        "rev": "9f78f44a87948854445dae0b6bf82b2e87e4efb5",
         "shallow": true,
         "type": "git",
         "url": "git://git.skullheadx.com/nixpkgs.git"
@@ -217,11 +217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784580101,
-        "narHash": "sha256-bjXMyQJiDtFftBMJxHQXIXUz3ZOdS48kKaSnkyoOB0c=",
+        "lastModified": 1786433999,
+        "narHash": "sha256-rbOp2g0UCYt+evTnCGCKBQGqSMfwX4RTXneNbeHqOAk=",
         "ref": "refs/heads/main",
-        "rev": "424ac2bb417e0e5cb4f7be19dfb661668cbbf638",
-        "revCount": 3658,
+        "rev": "a213644cadd5f90bf18b0c409f08f282b30e55e3",
+        "revCount": 3720,
         "type": "git",
         "url": "git://git.skullheadx.com/nvf.git"
       },
