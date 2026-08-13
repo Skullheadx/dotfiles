@@ -242,6 +242,7 @@
       map $http_user_agent $bot_class {
           default                        "";
           ~*GPTBot                       "gptbot";
+          ~*Amazonbot                    "amazonbot";
           ~*meta-externalagent           "metabot";
       }
 
