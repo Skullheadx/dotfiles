@@ -153,12 +153,12 @@
       PermitRootLogin = "no";
 
       PubkeyAuthentication = "yes";
-      MaxAuthTries = 3;
-      LoginGraceTime = "30s";
+      # MaxAuthTries = 3;
+      # LoginGraceTime = "30s";
 
-      X11Forwarding = false;
-      AllowAgentForwarding = false;
-      AllowTcpForwarding = true;
+      # X11Forwarding = false;
+      # AllowAgentForwarding = false;
+      # AllowTcpForwarding = true;
     };
     ports = [22 2222];
   };

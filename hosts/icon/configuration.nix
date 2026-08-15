@@ -411,6 +411,28 @@
   networking.networkmanager.dns = "none";
   networking.nameservers = ["127.0.0.1"];
   networking.useDHCP = false;
+  networking.interfaces.eno1 = {
+    ipv4 = {
+      addresses = [
+        {
+          address = "192.168.1.120";
+          prefixLength = 24;
+        }
+      ];
+      routes = [
+        {
+          address = "10.0.0.1";
+          prefixLength = 32;
+          via = "192.168.1.115";
+        }
+      ];
+    };
+  };
+  networking.defaultGateway = {
+    address = "192.168.1.1";
+    interface = "eno1";
+    # source = "192.168.1.120";
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
@@ -438,6 +460,7 @@
     address = ["10.0.0.2/24"];
     privateKeyFile = "/var/lib/wireguard/private.key";
     mtu = 1360;
+    listenPort = 55555;
 
     peers = [
       {
