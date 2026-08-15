@@ -32,7 +32,6 @@
     };
 
     packages = with pkgs; [
-      discord
       lazygit
       librewolf
       btop
