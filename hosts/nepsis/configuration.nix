@@ -140,6 +140,7 @@
       with ps; [
         opencv4
       ]))
+    kdePackages.kdenlive
   ];
 
   services.emacs = {
