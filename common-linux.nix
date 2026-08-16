@@ -11,6 +11,8 @@
     ./irc.nix
     ./git.nix
     ./gnupg.nix
+    ./emacs.nix
+    ./vim.nix
   ];
 
   # Allow unfree packages
@@ -38,10 +40,11 @@
     pamixer
     btop
     tealdeer
+    imagemagick
 
     # Coding
     lazygit
-    nixfmt
+    delta
     tokei
     gcc
     alejandra
@@ -54,6 +57,9 @@
     # Networking Utilities
     dig
     wireguard-tools
+    nethogs
+    iftop
+    nfs-utils
 
     # Torrent
     qbittorrent
@@ -128,6 +134,8 @@
     packages = with pkgs; [
       fira-code
       nerd-fonts.fira-code
+      terminus_font
+      terminus_font_ttf
     ];
   };
 

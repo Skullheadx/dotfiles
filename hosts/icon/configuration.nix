@@ -7,7 +7,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./../../vim.nix
   ];
 
   # IMPORTANT Update this in all other hosts if changed
@@ -362,7 +361,6 @@
   environment.systemPackages = with pkgs; [
     nfs-utils
     btop
-    nethogs
     screen
   ];
 
@@ -388,7 +386,6 @@
   };
 
   # Services
-  services.openssh.enable = true;
   services.rsync = {
     enable = true;
   };

@@ -14,7 +14,9 @@
     enable = true;
     package = pkgs.i3lock-color;
   };
+
   security.pam.services.betterlockscreen = {};
+
   services.xserver = {
     xautolock = {
       enable = true;

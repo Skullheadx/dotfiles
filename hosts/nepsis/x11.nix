@@ -4,6 +4,68 @@
   username,
   ...
 }: {
+  imports = [
+    ./lockscreen.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    st
+    dmenu
+    sxhkd
+    slstatus
+    scrolling-title
+    surf
+    surf_search
+    sent
+  ];
+
+  services.xserver = {
+    enable = true;
+    autorun = true;
+
+    # Just works
+    enableTearFree = true;
+
+    # Overlay to use my-dwm
+    windowManager.dwm.enable = true;
+
+    # TODO: Remember what this is for
+    desktopManager.runXdgAutostartIfNone = false;
+
+    # Wallpaper
+    displayManager = let
+      backgroundImage = toString ../../Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg;
+      # TODO: Test that this actually works
+    in {
+      setupCommands = "";
+      sessionCommands = ''
+        #!/bin/sh
+        ${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${backgroundImage}
+      '';
+    };
+
+    # Replace CAPS lock with ESC
+    xkb = {
+      layout = "us";
+      options = "caps:escape";
+    };
+
+    # Keyboard on Desktop
+    config = ''
+      Section "InputClass"
+        Identifier "Kinesis Advantage 360"
+        MatchIsKeyboard "on"
+        MatchVendor "Kinesis"
+        Option "XkbModel" "kinesis"
+        Option "XkbLayout" "us"
+      EndSection
+    '';
+  };
+
+  # TODO: Figure out a way to have multi monitors with diff screens.
+  # Currently, one monitor will have a smaller display, which is visually distracting
+  # doesn't extend full length of screen
   services.displayManager.ly = {
     enable = true;
     settings = {
@@ -17,62 +79,14 @@
     };
   };
 
+  # Notifications
   services.dunst = {
     enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    autorun = true;
-    enableTearFree = true;
-    windowManager.dwm.enable = true;
-    desktopManager.runXdgAutostartIfNone = false;
-    displayManager = {
-      setupCommands = "";
-      sessionCommands = ''
-        #!/bin/sh
-        ${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
-        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill '/home/${username}/Wallpapers/Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg'
-      '';
-    };
-    xkb = {
-      layout = "us";
-      options = "caps:escape";
-    };
-    config = ''
-      Section "InputClass"
-        Identifier "Kinesis Advantage 360"
-        MatchIsKeyboard "on"
-        MatchVendor "Kinesis"
-        Option "XkbModel" "kinesis"
-        Option "XkbLayout" "us"
-      EndSection
-    '';
-  };
-
+  # Transparent terminals
   services.picom = {
     enable = true;
-  };
-
-  hjem.users.${username} = {
-    files = {
-      ".config/sxhkd/sxhkdrc".text = builtins.readFile (
-        pkgs.replaceVars ./dotfiles/sxhkd/sxhkdrc {
-          dmenu = pkgs.dmenu;
-          st = pkgs.st;
-          surf = pkgs.surf;
-          pamixer = pkgs.pamixer;
-          maim = pkgs.maim;
-          xdotool = pkgs.xdotool;
-          xclip = pkgs.xclip;
-          lockscreen = pkgs.lock-screen;
-          sfeed = pkgs.sfeed;
-          rmpc = pkgs.rmpc;
-          mpc = pkgs.mpc;
-          librewolf = pkgs.librewolf;
-        }
-      );
-    };
   };
 
   systemd.user.services.sxhkd = {
