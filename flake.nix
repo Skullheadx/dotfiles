@@ -2,37 +2,39 @@
   description = "A minimal Suckless-inspired Flake for NixOS and Nix Darwin, created by Skullheadx.";
 
   inputs = {
+    # Shallow copy so that it does not pull the full nixpkgs
     nixpkgs.url = "git://git.skullheadx.com/nixpkgs.git?shallow=1";
     nixpkgs-nixos-26.url = "git://git.skullheadx.com/nixpkgs.git?ref=refs/heads/nixos-26.05&shallow=1";
+
+    # MacOS
     nix-darwin = {
       url = "git://git.skullheadx.com/nix-darwin.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Suckless Nix
     my-slstatus = {
       url = "git://git.skullheadx.com/slstatus.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     my-surf = {
       url = "git://git.skullheadx.com/surf.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     my-dwm = {
       url = "git://git.skullheadx.com/dwm.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     my-st = {
       url = "git://git.skullheadx.com/st.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     my-dmenu = {
       url = "git://git.skullheadx.com/dmenu.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Neovim
     nvf = {
       url = "git://git.skullheadx.com/nvf.git";
       inputs = {
@@ -41,7 +43,6 @@
         flake-compat.follows = "flake-compat";
       };
     };
-
     mnw = {
       url = "git://git.skullheadx.com/mnw.git";
     };

@@ -9,7 +9,60 @@
     ./bash.nix
     ./zsh-linux.nix
     ./irc.nix
+    ./git.nix
+    ./gnupg.nix
   ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  users.defaultUserShell = pkgs.zsh;
+  users.users.${username}.shell = pkgs.zsh;
+
+  environment = {
+    variables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    sessionVariables = {
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    # Utilities
+    ffmpeg
+    wget
+    curl
+    jq
+    fastfetch
+    pamixer
+    btop
+    tealdeer
+
+    # Coding
+    lazygit
+    nixfmt
+    tokei
+    gcc
+    alejandra
+    gnumake
+
+    # Nix Utilities
+    nh
+    nix-output-monitor
+
+    # Networking Utilities
+    dig
+    wireguard-tools
+
+    # Torrent
+    qbittorrent
+    proton-vpn-cli
+    proton-vpn
+  ];
+
+  # Networking
+  networking.networkmanager.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -19,74 +72,44 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  # Locale
   time.timeZone = "America/Toronto";
-
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    substituters = [
-      "https://nix-cache.skullheadx.com"
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-    ];
-    trusted-public-keys = [
-      "nix-cache.skullheadx.com:Nom1Auo0mjFVJGnquoIabtMrMEksqBQEab2RNv0ZnBc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    flake-registry = "";
-    max-jobs = "auto";
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+
+      # Preference for my own nix bin cache
+      substituters = [
+        "https://nix-cache.skullheadx.com"
+        "https://nix-community.cachix.org"
+        "https://cache.nixos.org/"
+      ];
+      # trusted pub key for cache.nixos.org not needed because built in
+      trusted-public-keys = [
+        "nix-cache.skullheadx.com:Nom1Auo0mjFVJGnquoIabtMrMEksqBQEab2RNv0ZnBc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      # Do not use github for the flake registry
+      flake-registry = "";
+      max-jobs = "auto";
+    };
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
+    # Replace same dependency with symlinked one to reduce storage usage.
+    optimise = {
+      automatic = true;
+      dates = ["Sun 00:00:00"];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      # TODO: Figure out what this does
+      persistent = true;
+    };
   };
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.optimise = {
-    automatic = true;
-    dates = ["Sun 00:00:00"];
-  };
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    persistent = true;
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    ffmpeg
-
-    wget
-    curl
-    jq
-
-    lazygit
-    fastfetch
-    pamixer
-    btop
-    tealdeer
-    tokei
-
-    nixfmt
-    gcc
-    alejandra
-    gnumake
-
-    nh
-    nix-output-monitor
-
-    dig
-
-    qbittorrent
-    proton-vpn-cli
-    proton-vpn
-  ];
 
   fonts = {
     fontDir.enable = true;
@@ -108,70 +131,12 @@
     ];
   };
 
-  programs.git = {
-    enable = true;
-    config = {
-      user = {
-        name = "Skullheadx";
-        email = "andrew@montgomery.systems";
-      };
-      init.defaultBranch = "master";
-      pull.rebase = true;
-    };
-  };
-
+  # Required for Steam to work
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged
     # programs here, NOT in environment.systemPackages
   ];
-
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
-  environment.sessionVariables = {
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # Services
-  services.openssh = {
-    enable = true;
-    enableRecommendedAlgorithms = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-
-      PermitRootLogin = "no";
-
-      PubkeyAuthentication = "yes";
-      # MaxAuthTries = 3;
-      # LoginGraceTime = "30s";
-
-      # X11Forwarding = false;
-      # AllowAgentForwarding = false;
-      # AllowTcpForwarding = true;
-    };
-    ports = [22 2222];
-  };
-
-  services.rsync = {
-    enable = true;
-  };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -11,11 +11,32 @@
     ./../../hjem-darwin.nix
   ];
 
+  # IMPORTANT Update this in all other hosts if changed
+  services.openssh = {
+    enable = true;
+    enableRecommendedAlgorithms = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+
+      PermitRootLogin = "no";
+
+      PubkeyAuthentication = "yes";
+      # MaxAuthTries = 3;
+      # LoginGraceTime = "30s";
+
+      # X11Forwarding = false;
+      # AllowAgentForwarding = false;
+      # AllowTcpForwarding = true;
+    };
+    ports = [2222];
+  };
   networking = {
     computerName = "bear";
     hostName = "bear";
     localHostName = "bear";
   };
+
   # Primary user for user-specific settings (dock, etc.)
   system.primaryUser = username;
   # List packages installed in system profile. To search by name, run:

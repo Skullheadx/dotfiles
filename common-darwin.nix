@@ -50,10 +50,6 @@
 
   programs.zsh.enable = true;
 
-  services.openssh = {
-    enable = true;
-  };
-
   programs.gnupg = {
     agent = {
       enable = true;

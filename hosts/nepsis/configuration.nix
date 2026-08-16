@@ -13,6 +13,27 @@
     ./../../vim.nix
   ];
 
+  # IMPORTANT Update this in all other hosts if changed
+  services.openssh = {
+    enable = true;
+    enableRecommendedAlgorithms = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+
+      PermitRootLogin = "no";
+
+      PubkeyAuthentication = "yes";
+      # MaxAuthTries = 3;
+      # LoginGraceTime = "30s";
+
+      # X11Forwarding = false;
+      # AllowAgentForwarding = false;
+      # AllowTcpForwarding = true;
+    };
+    ports = [2222];
+  };
+
   networking.hostName = "nepsis";
 
   boot.extraModprobeConfig = ''
@@ -121,7 +142,6 @@
     terminus_font
     terminus_font_ttf
     yt-dlp
-    wireguard-tools
     nethogs
     iftop
     nfs-utils

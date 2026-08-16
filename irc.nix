@@ -4,9 +4,6 @@
   username,
   ...
 }: {
-  imports = [
-  ];
-
   hjem.users.${username} = {
     files = {
       ".config/senpai/senpai.scfg".source = ./dotfiles/senpai/senpai.scfg;

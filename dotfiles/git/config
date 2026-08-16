@@ -1,12 +1,11 @@
+# Make sure to update git.nix
+
 [user]
 	name = Skullheadx
-	email = andrew@andrew-montgomery.dev 
+	email = andrew@montgomery.systems
 
 [pull]
 	rebase = true
-
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 
 [core]
 	pager = delta

@@ -10,6 +10,27 @@
     ./../../vim.nix
   ];
 
+  # IMPORTANT Update this in all other hosts if changed
+  services.openssh = {
+    enable = true;
+    enableRecommendedAlgorithms = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+
+      PermitRootLogin = "no";
+
+      PubkeyAuthentication = "yes";
+      # MaxAuthTries = 3;
+      # LoginGraceTime = "30s";
+
+      # X11Forwarding = false;
+      # AllowAgentForwarding = false;
+      # AllowTcpForwarding = true;
+    };
+    ports = [22 2222];
+  };
+
   programs.ssh = {
     knownHosts = {
       desktop = {
@@ -339,7 +360,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wireguard-tools
     nfs-utils
     btop
     nethogs

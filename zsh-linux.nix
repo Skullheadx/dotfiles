@@ -73,7 +73,4 @@
       export KEYTIMEOUT=20
     '';
   };
-
-  users.defaultUserShell = pkgs.zsh;
-  users.users.${username}.shell = pkgs.zsh;
 }
