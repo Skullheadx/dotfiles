@@ -9,7 +9,6 @@
   ...
 }: {
   imports = [
-    # ./legacy.nix
     ./../../hjem-darwin.nix
   ];
 
