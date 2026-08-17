@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  ips,
   username,
   ...
 }: {
@@ -143,7 +144,7 @@
 
   # Homelab NFS
   fileSystems."/mnt/data" = {
-    device = "192.168.1.120:/";
+    device = "${ips.ip_local_homelab}:/";
     fsType = "nfs4";
     options = [
       "x-systemd.automount"
@@ -177,15 +178,15 @@
   programs.ssh = {
     knownHosts = {
       homelab = {
-        extraHostNames = ["192.168.1.120"];
+        extraHostNames = [ips.ip_local_homelab];
         publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
       };
       laptop = {
-        extraHostNames = ["192.168.1.111"];
+        extraHostNames = [ips.ip_local_laptop];
         publicKeyFile = ./../../pubkeys/laptop_ssh.pub;
       };
       vps = {
-        extraHostNames = ["170.205.37.7"];
+        extraHostNames = [ips.ip_pub_vps];
         publicKeyFile = ./../../pubkeys/vps_ssh.pub;
       };
       github = {
@@ -195,16 +196,19 @@
     };
     extraConfig = ''
       Host homelab
-        HostName 192.168.1.120
+        HostName ${ips.ip_local_homelab}
         Port 22
+        User andrew
       Host vps
-        Hostname 170.205.37.7
+        Hostname ${ips.ip_pub_vps}
         Port 2222
+        User andrew
       Host router
-        Hostname 192.168.1.115
+        Hostname ${ips.ip_local_router}
         Port 2222
+        User andrew
       Host builder
-        HostName 192.168.1.120
+        HostName ${ips.ip_local_homelab}
         StrictHostKeyChecking=accept-new
         IdentitiesOnly yes
         IdentityFile /root/.ssh/nixremote
@@ -218,7 +222,7 @@
     # Uses the homelab for DNS Nameservers
     # TODO: Think about DNS resolving from outside through homelab
     networkmanager.dns = "none";
-    nameservers = ["192.168.1.120"];
+    nameservers = [ips.ip_local_homelab];
     useDHCP = false;
 
     # Block certain websites
