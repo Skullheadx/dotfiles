@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   username,
+  ips,
   ...
 }: {
   imports = [
@@ -33,14 +34,14 @@
   programs.ssh = {
     knownHosts = {
       desktop = {
-        extraHostNames = ["192.168.1.122"];
+        extraHostNames = [ips.ip_local_desktop];
         publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
       };
       laptop = {
         publicKeyFile = ./../../pubkeys/laptop_ssh.pub;
       };
       vps = {
-        extraHostNames = ["170.205.37.7"];
+        extraHostNames = [ips.ip_pub_vps];
         publicKeyFile = ./../../pubkeys/vps_ssh.pub;
       };
       github = {
@@ -50,14 +51,14 @@
     };
     extraConfig = ''
       Host git.skullheadx.com
-        HostName 192.168.1.120
+        HostName ${ips.ip_local_homelab}
         Port 22
         User git
       Host vps
-        Hostname 170.205.37.7
+        Hostname ${ips.ip_pub_vps}
         Port 2222
       Host router
-        Hostname 192.168.1.115
+        Hostname ${ips.ip_local_router}
         Port 2222
     '';
   };
@@ -245,7 +246,7 @@
 
       access_log /var/log/nginx/access.log main;
 
-      set_real_ip_from 10.0.0.1;
+      set_real_ip_from ${ips.ip_wg_vps};
       real_ip_header X-Forwarded-For;
 
       map $request_uri $limit_key {
@@ -270,11 +271,11 @@
       "git.skullheadx.com" = {
         listen = [
           {
-            addr = "10.0.0.2";
+            addr = "${ips.ip_wg_homelab}";
             port = 8080;
           }
           {
-            addr = "192.168.1.120";
+            addr = "${ips.ip_local_homelab}";
             port = 8080;
           }
         ];
@@ -318,8 +319,8 @@
     adminSocket.enable = true;
     enable = true;
     listen = [
-      "irc+insecure://10.0.0.2:6667"
-      "irc+insecure://192.168.1.120:6667"
+      "irc+insecure://${ips.ip_wg_homelab}:6667"
+      "irc+insecure://${ips.ip_local_homelab}:6667"
     ];
     hostName = "skullheadx.com";
   };
@@ -407,9 +408,9 @@
 
       port = 53;
       address = [
-        "/git.skullheadx.com/192.168.1.115"
-        "/nix-cache.skullheadx.com/192.168.1.115"
-        "/irc.skullheadx.com/192.168.1.115"
+        "/git.skullheadx.com/${ips.ip_local_router}"
+        "/nix-cache.skullheadx.com/${ips.ip_local_router}"
+        "/irc.skullheadx.com/${ips.ip_local_router}"
       ];
 
       # Upstream dns
@@ -432,15 +433,15 @@
     ipv4 = {
       addresses = [
         {
-          address = "192.168.1.120";
+          address = "${ips.ip_local_homelab}";
           prefixLength = 24;
         }
       ];
       routes = [
         {
-          address = "10.0.0.1";
+          address = "${ips.ip_wg_router}";
           prefixLength = 32;
-          via = "192.168.1.115";
+          via = "${ips.ip_local_router}";
         }
       ];
     };
@@ -448,7 +449,6 @@
   networking.defaultGateway = {
     address = "192.168.1.1";
     interface = "eno1";
-    # source = "192.168.1.120";
   };
 
   # Open ports in the firewall.
@@ -457,24 +457,21 @@
     22
     8080
     6667
-    6697
     2049
     5000
     53
-  ]; # git, git (ssh), cgit, irc (vps), irc (local), nfs, nix-serve-ng, dns
+  ]; # git, git (ssh), cgit, irc (insecure), nfs, nix-serve-ng, dns
   networking.firewall.allowedUDPPorts = [
     55555
     53
   ]; # wireguard, dns
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   networking.wireguard = {
     enable = true;
   };
 
   networking.wg-quick.interfaces.wg0 = {
-    address = ["10.0.0.2/24"];
+    address = ["${ips.ip_wg_homelab}/24"];
     privateKeyFile = "/var/lib/wireguard/private.key";
     mtu = 1360;
     listenPort = 55555;
@@ -482,8 +479,8 @@
     peers = [
       {
         publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
-        allowedIPs = ["10.0.0.1/32"];
-        endpoint = "170.205.37.7:55555";
+        allowedIPs = ["${ips.ip_wg_vps}/32"];
+        endpoint = "${ips.ip_pub_vps}:55555";
         persistentKeepalive = 25;
       }
     ];
