@@ -84,6 +84,7 @@
       pkgs = pkgs-darwin;
       modules = [./nvf/nvf.nix];
     };
+    ips = import ./ips.nix;
   in {
     packages.${system}.nvim = nvim.neovim;
     packages.${system-darwin}.nvim = nvim-darwin.neovim;
@@ -91,7 +92,7 @@
     nixosConfigurations = {
       nepsis = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs nvim;
+          inherit inputs nvim ips;
           username = "andrew";
         };
         modules = [
@@ -103,7 +104,7 @@
       };
       icon = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs nvim;
+          inherit inputs nvim ips;
           username = "andrew";
         };
         modules = [
@@ -118,7 +119,7 @@
     darwinConfigurations = {
       kenosis = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs ips;
           nvim = nvim-darwin;
           username = "andrew";
           pkgs-nixos-26 = nixpkgs-nixos-26.legacyPackages.${system-darwin};
@@ -132,7 +133,7 @@
       };
       bear = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs ips;
           nvim = nvim-darwin;
           username = "andrewmontgomery";
           pkgs-nixos-26 = nixpkgs-nixos-26.legacyPackages.${system-darwin};

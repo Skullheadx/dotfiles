@@ -4,6 +4,7 @@
   pkgs-nixos-26,
   inputs,
   nvim,
+  ips,
   username,
   ...
 }: {
@@ -45,7 +46,7 @@
   programs.ssh = {
     knownHosts = {
       homelab = {
-        extraHostNames = ["192.168.1.120"];
+        extraHostNames = [ips.ip_local_homelab];
         publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
       };
       desktop = {
