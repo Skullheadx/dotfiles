@@ -33,15 +33,12 @@
     desktopManager.runXdgAutostartIfNone = false;
 
     # Wallpaper
-    displayManager = let
-      backgroundImage = toString ../../Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg;
-      # TODO: Test that this actually works
-    in {
+    displayManager = {
       setupCommands = "";
       sessionCommands = ''
         #!/bin/sh
         ${pkgs.xrandr}/bin/xrandr --output DP-3 --primary --mode 2560x1440 --rate 180 --pos 0x0 --output DP-2 --mode 1920x1080 --rate 160 --pos 2560x360
-        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${backgroundImage}
+        ${pkgs.feh}/bin/feh --no-fehbg --bg-fill ${../../Daniel_in_the_Lions_Den_by_Briton_Riviere.jpg}
       '';
     };
 
