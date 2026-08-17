@@ -9,38 +9,49 @@
     ./zsh-darwin.nix
     ./vim.nix
     ./irc.nix
+    ./gnupg-darwin.nix
   ];
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    ffmpeg
-    librewolf
-    lazygit
-    fastfetch
-    git
-    wget
-    curl
-    direnv
-    pass
-    passExtensions.pass-otp
-    passExtensions.pass-update
-    nh
-    nix-output-monitor
-    jq
-    btop
-    tealdeer
-    pinentry-curses
-    pinentry_mac
-
-    qbittorrent
-    tokei
-  ];
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  environment.systemPackages = with pkgs; [
+    # Utilities
+    ffmpeg
+    wget
+    curl
+    jq
+    fastfetch
+    btop
+    tealdeer
+    imagemagick
+
+    # Coding
+    lazygit
+    delta
+    git
+    tokei
+    gcc
+    alejandra
+    gnumake
+
+    ## Nix tools
+    nh
+    nix-output-monitor
+
+    # User tools
+    ## Password management
+    pass
+    passExtensions.pass-otp
+    passExtensions.pass-update
+
+    librewolf
+  ];
 
   nix.gc = {
     automatic = true;
@@ -49,18 +60,6 @@
   };
 
   programs.zsh.enable = true;
-
-  programs.gnupg = {
-    agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # enableBrowserSocket = true;
-      # settings = {
-      #   default-cache-ttl = 86400;
-      #   max-cache-ttl = 604800;
-      # };
-    };
-  };
 
   fonts.packages = with pkgs; [
     fira-code
@@ -147,7 +146,6 @@
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
-  nixpkgs.config.allowUnfree = true;
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     substituters = [

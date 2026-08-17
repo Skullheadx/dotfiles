@@ -45,7 +45,7 @@
   environment.systemPackages = with pkgs;
     [
       mpv
-      brave
+      qbittorrent
     ]
     ++ (with pkgs-nixos-26; [
       audacity

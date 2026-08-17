@@ -9,8 +9,8 @@
     ./bash.nix
     ./zsh-linux.nix
     ./irc.nix
-    ./git.nix
-    ./gnupg.nix
+    ./git-linux.nix
+    ./gnupg-linux.nix
     ./emacs.nix
     ./vim.nix
   ];
@@ -19,7 +19,6 @@
   nixpkgs.config.allowUnfree = true;
 
   users.defaultUserShell = pkgs.zsh;
-  users.users.${username}.shell = pkgs.zsh;
 
   environment = {
     variables = {
@@ -45,12 +44,13 @@
     # Coding
     lazygit
     delta
+    git
     tokei
     gcc
     alejandra
     gnumake
 
-    # Nix Utilities
+    ## Nix tools
     nh
     nix-output-monitor
 
