@@ -57,6 +57,7 @@
       zathura
       lf
       sfeed
+      gimp
     ];
   };
 
