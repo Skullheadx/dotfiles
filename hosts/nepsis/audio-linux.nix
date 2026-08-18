@@ -4,6 +4,7 @@
   username,
   ...
 }: {
+  # TODO: Why is pipewire AND wireplumber enabled?
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -12,29 +13,15 @@
   };
 
   services.pipewire.wireplumber.enable = true;
+
+  # TODO: WTF is this?
   hardware = {
     graphics = {
       enable = true;
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    pavucontrol
-  ];
-
-  hjem.users.${username} = {
-    files = {
-      ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
-
-      ".config/rmpc/config.ron".source = ./dotfiles/rmpc/config.ron;
-      ".config/rmpc/themes/theme.ron".source = ./dotfiles/rmpc/themes/theme.ron;
-    };
-    packages = with pkgs; [
-      mpc
-      rmpc
-    ];
-  };
-
+  # TODO: Why am I using this instead of services.mpd.enable = true
   systemd.user.services.mpd = {
     description = "Music Player Daemon";
     wantedBy = ["default.target"];

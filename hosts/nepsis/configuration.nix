@@ -9,7 +9,8 @@
   imports = [
     ./hardware-configuration.nix
     ./x11.nix
-    ./../../audio-linux.nix
+    ./sfeed.nix
+    ./audio-linux.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -33,8 +34,11 @@
       ".sfeed/sfeedrc".source = ../../dotfiles/sfeed/sfeedrc;
 
       ".config/fastfetch/config.jsonc".source = ../../dotfiles/fastfetch/config.jsonc;
-      ".config/lazygit/config.yml".source = ../../dotfiles/lazygit/config.yml;
       ".config/tealdeer/config.toml".source = ../../dotfiles/tealdeer/config.toml;
+
+      # Requires delta package
+      ".config/lazygit/config.yml".source = ../../dotfiles/lazygit/config.yml;
+
       ".config/sxhkd/sxhkdrc".text = builtins.readFile (
         pkgs.replaceVars ../../dotfiles/sxhkd/sxhkdrc {
           dmenu = pkgs.dmenu;
@@ -51,6 +55,12 @@
           librewolf = pkgs.librewolf;
         }
       );
+
+      # Ensure you started mpd in audio-linux.nix
+      ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
+
+      ".config/rmpc/config.ron".source = ./dotfiles/rmpc/config.ron;
+      ".config/rmpc/themes/theme.ron".source = ./dotfiles/rmpc/themes/theme.ron;
     };
 
     packages = with pkgs; [
@@ -60,37 +70,22 @@
       lf
       sfeed
       gimp
-    ];
-  };
 
-  systemd.user.services."sfeed-update" = {
-    description = "Update sfeed RSS feeds";
-    path = with pkgs; [
-      curl
-      sfeed
-      coreutils
+      # Audio
+      rmpc
     ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.sfeed}/bin/sfeed_update";
-    };
-  };
-
-  systemd.user.timers."sfeed-update" = {
-    description = "Run sfeed_update daily";
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-    };
-    wantedBy = ["timers.target"];
   };
 
   environment.systemPackages = with pkgs; [
     # System
     feh
-    pamixer
     xdotool
     bat
+
+    # Audio
+    pamixer
+    pavucontrol
+    mpc
 
     # Screenshot
     maim
@@ -114,11 +109,9 @@
 
     # Programming
     zig
+    go
     typst
-    (python314.withPackages (ps:
-      with ps; [
-        opencv4
-      ]))
+    python314
   ];
 
   # TODO: Setup Firefox Config https://search.nixos.org/options?channel=unstable&query=programs.firefox&type=options

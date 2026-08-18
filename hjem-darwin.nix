@@ -12,6 +12,7 @@
       # Ensure to update this with git-linux.nix
       ".config/git/config".source = ./dotfiles/git/config;
       ".config/tealdeer/config.toml".source = ./dotfiles/tealdeer/config.toml;
+      ".config/fastfetch/config.jsonc".source = ../../dotfiles/fastfetch/config.jsonc;
 
       # Requires delta package
       "Library/Application Support/lazygit/config.yml".source = ./dotfiles/lazygit/config.yml;
