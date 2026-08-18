@@ -12,26 +12,6 @@
     ./../../hjem-darwin.nix
   ];
 
-  # IMPORTANT Update this in all other hosts if changed
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     PasswordAuthentication = false;
-  #     KbdInteractiveAuthentication = false;
-  #
-  #     PermitRootLogin = "no";
-  #
-  #     PubkeyAuthentication = "yes";
-  #     # MaxAuthTries = 3;
-  #     # LoginGraceTime = "30s";
-  #
-  #     # X11Forwarding = false;
-  #     # AllowAgentForwarding = false;
-  #     # AllowTcpForwarding = true;
-  #   };
-  #   ports = [2222];
-  # };
-
   networking = {
     computerName = "bear";
     hostName = "bear";
@@ -40,16 +20,47 @@
 
   # Primary user for user-specific settings (dock, etc.)
   system.primaryUser = username;
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
+
   environment.systemPackages = with pkgs;
     [
       mpv
       qbittorrent
+      proton-vpn-cli
     ]
     ++ (with pkgs-nixos-26; [
       audacity
     ]);
+
+  homebrew = {
+    enable = true;
+    user = username;
+
+    taps = [
+    ];
+    brews = [
+    ];
+    casks = [
+      "protonvpn"
+      "selfcontrol"
+      "kdenlive"
+      "steam"
+    ];
+  };
+
+  # Dock configuration
+  system.defaults.dock = {
+    persistent-apps = [
+      "/System/Applications/Reminders.app"
+      "/System/Applications/Calendar.app"
+      "/System/Applications/Music.app"
+      "/System/Applications/Messages.app"
+
+      "/Applications/Ghostty.app"
+      "/Applications/Nix Apps/LibreWolf.app"
+
+      "/System/Applications/System Settings.app"
+    ];
+  };
 
   programs.ssh = {
     knownHosts = {
@@ -90,36 +101,23 @@
     '';
   };
 
-  homebrew = {
-    enable = true;
-    user = username;
-
-    taps = [
-    ];
-    brews = [
-    ];
-    casks = [
-      "protonvpn"
-      "selfcontrol"
-      "kdenlive"
-      "steam"
-      "google-chrome"
-    ];
-  };
-  # Dock configuration
-  system.defaults.dock = {
-    persistent-apps = [
-      "/System/Applications/Reminders.app"
-      "/System/Applications/Calendar.app"
-      "/System/Applications/Music.app"
-      "/System/Applications/Messages.app"
-
-      "/Applications/Ghostty.app"
-      # "/Applications/Nix Apps/Brave Browser.app"
-      "/Applications/Nix Apps/LibreWolf.app"
-      # "/Applications/Nix Apps/UTM.app"
-
-      "/System/Applications/System Settings.app"
-    ];
-  };
+  # IMPORTANT Update this in all other hosts if changed
+  # services.openssh = {
+  #   enable = true;
+  #   settings = {
+  #     PasswordAuthentication = false;
+  #     KbdInteractiveAuthentication = false;
+  #
+  #     PermitRootLogin = "no";
+  #
+  #     PubkeyAuthentication = "yes";
+  #     # MaxAuthTries = 3;
+  #     # LoginGraceTime = "30s";
+  #
+  #     # X11Forwarding = false;
+  #     # AllowAgentForwarding = false;
+  #     # AllowTcpForwarding = true;
+  #   };
+  #   ports = [2222];
+  # };
 }
