@@ -39,6 +39,7 @@
     gcc
     alejandra
     gnumake
+    ghostty-bin
 
     ## Nix tools
     nh
@@ -53,27 +54,33 @@
     librewolf
   ];
 
-  nix.gc = {
-    automatic = true;
-    interval.Day = 7;
-    options = "--delete-older-than 14d";
+  homebrew = {
+    enable = true;
+    # onActivation.cleanup = "uninstall";
+
+    taps = [
+    ];
+    brews = [
+    ];
+    casks = [
+      "keepingyouawake"
+      "scroll-reverser"
+    ];
   };
 
-  programs.zsh.enable = true;
+  security = {
+    # TODO: Fix touch id on macos
+    pam.services.sudo_local = {
+      enable = false;
+      reattach = false;
+      touchIdAuth = false;
+    };
 
-  fonts.packages = with pkgs; [
-    fira-code
-    nerd-fonts.fira-code
-  ];
-
-  security.sudo.extraConfig = ''
-    Defaults timestamp_type=global
-    Defaults timestamp_timeout=60
-  '';
-  security.pam.services.sudo_local = {
-    enable = false;
-    reattach = false;
-    touchIdAuth = false;
+    # Don't ask to login so quickly
+    sudo.extraConfig = ''
+      Defaults timestamp_type=global
+      Defaults timestamp_timeout=60
+    '';
   };
 
   system = {
@@ -125,51 +132,55 @@
     };
   };
 
-  homebrew = {
-    enable = true;
-    # onActivation.cleanup = "uninstall";
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
 
-    taps = [
-    ];
-    brews = [
-    ];
-    casks = [
-      "keepingyouawake"
-      "scroll-reverser"
-      "ghostty"
-    ];
+      # Preference for my own nix bin cache
+      substituters = [
+        "https://nix-cache.skullheadx.com"
+        "https://nix-community.cachix.org"
+        "https://cache.nixos.org/"
+      ];
+      # trusted pub keys for cache.nixos.org not needed because built in
+      trusted-public-keys = [
+        "nix-cache.skullheadx.com:Nom1Auo0mjFVJGnquoIabtMrMEksqBQEab2RNv0ZnBc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      # Do not use github for the flake registry
+      flake-registry = "";
+      max-jobs = "auto";
+    };
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      nixpkgs-nixos-26.flake = inputs.nixpkgs-nixos-26;
+    };
+
+    # Replace same dependency with symlinked one to reduce storage use
+    optimise = {
+      automatic = true;
+      interval = {
+        Weekday = 0;
+        Hour = 0;
+        Minute = 0;
+      };
+    };
+
+    gc = {
+      automatic = true;
+      interval.Day = 7;
+      options = "--delete-older-than 14d";
+    };
   };
+
+  fonts.packages = with pkgs; [
+    fira-code
+    nerd-fonts.fira-code
+  ];
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    substituters = [
-      "https://nix-cache.skullheadx.com"
-      "https://nix-community.cachix.org"
-      "https://cache.nixos.org/"
-    ];
-    trusted-public-keys = [
-      "nix-cache.skullheadx.com:Nom1Auo0mjFVJGnquoIabtMrMEksqBQEab2RNv0ZnBc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-    flake-registry = "";
-    max-jobs = "auto";
-  };
-  nix.registry = {
-    nixpkgs.flake = inputs.nixpkgs;
-    nixpkgs-nixos-26.flake = inputs.nixpkgs-nixos-26;
-  };
-  nix.optimise = {
-    automatic = true;
-    interval = {
-      Weekday = 0;
-      Hour = 0;
-      Minute = 0;
-    };
-  };
 }
