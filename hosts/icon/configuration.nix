@@ -18,6 +18,7 @@
       git = {};
       nixremote = {};
     };
+
     users = {
       ${username} = {
         isNormalUser = true;
@@ -27,11 +28,11 @@
           "networkmanager"
           "wheel"
         ];
-        packages = with pkgs; [lazygit];
         openssh.authorizedKeys.keyFiles = [
           ../../pubkeys/desktop_ssh.pub
           ../../pubkeys/laptop_ssh.pub
           ../../pubkeys/work_laptop_ssh.pub
+          ../../pubkeys/vps_ssh.pub
         ];
       };
 
