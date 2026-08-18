@@ -22,12 +22,27 @@
   };
 
   # TODO: Why am I using this instead of services.mpd.enable = true
-  systemd.user.services.mpd = {
-    description = "Music Player Daemon";
-    wantedBy = ["default.target"];
-    serviceConfig = {
-      ExecStart = "${pkgs.mpd}/bin/mpd --no-daemon /home/${username}/.config/mpd/mpd.conf";
-      Restart = "on-failure";
+  services.mpd = {
+    enable = true;
+    settings = {
+      music_directory = "/home/${username}";
+      playlist_directory = "/home/${username}/playlists";
+      # Old Config
+      # music_directory    "~/Music"
+      # playlist_directory "~/Music/playlists"
+      # db_file            "~/.local/share/mpd/database"
+      # state_file         "~/.local/share/mpd/state"
+      # log_file           "syslog"
+      #
+      # auto_update "yes"
+      # restore_paused "yes"
+
+      audio_output = [
+        {
+          type = "pipewire";
+          name = "PipeWire Output";
+        }
+      ];
     };
   };
 }

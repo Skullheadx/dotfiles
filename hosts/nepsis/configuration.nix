@@ -56,11 +56,8 @@
         }
       );
 
-      # Ensure you started mpd in audio-linux.nix
-      ".config/mpd/mpd.conf".source = ./dotfiles/mpd/mpd.conf;
-
-      ".config/rmpc/config.ron".source = ./dotfiles/rmpc/config.ron;
-      ".config/rmpc/themes/theme.ron".source = ./dotfiles/rmpc/themes/theme.ron;
+      ".config/rmpc/config.ron".source = ../../dotfiles/rmpc/config.ron;
+      ".config/rmpc/themes/theme.ron".source = ../../dotfiles/rmpc/themes/theme.ron;
     };
 
     packages = with pkgs; [
@@ -227,7 +224,7 @@
     # '';
 
     # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
+    firewall.allowedTCPPorts = [6600];
     # firewall.allowedUDPPorts = [ ... ];
 
     # TODO: Configure network proxy if necessary
