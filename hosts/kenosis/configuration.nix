@@ -12,27 +12,6 @@
     ./../../hjem-darwin.nix
   ];
 
-  # IMPORTANT Update this in all other hosts if changed
-  # services.openssh = {
-  #   enable = true;
-  #   enableRecommendedAlgorithms = true;
-  #   settings = {
-  #     PasswordAuthentication = false;
-  #     KbdInteractiveAuthentication = false;
-  #
-  #     PermitRootLogin = "no";
-  #
-  #     PubkeyAuthentication = "yes";
-  #     # MaxAuthTries = 3;
-  #     # LoginGraceTime = "30s";
-  #
-  #     # X11Forwarding = false;
-  #     # AllowAgentForwarding = false;
-  #     # AllowTcpForwarding = true;
-  #   };
-  #   ports = [2222];
-  # };
-
   networking = {
     computerName = "kenosis";
     hostName = "kenosis";
@@ -42,36 +21,6 @@
   # Primary user for user-specific settings (dock, etc.)
   system.primaryUser = username;
 
-  programs.ssh = {
-    knownHosts = {
-      homelab = {
-        extraHostNames = [ips.ip_local_homelab];
-        publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
-      };
-      desktop = {
-        extraHostNames = [ips.ip_local_desktop];
-        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
-      };
-      vps = {
-        extraHostNames = [ips.ip_pub_vps];
-        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
-      };
-      github = {
-        extraHostNames = ["github.com"];
-        publicKeyFile = ./../../pubkeys/github_ssh.pub;
-      };
-    };
-    extraConfig = ''
-      Host homelab
-        HostName ${ips.ip_local_homelab}
-        Port 22
-      Host vps
-        Hostname ${ips.ip_pub_vps}
-        Port 2222
-    '';
-  };
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs;
     [
       go
@@ -136,4 +85,54 @@
       "/System/Applications/Utilities/Activity Monitor.app"
     ];
   };
+
+  programs.ssh = {
+    knownHosts = {
+      homelab = {
+        extraHostNames = [ips.ip_local_homelab];
+        publicKeyFile = ./../../pubkeys/homelab_ssh.pub;
+      };
+      desktop = {
+        extraHostNames = [ips.ip_local_desktop];
+        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
+      };
+      vps = {
+        extraHostNames = [ips.ip_pub_vps];
+        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
+      };
+      github = {
+        extraHostNames = ["github.com"];
+        publicKeyFile = ./../../pubkeys/github_ssh.pub;
+      };
+    };
+    extraConfig = ''
+      Host homelab
+        HostName ${ips.ip_local_homelab}
+        Port 22
+      Host vps
+        Hostname ${ips.ip_pub_vps}
+        Port 2222
+    '';
+  };
+
+  # IMPORTANT Update this in all other hosts if changed
+  # services.openssh = {
+  #   enable = true;
+  #   enableRecommendedAlgorithms = true;
+  #   settings = {
+  #     PasswordAuthentication = false;
+  #     KbdInteractiveAuthentication = false;
+  #
+  #     PermitRootLogin = "no";
+  #
+  #     PubkeyAuthentication = "yes";
+  #     # MaxAuthTries = 3;
+  #     # LoginGraceTime = "30s";
+  #
+  #     # X11Forwarding = false;
+  #     # AllowAgentForwarding = false;
+  #     # AllowTcpForwarding = true;
+  #   };
+  #   ports = [2222];
+  # };
 }
