@@ -8,122 +8,65 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./web.nix
+    ./irc-bouncer.nix
+    ./nfs.nix
   ];
 
-  # IMPORTANT Update this in all other hosts if changed
-  services.openssh = {
-    enable = true;
-    enableRecommendedAlgorithms = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-
-      PermitRootLogin = "no";
-
-      PubkeyAuthentication = "yes";
-      # MaxAuthTries = 3;
-      # LoginGraceTime = "30s";
-
-      # X11Forwarding = false;
-      # AllowAgentForwarding = false;
-      # AllowTcpForwarding = true;
+  users = {
+    groups = {
+      git = {};
+      nixremote = {};
     };
-    ports = [22 2222];
-  };
+    users = {
+      ${username} = {
+        isNormalUser = true;
+        shell = pkgs.zsh;
 
-  programs.ssh = {
-    knownHosts = {
-      desktop = {
-        extraHostNames = [ips.ip_local_desktop];
-        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+        ];
+        packages = with pkgs; [lazygit];
+        openssh.authorizedKeys.keyFiles = [
+          ../../pubkeys/desktop_ssh.pub
+          ../../pubkeys/laptop_ssh.pub
+          ../../pubkeys/work_laptop_ssh.pub
+        ];
       };
-      laptop = {
-        publicKeyFile = ./../../pubkeys/laptop_ssh.pub;
-      };
-      vps = {
-        extraHostNames = [ips.ip_pub_vps];
-        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
-      };
-      github = {
-        extraHostNames = ["github.com"];
-        publicKeyFile = ./../../pubkeys/github_ssh.pub;
-      };
-    };
-    extraConfig = ''
-      Host git.skullheadx.com
-        HostName ${ips.ip_local_homelab}
-        Port 22
-        User git
-      Host vps
-        Hostname ${ips.ip_pub_vps}
-        Port 2222
-      Host router
-        Hostname ${ips.ip_local_router}
-        Port 2222
-    '';
-  };
 
-  users.groups.git = {};
-  users.groups.nixremote = {};
-  users.users.nginx.extraGroups = ["git"];
-  systemd.services.nginx.serviceConfig = {
-    SupplementaryGroups = ["git"];
-    ReadOnlyPaths = [
-      "/srv/git"
-      "/srv"
-    ];
-    InaccessiblePaths = [
-      "/srv/git/.ssh"
-      # "/srv/git/migrate_from_gh.sh"
-      # "/srv/git/make_new_repo.sh"
-    ];
-  };
-  # systemd.services.fcgiwrap.serviceConfig.ReadOnlyPaths = ["/srv/git"];
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    ${username} = {
-      isNormalUser = true;
-      shell = pkgs.zsh;
+      git = {
+        isSystemUser = true;
+        shell = "${pkgs.git}/bin/git-shell";
+        group = "git";
+        home = "/srv/git";
+        createHome = true;
+        homeMode = "755";
+        openssh.authorizedKeys.keyFiles = [
+          ../../pubkeys/eric_ssh.pub
+          ../../pubkeys/desktop_ssh.pub
+          ../../pubkeys/homelab_ssh.pub
+          ../../pubkeys/homelab2_ssh.pub
+          ../../pubkeys/laptop_ssh.pub
+          ../../pubkeys/work_laptop_ssh.pub
+          ../../pubkeys/gamer_desktop_ssh.pub
+          ../../pubkeys/gamer_laptop_ssh.pub
+        ];
+      };
 
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
-      packages = with pkgs; [lazygit];
-      openssh.authorizedKeys.keyFiles = [
-        ../../pubkeys/desktop_ssh.pub
-        ../../pubkeys/laptop_ssh.pub
-        ../../pubkeys/work_laptop_ssh.pub
-      ];
-    };
-    git = {
-      isSystemUser = true;
-      shell = "${pkgs.git}/bin/git-shell";
-      group = "git";
-      home = "/srv/git";
-      createHome = true;
-      homeMode = "755";
-      openssh.authorizedKeys.keyFiles = [
-        ../../pubkeys/eric_ssh.pub
-        ../../pubkeys/desktop_ssh.pub
-        ../../pubkeys/homelab_ssh.pub
-        ../../pubkeys/homelab2_ssh.pub
-        ../../pubkeys/laptop_ssh.pub
-        ../../pubkeys/work_laptop_ssh.pub
-        ../../pubkeys/gamer_desktop_ssh.pub
-        ../../pubkeys/gamer_laptop_ssh.pub
-      ];
-    };
-    nixremote = {
-      isSystemUser = true;
-      group = "nixremote";
-      home = "/home/nixremote";
-      shell = pkgs.bash;
-      createHome = true;
-      homeMode = "555";
-      openssh.authorizedKeys.keyFiles = [
-        ../../pubkeys/desktop_builder_ssh.pub
-      ];
+      nixremote = {
+        isSystemUser = true;
+        group = "nixremote";
+        home = "/home/nixremote";
+        shell = pkgs.bash;
+        createHome = true;
+        homeMode = "555";
+        openssh.authorizedKeys.keyFiles = [
+          ../../pubkeys/desktop_builder_ssh.pub
+        ];
+      };
+
+      nginx.extraGroups = ["git"];
     };
   };
 
@@ -136,92 +79,24 @@
     };
   };
 
-  services.cgit."cgit" = {
-    enable = true;
-    scanPath = "/srv/git";
-    settings = {
-      # readme = "";
-      remove-suffix = true;
-      root-title = "Skullheadx's Git Forge";
-      root-desc = "Source code for various projects";
-      repository-sort = "age";
-      enable-follow-links = true;
-      source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
-      strict-export = "git-daemon-export-ok";
-      cache-size = 1000;
-      cache-root = "/srv/git/.cache";
-      clone-url = "git://git.skullheadx.com/$CGIT_REPO_URL";
-      enable-http-clone = true;
-      enable-index-links = true;
-      enable-blame = true;
-      enable-commit-graph = true;
-      enable-log-filecount = true;
-      enable-log-linecount = true;
-      enable-subject-links = true;
-      # enable-owner-index = false;
-      enable-git-config = true;
-      local-time = true;
-      branch-sort = "age";
-      max-stats = "quarter";
-      snapshots = "tar.gz tar.bz2 zip";
-      logo-link = "https://git.skullheadx.com";
-      favicon = "/cgit/favicon.ico";
-      logo = "/cgit/logo.webp";
-      css = "/cgit/cgit.css";
-    };
-    extraConfig = ''
-      mimetype.gif=image/gif
-      mimetype.html=text/html
-      mimetype.jpg=image/jpeg
-      mimetype.jpeg=image/jpeg
-      mimetype.pdf=application/pdf
-      mimetype.png=image/png
-      mimetype.webp=image/webp
-      mimetype.svg=image/svg+xml
+  services.journald.extraConfig = ''
+    SystemMaxUse=500M
+    MaxRetentionSec=30day
+  '';
 
-      readme=:README.md
-      readme=:readme.md
-      readme=:README.mkd
-      readme=:readme.mkd
-      readme=:README.rst
-      readme=:readme.rst
-      readme=:README.html
-      readme=:readme.html
-      readme=:README.htm
-      readme=:readme.htm
-      readme=:README.txt
-      readme=:readme.txt
-      readme=:README
-      readme=:readme
-      readme=:INSTALL.md
-      readme=:install.md
-      readme=:INSTALL.mkd
-      readme=:install.mkd
-      readme=:INSTALL.rst
-      readme=:install.rst
-      readme=:INSTALL.html
-      readme=:install.html
-      readme=:INSTALL.htm
-      readme=:install.htm
-      readme=:INSTALL.txt
-      readme=:install.txt
-      readme=:INSTALL
-      readme=:install
-
-
-    '';
-
-    gitHttpBackend = {
-      enable = true;
-      checkExportOkFiles = true;
-    };
-    nginx = {
-      location = "";
-      virtualHost = "git.skullheadx.com";
-    };
+  environment = {
+    systemPackages = with pkgs; [
+      nfs-utils
+      btop
+      screen
+    ];
+    sessionVariables = {};
   };
 
-  services.fcgiwrap.instances."cgit-cgit".process.prefork = 8;
+  # Services
+  services.rsync = {
+    enable = true;
+  };
 
   services.nix-serve = {
     enable = true;
@@ -229,167 +104,83 @@
     bindAddress = "0.0.0.0";
     secretKeyFile = "/var/cache-priv-key.pem";
   };
-  nix.settings.keep-derivations = true;
-  nix.settings.keep-outputs = true;
 
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedOptimisation = true;
-    experimentalZstdSettings = true;
-    recommendedBrotliSettings = true;
-    recommendedGzipSettings = true;
-    validateConfigFile = true;
-    appendHttpConfig = ''
-      log_format main '$remote_addr - $remote_user [$time_local] "$request" '
-                       '$status $body_bytes_sent "$http_referer" '
-                       '"$http_user_agent"';
+  # Do not delete my builds
+  nix.settings = {
+    keep-derivations = true;
+    keep-outputs = true;
+  };
 
-      access_log /var/log/nginx/access.log main;
+  networking = {
+    hostName = "icon";
 
-      set_real_ip_from ${ips.ip_wg_vps};
-      real_ip_header X-Forwarded-For;
+    firewall = {
+      allowedTCPPorts = [
+        9418
+        22
+        8080
+        6667
+        2049
+        5000
+        53
+      ]; # git, git (ssh), cgit, irc (insecure), nfs, nix-serve-ng, dns
+      allowedUDPPorts = [
+        55555
+        53
+      ]; # wireguard, dns
+    };
 
-      map $request_uri $limit_key {
-        default "";
-        ~^/nixpkgs/atom  $binary_remote_addr;
-      }
+    # Must turn off dns auto assignment so that we use our dnsmasq resolver
+    networkmanager.dns = "none";
+    nameservers = ["127.0.0.1"];
+    useDHCP = false;
 
-      limit_req_zone $limit_key zone=expensive:10m rate=1r/m;
+    defaultGateway = {
+      # TODO: Figure out what's at this IP
+      address = "192.168.1.1";
+      interface = "eno1";
+    };
 
-      map $http_user_agent $bot_class {
-          default                        "";
-          ~*GPTBot                       "gptbot";
-          ~*Amazonbot                    "amazonbot";
-          ~*meta-externalagent           "metabot";
-      }
-
-      limit_req_zone $bot_class zone=bots:10m rate=1r/m;
-
-
-    '';
-    virtualHosts = {
-      "git.skullheadx.com" = {
-        listen = [
+    interfaces.eno1 = {
+      ipv4 = {
+        addresses = [
           {
-            addr = "${ips.ip_wg_homelab}";
-            port = 8080;
-          }
-          {
-            addr = "${ips.ip_local_homelab}";
-            port = 8080;
+            address = "${ips.ip_local_homelab}";
+            prefixLength = 24;
           }
         ];
-
-        extraConfig = ''
-          limit_req zone=expensive burst=1 nodelay;
-          limit_req zone=bots burst=3 nodelay;
-        '';
-        locations = {
-          "/cgit/" = {
-            alias = "/srv/git/cgit/";
-          };
-          "= /robots.txt" = {
-            alias = "/srv/git/cgit/robots.txt";
-          };
-        };
+        routes = [
+          {
+            address = "${ips.ip_wg_router}";
+            prefixLength = 32;
+            via = "${ips.ip_local_router}";
+          }
+        ];
       };
     };
-  };
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=500M
-    MaxRetentionSec=30day
-  '';
-
-  services.gitDaemon = {
-    enable = true;
-    basePath = "/srv/git";
-    listenAddress = "0.0.0.0";
-    exportAll = false;
-  };
-
-  programs.git.config.url."git://127.0.0.1/" = {
-    insteadOf = [
-      "git://git.skullheadx.com/"
-    ];
-  };
-
-  # IRC
-  services.soju = {
-    adminSocket.enable = true;
-    enable = true;
-    listen = [
-      "irc+insecure://${ips.ip_wg_homelab}:6667"
-      "irc+insecure://${ips.ip_local_homelab}:6667"
-    ];
-    hostName = "skullheadx.com";
-  };
-
-  # NFS
-  services.nfs = {
-    server = {
+    wireguard = {
       enable = true;
-      createMountPoints = true;
-      exports = ''
-        /srv/data *(rw,sync,no_subtree_check,crossmnt,fsid=0,root_squash)
-      '';
-      extraNfsdConfig = ''
-        [nfsd]
-        vers3=off
-        vers4=yes
-        udp=off
-        tcp=on
-      '';
     };
-  };
-  fileSystems."/srv/data" = {
-    device = "/dev/disk/by-uuid/9014f510-b08e-488f-8c43-20a4ac7f15cc";
-    fsType = "ext4";
-    options = [
-      "defaults"
-      "nofail"
-    ];
-  };
-  networking.hostName = "icon";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    wg-quick.interfaces.wg0 = {
+      address = ["${ips.ip_wg_homelab}/24"];
+      privateKeyFile = "/var/lib/wireguard/private.key";
+      # max transmission unit so that packets don't get split
+      mtu = 1360;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+      # We use 55555 instead of default since that is blocked I think
+      listenPort = 55555;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    nfs-utils
-    btop
-    screen
-  ];
-
-  programs.git = {
-    enable = true;
-  };
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged
-    # programs here, NOT in environment.systemPackages
-  ];
-
-  environment.sessionVariables = {
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # Services
-  services.rsync = {
-    enable = true;
+      peers = [
+        {
+          publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
+          allowedIPs = ["${ips.ip_wg_vps}/32"];
+          endpoint = "${ips.ip_pub_vps}:55555";
+          # we are behind NAT, so we must keep the connection alive in case the public IP of homelab changes
+          persistentKeepalive = 25;
+        }
+      ];
+    };
   };
 
   services.dnsmasq = {
@@ -426,65 +217,57 @@
     };
   };
 
-  # TODO: Remove this when you setup your own router
-  networking.networkmanager.dns = "none";
-  networking.nameservers = ["127.0.0.1"];
-  networking.useDHCP = false;
-  networking.interfaces.eno1 = {
-    ipv4 = {
-      addresses = [
-        {
-          address = "${ips.ip_local_homelab}";
-          prefixLength = 24;
-        }
-      ];
-      routes = [
-        {
-          address = "${ips.ip_wg_router}";
-          prefixLength = 32;
-          via = "${ips.ip_local_router}";
-        }
-      ];
+  programs.ssh = {
+    knownHosts = {
+      desktop = {
+        extraHostNames = [ips.ip_local_desktop];
+        publicKeyFile = ./../../pubkeys/desktop_ssh.pub;
+      };
+      laptop = {
+        publicKeyFile = ./../../pubkeys/laptop_ssh.pub;
+      };
+      vps = {
+        extraHostNames = [ips.ip_pub_vps];
+        publicKeyFile = ./../../pubkeys/vps_ssh.pub;
+      };
+      github = {
+        extraHostNames = ["github.com"];
+        publicKeyFile = ./../../pubkeys/github_ssh.pub;
+      };
     };
-  };
-  networking.defaultGateway = {
-    address = "192.168.1.1";
-    interface = "eno1";
+    extraConfig = ''
+      Host git.skullheadx.com
+        HostName ${ips.ip_local_homelab}
+        Port 22
+        User git
+      Host vps
+        Hostname ${ips.ip_pub_vps}
+        Port 2222
+      Host router
+        Hostname ${ips.ip_local_router}
+        Port 2222
+    '';
   };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    9418
-    22
-    8080
-    6667
-    2049
-    5000
-    53
-  ]; # git, git (ssh), cgit, irc (insecure), nfs, nix-serve-ng, dns
-  networking.firewall.allowedUDPPorts = [
-    55555
-    53
-  ]; # wireguard, dns
-
-  networking.wireguard = {
+  # IMPORTANT Update this in all other hosts if changed
+  services.openssh = {
     enable = true;
-  };
+    enableRecommendedAlgorithms = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
 
-  networking.wg-quick.interfaces.wg0 = {
-    address = ["${ips.ip_wg_homelab}/24"];
-    privateKeyFile = "/var/lib/wireguard/private.key";
-    mtu = 1360;
-    listenPort = 55555;
+      PermitRootLogin = "no";
 
-    peers = [
-      {
-        publicKey = "q0CnToO9bQ0sAMQER9CCCbry/UDC1Yf2VWSz/WiMBEM=";
-        allowedIPs = ["${ips.ip_wg_vps}/32"];
-        endpoint = "${ips.ip_pub_vps}:55555";
-        persistentKeepalive = 25;
-      }
-    ];
+      PubkeyAuthentication = "yes";
+      # MaxAuthTries = 3;
+      # LoginGraceTime = "30s";
+
+      # X11Forwarding = false;
+      # AllowAgentForwarding = false;
+      # AllowTcpForwarding = true;
+    };
+    ports = [22 2222];
   };
 
   # This value determines the NixOS release from which the default
